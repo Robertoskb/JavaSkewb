@@ -1,0 +1,184 @@
+package br.com.javaskewb.Controller;
+
+import br.com.javaskewb.Controller.parts.CenterPart;
+import br.com.javaskewb.Controller.parts.CenterSlot;
+import br.com.javaskewb.Controller.parts.FacePart;
+import br.com.javaskewb.Controller.parts.FaceSlot;
+import br.com.javaskewb.Cube.Skewb;
+import br.com.javaskewb.Mapping.parts.Center;
+import br.com.javaskewb.Mapping.parts.Corner;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
+import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Polygon;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class SkewbBase extends StackPane{
+
+    @FXML private Polygon center1;
+    @FXML private Polygon center2;
+    @FXML private Polygon center3;
+    @FXML private Polygon center4;
+    @FXML private Polygon center5;
+    @FXML private Polygon center6;
+
+    @FXML private Polygon face1;
+    @FXML private Polygon face2;
+    @FXML private Polygon face3;
+    @FXML private Polygon face4;
+    @FXML private Polygon face5;
+    @FXML private Polygon face6;
+    @FXML private Polygon face7;
+    @FXML private Polygon face8;
+    @FXML private Polygon face9;
+    @FXML private Polygon face10;
+    @FXML private Polygon face11;
+    @FXML private Polygon face12;
+    @FXML private Polygon face13;
+    @FXML private Polygon face14;
+    @FXML private Polygon face15;
+    @FXML private Polygon face16;
+    @FXML private Polygon face17;
+    @FXML private Polygon face18;
+    @FXML private Polygon face19;
+    @FXML private Polygon face20;
+    @FXML private Polygon face21;
+    @FXML private Polygon face22;
+    @FXML private Polygon face23;
+    @FXML private Polygon face24;
+
+    @FXML private StackPane root;
+
+    @FXML private Group skewbGroup;
+
+    private ArrayList<Polygon> centers;
+    private ArrayList<Polygon> faces;
+
+    private final ArrayList<CenterSlot> centerSlots = new ArrayList<>();
+    private final ArrayList<FaceSlot> faceSlots = new ArrayList<>();
+
+    private final ArrayList<Corner> corners = new ArrayList<>();
+
+    private static final double BASE_WIDTH = 900;
+    private static final double BASE_HEIGHT = 800;
+
+    private final Skewb skewb = new Skewb();
+
+    public SkewbBase() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/javaskewb/view/SkewbBase.fxml"));
+        loader.setRoot(this);
+        loader.setController(this);
+
+        loader.load();
+    }
+
+    public void initialize(){
+        centers = new ArrayList<>(List.of(center1, center2, center3, center4, center5, center6));
+        faces = new ArrayList<>(List.of(
+                face1, face2, face3,
+                face4, face5, face6,
+                face7, face8, face9,
+                face10, face11, face12,
+                face13, face14, face15,
+                face16, face17, face18,
+                face19, face20, face21,
+                face22, face23, face24
+        ));
+
+        update();
+
+        root.widthProperty().addListener((obs, oldV, newV) -> resize());
+        root.heightProperty().addListener((obs, oldV, newV) -> resize());
+
+        resize();
+    }
+
+    public void update(){
+        for (int i = 0; i < centers.size(); i++) {
+            Center center = new Center(i, skewb.getState().getCenters().get(i).getValue());
+            CenterPart centerPart = new CenterPart(center);
+            centerSlots.add(new CenterSlot(i, centerPart, centers.get(i)));
+        }
+
+        for (int i = 0; i < faces.size(); i++) {
+            FacePart facePart = new FacePart(skewb.getState().getFaces().get(i));
+            faceSlots.add(new FaceSlot(i, facePart, faces.get(i)));
+        }
+    }
+
+    public void applyScramble(String scramble){
+        skewb.applyScramble(scramble);
+        update();
+    }
+
+    public void applyScramble(ArrayList<String> scramble){
+        skewb.applyScramble(scramble);
+        update();
+    }
+
+    private void resize() {
+
+        double scale = Math.min(
+                root.getWidth() / BASE_WIDTH,
+                root.getHeight() / BASE_HEIGHT
+        );
+
+        skewbGroup.setScaleX(scale);
+        skewbGroup.setScaleY(scale);
+
+        skewbGroup.setLayoutX((root.getWidth() - BASE_WIDTH * scale) / 2);
+        skewbGroup.setLayoutY((root.getHeight() - BASE_HEIGHT * scale) / 2);
+    }
+
+    public StackPane getRoot() {
+        return root;
+    }
+
+    public void setRoot(StackPane root) {
+        this.root = root;
+    }
+
+    public Group getSkewbGroup() {
+        return skewbGroup;
+    }
+
+    public void setSkewbGroup(Group skewbGroup) {
+        this.skewbGroup = skewbGroup;
+    }
+
+    public ArrayList<Polygon> getCenters() {
+        return centers;
+    }
+
+    public void setCenters(ArrayList<Polygon> centers) {
+        this.centers = centers;
+    }
+
+    public ArrayList<Polygon> getFaces() {
+        return faces;
+    }
+
+    public void setFaces(ArrayList<Polygon> faces) {
+        this.faces = faces;
+    }
+
+    public ArrayList<CenterSlot> getCenterSlots() {
+        return centerSlots;
+    }
+
+    public ArrayList<FaceSlot> getFaceSlots() {
+        return faceSlots;
+    }
+
+    public ArrayList<Corner> getCorners() {
+        return corners;
+    }
+
+    public Skewb getSkewb() {
+        return skewb;
+    }
+}
