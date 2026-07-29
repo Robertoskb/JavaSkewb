@@ -1,7 +1,6 @@
-package br.com.javaskewb.Mapping.parts;
+package br.com.javaskewb.Mapping.Parts;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Corner {
     private int id;

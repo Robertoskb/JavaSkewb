@@ -5,16 +5,19 @@ import br.com.javaskewb.Controller.parts.CenterSlot;
 import br.com.javaskewb.Controller.parts.FacePart;
 import br.com.javaskewb.Controller.parts.FaceSlot;
 import br.com.javaskewb.Cube.Skewb;
-import br.com.javaskewb.Mapping.parts.Center;
-import br.com.javaskewb.Mapping.parts.Corner;
+import br.com.javaskewb.Mapping.Parts.Center;
+import br.com.javaskewb.Mapping.Parts.Corner;
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Polygon;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SkewbBase extends StackPane{
@@ -118,6 +121,19 @@ public class SkewbBase extends StackPane{
     public void applyScramble(ArrayList<String> scramble){
         skewb.applyScramble(scramble);
         update();
+    }
+
+    public void applyScrambleAnimation(String scramble){
+        int cont = 0;
+        int time = 1000;
+        for (String move: scramble.split(" ")){
+            PauseTransition pause = new PauseTransition(Duration.millis(time + cont));
+            pause.setOnFinished(e -> {
+                applyScramble(move);
+            });
+            pause.play();
+            cont += time;
+        }
     }
 
     private void resize() {

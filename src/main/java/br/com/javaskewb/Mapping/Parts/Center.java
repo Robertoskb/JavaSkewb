@@ -1,4 +1,4 @@
-package br.com.javaskewb.Mapping.parts;
+package br.com.javaskewb.Mapping.Parts;
 
 public class Center {
     private int id;

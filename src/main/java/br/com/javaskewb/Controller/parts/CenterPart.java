@@ -2,7 +2,7 @@ package br.com.javaskewb.Controller.parts;
 
 import br.com.javaskewb.Controller.parts.base.Part;
 import br.com.javaskewb.Controller.parts.base.SkewbColor;
-import br.com.javaskewb.Mapping.parts.Center;
+import br.com.javaskewb.Mapping.Parts.Center;
 
 import java.util.HashMap;
 import java.util.Map;

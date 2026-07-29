@@ -1,9 +1,10 @@
 package br.com.javaskewb.Mapping;
 
-import br.com.javaskewb.Mapping.parts.Center;
-import br.com.javaskewb.Mapping.parts.Corner;
+import br.com.javaskewb.Mapping.Parts.Center;
+import br.com.javaskewb.Mapping.Parts.Corner;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class State {
     private ArrayList<Center> centers;
@@ -43,7 +44,8 @@ public class State {
         return new State(new_centers, new_corners);
     }
 
-    public boolean equals(State other){
+    public boolean equals(Object obj){
+        State other = (State) obj;
         return centers.equals(other.getCenters()) && corners.equals(other.getCorners());
     }
 
@@ -83,5 +85,10 @@ public class State {
     @Override
     public String toString(){
         return "Centros: " + centers + "\n" + "Cantos: " + corners;
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(centers, corners);
     }
 }

@@ -2,8 +2,8 @@ package br.com.javaskewb.Mapping.Solve;
 
 import br.com.javaskewb.Mapping.Solve.Matrices.CentersFaces;
 import br.com.javaskewb.Mapping.State;
-import br.com.javaskewb.Mapping.parts.Center;
-import br.com.javaskewb.Mapping.parts.Corner;
+import br.com.javaskewb.Mapping.Parts.Center;
+import br.com.javaskewb.Mapping.Parts.Corner;
 
 import java.util.ArrayList;
 import java.util.HashMap;
