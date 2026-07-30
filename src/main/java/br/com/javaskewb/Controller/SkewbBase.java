@@ -105,11 +105,23 @@ public class SkewbBase extends StackPane{
             Center center = new Center(i, skewb.getState().getCenters().get(i).getValue());
             CenterPart centerPart = new CenterPart(center);
             centerSlots.add(new CenterSlot(i, centerPart, centers.get(i)));
+
+            Polygon polygon = centerSlots.get(i).getPolygon();
+
+            final int finalI = i;
+            polygon.setOnMouseClicked(s -> setCenterColor(finalI));
+
         }
 
         for (int i = 0; i < faces.size(); i++) {
             FacePart facePart = new FacePart(skewb.getState().getFaces().get(i));
             faceSlots.add(new FaceSlot(i, facePart, faces.get(i)));
+
+            Polygon polygon = faceSlots.get(i).getPolygon();
+
+            final int finalI = i;
+            polygon.setOnMouseClicked(s ->
+                setFaceColor(finalI));
         }
     }
 
@@ -134,6 +146,14 @@ public class SkewbBase extends StackPane{
             pause.play();
             cont += time;
         }
+    }
+
+    public void setCenterColor(int slot){
+        centerSlots.get(slot).getPart().alterColorDefault();
+    }
+
+    public void setFaceColor(int slot){
+        faceSlots.get(slot).getPart().alterColorDefault();
     }
 
     private void resize() {

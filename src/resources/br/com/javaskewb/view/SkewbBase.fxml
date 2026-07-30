@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Polygon?>
 
-<fx:root fx:id="root" type="StackPane" prefHeight="800.0" prefWidth="900.0" style="-fx-background-color: #FAEDEB;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="root" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #FAEDEB;" type="StackPane" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
    <Group fx:id="skewbGroup">
 
       <!-- FACE SUPERIOR (Top Face) -->

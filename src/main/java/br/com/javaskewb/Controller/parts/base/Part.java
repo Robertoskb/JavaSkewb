@@ -1,12 +1,37 @@
 package br.com.javaskewb.Controller.parts.base;
 
-public abstract class Part<P> {
+import java.util.ArrayList;
+
+public abstract class Part<P> implements Subject{
     private P part;
     private SkewbColor color;
+    private SkewbColor lastColor;
+
+    private final ArrayList<Observer> observers = new ArrayList<>();
 
     public Part(P part, SkewbColor color){
         setPart(part);
         setColor(color);
+    }
+
+    @Override
+    public void notifyUpdateColor(){
+        for (Observer observer: observers){
+            observer.updateColor(color);
+        }
+    }
+
+    @Override
+    public void addObserver(Observer observer){
+        observers.add(observer);
+    }
+
+    public void alterColorDefault(){
+        if (color != SkewbColor.DEFAULT)
+            setColor(SkewbColor.DEFAULT);
+        else{
+            setColor(lastColor);
+        }
     }
 
     public P getPart() {
@@ -22,6 +47,21 @@ public abstract class Part<P> {
     }
 
     public void setColor(SkewbColor color) {
+        lastColor = this.color;
         this.color = color;
+
+        notifyUpdateColor();
+    }
+
+    public SkewbColor getLastColor() {
+        return lastColor;
+    }
+
+    public void setLastColor(SkewbColor lastColor) {
+        this.lastColor = lastColor;
+    }
+
+    public ArrayList<Observer> getObservers() {
+        return observers;
     }
 }

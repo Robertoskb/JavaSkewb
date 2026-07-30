@@ -3,7 +3,7 @@ package br.com.javaskewb.Controller.parts.base;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 
-public abstract class Slot<P extends Part<?>> {
+public abstract class Slot<P extends Part<?>> implements Observer{
     int id;
     P part;
     Polygon polygon;
@@ -12,6 +12,13 @@ public abstract class Slot<P extends Part<?>> {
         setId(id);
         setPolygon(polygon);
         setPart(part);
+
+        part.addObserver(this);
+    }
+
+    @Override
+    public void updateColor(SkewbColor color){
+        polygon.setFill(Color.web(color.getHex()));
     }
 
     public int getId() {
