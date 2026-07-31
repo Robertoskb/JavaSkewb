@@ -11,7 +11,7 @@ import java.util.HashMap;
 abstract public class Moves {
     protected State state;
     protected boolean updateState;
-    HashMap<String, CentersFaces> moves = new HashMap<>();
+    HashMap<String, CentersFaces> notation = new HashMap<>();
 
     public Moves(State state, boolean updateState){
         setState(state);
@@ -24,12 +24,12 @@ abstract public class Moves {
     private ArrayList<CentersFaces> getAllMatrices(ArrayList<String> scramble){
         ArrayList<CentersFaces> allMatrices = new ArrayList<>();
         for (String s: scramble)
-            allMatrices.add(moves.get(s));
+            allMatrices.add(notation.get(s));
 
         return allMatrices;
     }
     public CentersFaces getMove(String move){
-        return moves.get(move);
+        return notation.get(move);
     }
 
     public int[][] mulMatrices(int[][] matrix1, int[][] matrix2){
@@ -203,5 +203,9 @@ abstract public class Moves {
 
     public void setUpdateState(boolean updateState) {
         this.updateState = updateState;
+    }
+
+    public HashMap<String, CentersFaces> getNotation() {
+        return notation;
     }
 }

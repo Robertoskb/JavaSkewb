@@ -4,8 +4,6 @@ import br.com.javaskewb.Mapping.Solve.Matrices.CentersFaces;
 import br.com.javaskewb.Mapping.Solve.Matrices.MatrixSwap;
 import br.com.javaskewb.Mapping.State;
 
-import java.util.ArrayList;
-
 public class WCAMoves extends Moves {
     public WCAMoves(State state, boolean updateState) {
         super(state, updateState);
@@ -13,17 +11,17 @@ public class WCAMoves extends Moves {
 
     @Override
     protected void fill() {
-        moves.put("R", R());
-        moves.put("R'", invertMove(moves.get("R")));
+        notation.put("R", R());
+        notation.put("R'", invertMove(notation.get("R")));
 
-        moves.put("B", B());
-        moves.put("B'", invertMove(moves.get("B")));
+        notation.put("B", B());
+        notation.put("B'", invertMove(notation.get("B")));
 
-        moves.put("U", U());
-        moves.put("U'", invertMove(moves.get("U")));
+        notation.put("U", U());
+        notation.put("U'", invertMove(notation.get("U")));
 
-        moves.put("L", L());
-        moves.put("L'", invertMove(moves.get("L")));
+        notation.put("L", L());
+        notation.put("L'", invertMove(notation.get("L")));
     }
 
     private CentersFaces R() {

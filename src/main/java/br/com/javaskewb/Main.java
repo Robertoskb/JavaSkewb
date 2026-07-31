@@ -6,6 +6,7 @@ import br.com.javaskewb.Mapping.Parts.Center;
 import br.com.javaskewb.Mapping.Parts.Corner;
 import br.com.javaskewb.Mapping.State;
 import br.com.javaskewb.Solution.BFSSkewb;
+import br.com.javaskewb.Solution.SkewbTranslation;
 import br.com.javaskewb.ui.ScreenLoader;
 import br.com.javaskewb.ui.ScreenManager;
 import javafx.application.Application;
@@ -33,5 +34,9 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
+//        SkewbTranslation translation = new SkewbTranslation();
+//        // "U' B L B' L R' L B'"
+//        for (String scramble: translation.translate("R B"))
+//            System.out.println(scramble + "\n");
     }
 }

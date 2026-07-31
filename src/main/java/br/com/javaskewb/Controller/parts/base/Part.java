@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public abstract class Part<P> implements Subject{
     private P part;
-    private SkewbColor color;
-    private SkewbColor lastColor;
+    private SkewbColor color = SkewbColor.DEFAULT;
+    private SkewbColor lastColor= SkewbColor.DEFAULT;
 
     private final ArrayList<Observer> observers = new ArrayList<>();
 

@@ -71,6 +71,8 @@ public class SkewbBase extends StackPane{
 
     private final Skewb skewb = new Skewb();
 
+    private boolean invisiblePolygons = false;
+
     public SkewbBase() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/javaskewb/view/SkewbBase.fxml"));
         loader.setRoot(this);
@@ -109,7 +111,7 @@ public class SkewbBase extends StackPane{
             Polygon polygon = centerSlots.get(i).getPolygon();
 
             final int finalI = i;
-            polygon.setOnMouseClicked(s -> setCenterColor(finalI));
+            // polygon.setOnMouseClicked(s -> setCenterColor(finalI));
 
         }
 
@@ -120,10 +122,25 @@ public class SkewbBase extends StackPane{
             Polygon polygon = faceSlots.get(i).getPolygon();
 
             final int finalI = i;
-            polygon.setOnMouseClicked(s ->
-                setFaceColor(finalI));
+            //polygon.setOnMouseClicked(s -> setFaceColor(finalI));
         }
     }
+
+    public void changeVisibility(){
+        int[] centers = {3, 4, 5};
+        int[] faces = {5, 7, 14, 16, 13, 23, 8, 10, 12, 15, 18, 21};
+
+        invisiblePolygons = !invisiblePolygons;
+
+        double opacity = invisiblePolygons ? 0.0 : 1.0;
+        for (int center: centers)
+            centerSlots.get(center).getPolygon().setOpacity(opacity);
+
+        for (int face: faces)
+            faceSlots.get(face).getPolygon().setOpacity(opacity);
+
+    }
+
 
     public void applyScramble(String scramble){
         skewb.applyScramble(scramble);

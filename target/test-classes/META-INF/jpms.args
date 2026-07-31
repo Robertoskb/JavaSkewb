@@ -1,0 +1,4 @@
+--patch-module
+JavaSkewb=_
+--add-reads
+JavaSkewb=ALL-UNNAMED

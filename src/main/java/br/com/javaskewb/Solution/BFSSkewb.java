@@ -19,7 +19,7 @@ public class BFSSkewb {
         stateDistances.getFirst().add(initialState);
 
         PriorityQueue<Map.Entry<State, Integer>> queue = new PriorityQueue<>(
-                (a, b) -> Integer.compare(a.getValue(), b.getValue())
+                Comparator.comparingInt(Map.Entry::getValue)
         );
 
         queue.add(new AbstractMap.SimpleEntry<>(initialState, 0));
