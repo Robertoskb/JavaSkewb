@@ -86,8 +86,10 @@ abstract public class Moves {
 
             newState = move(new CentersFaces(centers, faces));
 
-            if (updateState)
-                state = newState;
+            if (updateState){
+                state.setCenters(newState.getCenters());
+                state.setCorners(newState.getCorners());
+            }
         }
 
         return newState;
@@ -99,8 +101,10 @@ abstract public class Moves {
 
         newState = move(matrices);
 
-        if (updateState)
-            state = newState;
+        if (updateState){
+            state.setCenters(newState.getCenters());
+            state.setCorners(newState.getCorners());
+        }
 
 
         return newState;
@@ -110,12 +114,12 @@ abstract public class Moves {
     public ArrayList<Integer> moveCenters(int[][] matrix, ArrayList<Integer> centers){
         ArrayList<Integer> arrayCenters = new ArrayList<>();
 
-        for (int i = 0; i < matrix.length; i++) {
+        for (int[] ints : matrix) {
             for (int j = 0; j < 1; j++) {
                 int sum = 0;
 
-                for (int k = 0; k < matrix[i].length; k++) {
-                    sum += matrix[i][k] * centers.get(k);
+                for (int k = 0; k < ints.length; k++) {
+                    sum += ints[k] * centers.get(k);
                 }
 
                 arrayCenters.add(sum);
@@ -128,12 +132,12 @@ abstract public class Moves {
     public ArrayList<Integer> moveFaces(int[][] matrix, ArrayList<Integer> faces){
         ArrayList<Integer> arrayFaces = new ArrayList<>();
 
-        for (int i = 0; i < matrix.length; i++) {
+        for (int[] ints : matrix) {
             for (int j = 0; j < 1; j++) {
                 int sum = 0;
 
-                for (int k = 0; k < matrix[i].length; k++) {
-                    sum += matrix[i][k] * faces.get(k);
+                for (int k = 0; k < ints.length; k++) {
+                    sum += ints[k] * faces.get(k);
                 }
 
                 arrayFaces.add(sum);

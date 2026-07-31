@@ -10,6 +10,7 @@ module JavaSkewb {
     exports br.com.javaskewb.Mapping.Parts;
     exports br.com.javaskewb.Mapping;
     exports br.com.javaskewb.Mapping.Solve;
+    exports br.com.javaskewb.Mapping.Solve.Matrices;
     exports br.com.javaskewb.Controller.parts;
     opens br.com.javaskewb.Controller.parts to javafx.fxml, javafx.graphics;
     exports br.com.javaskewb.Controller.parts.base;

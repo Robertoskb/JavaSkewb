@@ -29,20 +29,37 @@ public class MainController {
     @FXML
     private HBox movesContainer;
 
+    @FXML
+    private Button moveMode;
+
     private SkewbBase skewbBase;
+
+    private boolean wcaMode = false;
 
     public void initialize() throws IOException {
         skewbBase = new SkewbBase();
+        skewbBase.getSkewb().toAdvanced();
+        moveMode.setText("WCA");
+
+        skewbBase.changeVisibility();
 
         skewbContainer.getChildren().add(skewbBase);
 
-        skewbBase.getSkewb().toAdvanced();
-        List<String> keys = skewbBase.getSkewb().getMoves().getNotation().keySet().stream().sorted().toList();
+        addButtons();
 
+        isSolved();
+    }
+
+    public void addButtons(){
+        movesContainer.getChildren().clear();
+        List<String> keys = skewbBase.getSkewb().getMoves().getNotation().keySet().stream().sorted().toList();
         for (String move: keys){
             Button button = new Button(move);
 
-            button.setOnMouseClicked(e -> skewbBase.applyScramble(move));
+            button.setOnMouseClicked(e -> {
+                skewbBase.applyScramble(move);
+                isSolved();
+            });
 
             movesContainer.getChildren().add(button);
         }
@@ -50,5 +67,23 @@ public class MainController {
 
     public void changeVisibility(){
         skewbBase.changeVisibility();
+    }
+
+    public void isSolved(){
+        scrambleText.setText(skewbBase.getSkewb().isSolved()? "Solved": "Solving");
+    }
+
+    public void changeMoveMode(){
+        if (wcaMode) {
+            skewbBase.getSkewb().toAdvanced();
+            moveMode.setText("WCA");
+        } else {
+            skewbBase.getSkewb().toWCA();
+            moveMode.setText("Advanced");
+        }
+
+        addButtons();
+
+        wcaMode = !wcaMode;
     }
 }

@@ -7,26 +7,62 @@ import br.com.javaskewb.Mapping.State;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 public class Skewb {
     private State state;
     private Moves moves;
     private WCAMoves wcaMoves;
     private AdvancedMoves advancedMoves;
+    private ArrayList<State> solvedStates;
 
     public Skewb(){
         setState(State.getSolvedStage());
         setWcaMoves(new WCAMoves(state, true));
         setAdvancedMoves(new AdvancedMoves(state, true));
         setMoves(wcaMoves);
+
+        setSolvedStates(generateSolvedStates());
     }
 
     public Skewb(State state){
         setState(state);
         setWcaMoves(new WCAMoves(state, true));
         setAdvancedMoves(new AdvancedMoves(state, true));
-
         setMoves(wcaMoves);
+
+        setSolvedStates(generateSolvedStates());
+
+    }
+
+    public ArrayList<State> generateSolvedStates(){
+        ArrayList<State> states = new ArrayList<>();
+
+        String[] moves = "x y z x' y' z'".split(" ");
+
+        State baseState = State.getSolvedStage();
+
+        ArrayList<State> queue = new ArrayList<>();
+        queue.add(baseState);
+
+        while (!queue.isEmpty()){
+            AdvancedMoves advanced = new AdvancedMoves(queue.removeLast(), false);
+            for (String move: moves){
+                State state = advanced.applyMove(move);
+
+                if (!states.contains(state)){
+                    queue.add(state);
+                    states.add(state);
+                }
+
+            }
+        }
+
+        return states;
+    }
+
+    public boolean isSolved(){
+        return solvedStates.contains(state);
     }
 
     public void toAdvanced(){
@@ -85,5 +121,13 @@ public class Skewb {
     @Override
     public String toString(){
         return state.toString();
+    }
+
+    public ArrayList<State> getSolvedStates() {
+        return solvedStates;
+    }
+
+    public void setSolvedStates(ArrayList<State> solvedStates) {
+        this.solvedStates = solvedStates;
     }
 }

@@ -35,7 +35,7 @@ public class State {
         ArrayList<Corner> new_corners = new ArrayList<>();
 
         for (int i=0; i<6; i++)
-            new_centers.add(new Center(centers.get(i).getId()));
+            new_centers.add(new Center(centers.get(i).getId(), centers.get(i).getValue()));
 
         for (int i=0; i<8; i++)
             new_corners.add(new Corner(corners.get(i).getId(), corners.get(i).getFaces()));
