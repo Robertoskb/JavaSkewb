@@ -1,5 +1,7 @@
 package br.com.javaskewb.Mapping.Parts;
 
+import java.util.Objects;
+
 public class Center {
     private int id;
     private int value;
@@ -18,6 +20,11 @@ public class Center {
     public boolean equals(Object obj){
         Center other = (Center) obj;
         return other.getId() == id && (other.getValue() == -1 || other.getValue() == value);
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(id, value);
     }
 
     public int getId() {

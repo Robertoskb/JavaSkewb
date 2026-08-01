@@ -5,6 +5,10 @@ import br.com.javaskewb.Mapping.Solve.Matrices.MatrixSwap;
 import br.com.javaskewb.Mapping.State;
 
 public class WCAMoves extends Moves {
+
+    public WCAMoves() {
+        super();
+    }
     public WCAMoves(State state, boolean updateState) {
         super(state, updateState);
     }

@@ -152,10 +152,17 @@ public class SkewbBase extends StackPane{
         update();
     }
 
-    public void applyScrambleAnimation(String scramble){
+    public void applyScrambleAnimation(String scramble, Runnable runnable){
         int cont = 0;
         int time = 1000;
-        for (String move: scramble.split(" ")){
+
+        String[] scrambleList = scramble.split(" ");
+
+        PauseTransition superPause = new PauseTransition(Duration.millis(time * scrambleList.length + 100));
+        superPause.setOnFinished(e -> runnable.run());
+        superPause.play();
+
+        for (String move: scrambleList){
             PauseTransition pause = new PauseTransition(Duration.millis(time + cont));
             pause.setOnFinished(e -> {
                 applyScramble(move);

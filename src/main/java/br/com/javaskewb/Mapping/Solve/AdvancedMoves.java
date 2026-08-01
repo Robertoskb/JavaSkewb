@@ -7,6 +7,10 @@ import br.com.javaskewb.Mapping.State;
 import java.util.ArrayList;
 
 public class AdvancedMoves extends Moves{
+    public AdvancedMoves(){
+        super();
+    }
+
     public AdvancedMoves(State state, boolean updateState) {
         super(state, updateState);
     }

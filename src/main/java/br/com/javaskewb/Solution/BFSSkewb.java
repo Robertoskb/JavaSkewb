@@ -58,6 +58,6 @@ public class BFSSkewb {
     }
 
     public static List<Set<State>> BFS(int max){
-        return BFS(max, State.getSolvedStage());
+        return BFS(max, State.getSolvedState());
     }
 }

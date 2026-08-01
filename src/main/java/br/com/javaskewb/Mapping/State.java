@@ -15,7 +15,7 @@ public class State {
         setCorners(corners);
     }
 
-    public static State getSolvedStage(){
+    public static State getSolvedState(){
         ArrayList<Center> new_centers = new ArrayList<>();
         ArrayList<Corner> new_corners = new ArrayList<>();
 
@@ -44,6 +44,8 @@ public class State {
         return new State(new_centers, new_corners);
     }
 
+
+    @Override
     public boolean equals(Object obj){
         State other = (State) obj;
         return centers.equals(other.getCenters()) && corners.equals(other.getCorners());

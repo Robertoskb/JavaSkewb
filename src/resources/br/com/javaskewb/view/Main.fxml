@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="692.0" style="-fx-background-color: #F4F6F9;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.javaskewb.Controller.MainController">
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="622.0" prefWidth="898.0" style="-fx-background-color: #F4F6F9;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.javaskewb.Controller.MainController">
 
     <left>
         <VBox prefHeight="494.0" prefWidth="242.0" style="-fx-background-color: #1E293B;                      -fx-padding: 20;" BorderPane.alignment="CENTER" />
     </left>
 
     <center>
-        <VBox alignment="TOP_CENTER" prefHeight="434.0" prefWidth="530.0" spacing="10.0" style="-fx-padding: 25;">
+        <VBox alignment="TOP_CENTER" prefHeight="674.0" prefWidth="723.0" spacing="10.0" style="-fx-padding: 25;">
 
             <children>
 
@@ -32,6 +32,7 @@
                <children>
                   <Button fx:id="moveMode" mnemonicParsing="false" onAction="#changeMoveMode" text="Button" />
                   <HBox fx:id="movesContainer" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="1000.0" spacing="10.0" />
+                  <Button fx:id="solveButton" mnemonicParsing="false" onAction="#autoSolve" text="Solve" />
                </children>
             </HBox>
 

@@ -1,6 +1,7 @@
 package br.com.javaskewb.Mapping.Parts;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Corner {
     private int id;
@@ -30,6 +31,11 @@ public class Corner {
         else
             return false;
         return true;
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(id, faces);
     }
 
     public void setId(int id) {

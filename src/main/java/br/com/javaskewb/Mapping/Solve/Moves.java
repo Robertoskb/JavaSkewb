@@ -13,6 +13,10 @@ abstract public class Moves {
     protected boolean updateState;
     HashMap<String, CentersFaces> notation = new HashMap<>();
 
+    public Moves(){
+        fill();
+    }
+
     public Moves(State state, boolean updateState){
         setState(state);
         setUpdateState(updateState);
@@ -67,45 +71,11 @@ abstract public class Moves {
         return new CentersFaces(invertMatrix(centers), invertMatrix(faces));
     }
 
-    public State applyScramble(ArrayList<String> scramble){
-        ArrayList<CentersFaces> allMatrices = getAllMatrices(scramble);
-        State newState = state;
-
-        if (!allMatrices.isEmpty()){
-            int[][] centers, faces;
-
-            centers = allMatrices.getFirst().getCentersMatrix();
-            faces = allMatrices.getFirst().getFacesMatrix();
-
-            for (int i = 1; i < allMatrices.size(); i++) {
-                CentersFaces allMatrix = allMatrices.get(i);
-
-                centers = mulMatrices(centers, allMatrix.getCentersMatrix());
-                faces = mulMatrices(faces, allMatrix.getFacesMatrix());
-            }
-
-            newState = move(new CentersFaces(centers, faces));
-
-            if (updateState){
-                state.setCenters(newState.getCenters());
-                state.setCorners(newState.getCorners());
-            }
-        }
-
-        return newState;
-    }
-
     public State applyMove(String move){
         CentersFaces matrices = getMove(move);
         State newState;
 
         newState = move(matrices);
-
-        if (updateState){
-            state.setCenters(newState.getCenters());
-            state.setCorners(newState.getCorners());
-        }
-
 
         return newState;
     }
@@ -169,6 +139,13 @@ abstract public class Moves {
         cont = 0;
         for (int i=0; i<24; i+=3)
             arrayCorners.add(new Corner(cont++, new int[]{faces.get(i), faces.get(i + 1), faces.get(i + 2)}));
+
+        if (updateState){
+            state.setCenters(arrayCenters);
+            state.setCorners(arrayCorners);
+
+            return state;
+        }
 
         return new State(arrayCenters, arrayCorners);
     }

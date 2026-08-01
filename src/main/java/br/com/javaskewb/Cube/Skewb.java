@@ -16,7 +16,7 @@ public class Skewb {
     private ArrayList<State> solvedStates;
 
     public Skewb(){
-        setState(State.getSolvedStage());
+        setState(State.getSolvedState());
         setWcaMoves(new WCAMoves(state, true));
         setAdvancedMoves(new AdvancedMoves(state, true));
         setMoves(wcaMoves);
@@ -59,7 +59,7 @@ public class Skewb {
     }
 
     public ArrayList<State> generatePerspectiveStates(){
-        return generatePerspectiveStates(State.getSolvedStage());
+        return generatePerspectiveStates(State.getSolvedState());
     }
 
     public boolean isSolved(){
@@ -73,7 +73,7 @@ public class Skewb {
 
     public void applyScramble(ArrayList<String> scramble){
         for (String s: scramble)
-            setState(moves.applyMove(s));
+            moves.applyMove(s);
     }
 
     public void applyScramble(String scramble){
