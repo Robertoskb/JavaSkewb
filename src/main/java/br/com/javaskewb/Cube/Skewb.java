@@ -7,7 +7,6 @@ import br.com.javaskewb.Mapping.State;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.PriorityQueue;
 
 public class Skewb {
     private State state;
@@ -22,7 +21,7 @@ public class Skewb {
         setAdvancedMoves(new AdvancedMoves(state, true));
         setMoves(wcaMoves);
 
-        setSolvedStates(generateSolvedStates());
+        setSolvedStates(generatePerspectiveStates());
     }
 
     public Skewb(State state){
@@ -31,16 +30,14 @@ public class Skewb {
         setAdvancedMoves(new AdvancedMoves(state, true));
         setMoves(wcaMoves);
 
-        setSolvedStates(generateSolvedStates());
+        setSolvedStates(generatePerspectiveStates());
 
     }
 
-    public ArrayList<State> generateSolvedStates(){
+    public ArrayList<State> generatePerspectiveStates(State baseState){
         ArrayList<State> states = new ArrayList<>();
 
         String[] moves = "x y z x' y' z'".split(" ");
-
-        State baseState = State.getSolvedStage();
 
         ArrayList<State> queue = new ArrayList<>();
         queue.add(baseState);
@@ -59,6 +56,10 @@ public class Skewb {
         }
 
         return states;
+    }
+
+    public ArrayList<State> generatePerspectiveStates(){
+        return generatePerspectiveStates(State.getSolvedStage());
     }
 
     public boolean isSolved(){
