@@ -16,10 +16,15 @@ public class Center {
         setValue(value);
     }
 
+
+
     @Override
     public boolean equals(Object obj){
+        if (!obj.getClass().isAssignableFrom(Center.class))
+            return false;
+
         Center other = (Center) obj;
-        return other.getId() == id && (other.getValue() == -1 || other.getValue() == value);
+        return other.getId() == id & other.getValue() == value;
     }
 
     @Override

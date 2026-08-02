@@ -4,11 +4,18 @@ import br.com.javaskewb.Mapping.Parts.Center;
 import br.com.javaskewb.Mapping.Parts.Corner;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class State {
     private ArrayList<Center> centers;
     private ArrayList<Corner> corners;
+
+    private int[][] sides = {{0, 1, 2, 3}, {0, 3, 6, 7}, {0, 1, 5, 6}, {4, 5, 6, 7}, {2, 3, 4, 7}, {1, 2, 4, 5}};
+    private int[][] faces = {
+            {0, 1, 2}, {3, 4, 5}, {6, 7, 8}, {9, 10, 11},
+            {12, 13, 14}, {15, 16, 17}, {18, 19, 20}, {21, 23, 23}
+    };
 
     public State(ArrayList<Center> centers, ArrayList<Corner> corners){
         setCenters(centers);
@@ -44,9 +51,31 @@ public class State {
         return new State(new_centers, new_corners);
     }
 
+    public void maskSide(int side){
+        for (Center center: centers)
+            if (center.getValue() != side)
+                center.setValue(-1);
+
+        for (Corner corner: corners){
+            boolean find = false;
+            for (int id: sides[side]){
+                for (int face: faces[id]){
+                    if (corner.getFaces().contains(face)){
+                        find = true;
+                        break;
+                    }
+                }
+            }
+            if (!find)
+                corner.setFaces(new int[] {-1, -1, -1});
+
+        }
+    }
 
     @Override
     public boolean equals(Object obj){
+        if (!obj.getClass().isAssignableFrom(State.class))
+            return false;
         State other = (State) obj;
         return centers.equals(other.getCenters()) && corners.equals(other.getCorners());
     }
@@ -82,6 +111,18 @@ public class State {
 
     public void setCorners(ArrayList<Corner> corners) {
         this.corners = corners;
+    }
+
+    public int[][] getSides() {
+        return sides;
+    }
+
+    public void setSides(int[][] sides) {
+        this.sides = sides;
+    }
+
+    public void setFaces(int[][] faces) {
+        this.faces = faces;
     }
 
     @Override

@@ -2,6 +2,7 @@ package br.com.javaskewb.Controller;
 
 import br.com.javaskewb.Mapping.Solve.AdvancedMoves;
 import br.com.javaskewb.Mapping.Solve.WCAMoves;
+import br.com.javaskewb.Mapping.State;
 import br.com.javaskewb.Solution.FindSolution;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -39,17 +40,30 @@ public class MainController {
     @FXML
     private Button solveButton;
 
+    @FXML
+    private VBox leftContainer;
+
     private SkewbBase skewbBase;
 
     private FindSolution findSolution;
 
-    private AdvancedMoves advancedMoves = new AdvancedMoves();
-    private WCAMoves wcaMoves = new WCAMoves();
+    private final AdvancedMoves advancedMoves = new AdvancedMoves();
+    private final WCAMoves wcaMoves = new WCAMoves();
 
     private boolean wcaMode = false;
 
     public void initialize() throws IOException {
-        skewbBase = new SkewbBase();
+        State state = State.getSolvedState();
+
+        skewbBase = new SkewbBase(state);
+
+
+        for (int i = 0; i < 6; i++) {
+            State miniState = State.getSolvedState();
+            miniState.maskSide(i);
+            leftContainer.getChildren().add(new SkewbBase(miniState));
+        }
+
         skewbBase.getSkewb().toAdvanced();
         moveMode.setText("WCA");
 

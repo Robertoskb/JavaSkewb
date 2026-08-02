@@ -7,6 +7,7 @@ import br.com.javaskewb.Controller.parts.FaceSlot;
 import br.com.javaskewb.Cube.Skewb;
 import br.com.javaskewb.Mapping.Parts.Center;
 import br.com.javaskewb.Mapping.Parts.Corner;
+import br.com.javaskewb.Mapping.State;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -66,14 +67,24 @@ public class SkewbBase extends StackPane{
 
     private final ArrayList<Corner> corners = new ArrayList<>();
 
-    private static final double BASE_WIDTH = 900;
-    private static final double BASE_HEIGHT = 800;
+    private static final double BASE_WIDTH = 805;
+    private static final double BASE_HEIGHT = 606;
 
-    private final Skewb skewb = new Skewb();
+    private final Skewb skewb;
 
     private boolean invisiblePolygons = false;
 
     public SkewbBase() throws IOException {
+        skewb = new Skewb();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/javaskewb/view/SkewbBase.fxml"));
+        loader.setRoot(this);
+        loader.setController(this);
+
+        loader.load();
+    }
+
+    public SkewbBase(State state) throws IOException {
+        skewb = new Skewb(state);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/javaskewb/view/SkewbBase.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -96,9 +107,16 @@ public class SkewbBase extends StackPane{
 
         update();
 
+        this.setMinSize(0, 0);
+
+        double aspectRatio = BASE_HEIGHT / BASE_WIDTH;
+
+        this.prefHeightProperty().bind(this.widthProperty().multiply(aspectRatio));
+
         root.widthProperty().addListener((obs, oldV, newV) -> resize());
         root.heightProperty().addListener((obs, oldV, newV) -> resize());
 
+        skewbGroup.setAutoSizeChildren(false);
         resize();
     }
 
@@ -138,9 +156,7 @@ public class SkewbBase extends StackPane{
 
         for (int face: faces)
             faceSlots.get(face).getPolygon().setOpacity(opacity);
-
     }
-
 
     public void applyScramble(String scramble){
         skewb.applyScramble(scramble);
@@ -181,6 +197,9 @@ public class SkewbBase extends StackPane{
     }
 
     private void resize() {
+        if (root.getWidth() == 0 || root.getHeight() == 0) {
+            return;
+        }
 
         double scale = Math.min(
                 root.getWidth() / BASE_WIDTH,
@@ -189,9 +208,6 @@ public class SkewbBase extends StackPane{
 
         skewbGroup.setScaleX(scale);
         skewbGroup.setScaleY(scale);
-
-        skewbGroup.setLayoutX((root.getWidth() - BASE_WIDTH * scale) / 2);
-        skewbGroup.setLayoutY((root.getHeight() - BASE_HEIGHT * scale) / 2);
     }
 
     public StackPane getRoot() {

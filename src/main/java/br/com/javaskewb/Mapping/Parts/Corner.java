@@ -19,13 +19,16 @@ public class Corner {
 
     @Override
     public boolean equals(Object obj){
+        if (!obj.getClass().isAssignableFrom(Corner.class))
+            return false;
+
         Corner other = (Corner) obj;
         boolean idb = other.getId() == id;
 
         if (idb) {
             ArrayList<Integer> otherFaces = other.getFaces();
             for (int i = 0; i < 3; i++)
-                if (!(otherFaces.get(i) == -1 || otherFaces.get(i) == faces.get(i)))
+                if ((!Objects.equals(otherFaces.get(i), faces.get(i))))
                     return false;
         }
         else

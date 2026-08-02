@@ -24,14 +24,13 @@ public class Skewb {
         setSolvedStates(generatePerspectiveStates());
     }
 
-    public Skewb(State state){
-        setState(state);
-        setWcaMoves(new WCAMoves(state, true));
-        setAdvancedMoves(new AdvancedMoves(state, true));
+    public Skewb(State baseState){
+        setState(baseState);
+        setWcaMoves(new WCAMoves(baseState, true));
+        setAdvancedMoves(new AdvancedMoves(baseState, true));
         setMoves(wcaMoves);
 
-        setSolvedStates(generatePerspectiveStates());
-
+        setSolvedStates(generatePerspectiveStates(baseState));
     }
 
     public ArrayList<State> generatePerspectiveStates(State baseState){
@@ -58,6 +57,15 @@ public class Skewb {
         return states;
     }
 
+    public void maskSide(int side){
+        state.maskSide(side);
+
+        State base = State.getSolvedState();
+        base.maskSide(side);
+
+        setSolvedStates(generatePerspectiveStates(base));
+    }
+
     public ArrayList<State> generatePerspectiveStates(){
         return generatePerspectiveStates(State.getSolvedState());
     }
@@ -82,6 +90,9 @@ public class Skewb {
 
     @Override
     public boolean equals(Object obj){
+        if (!obj.getClass().isAssignableFrom(Skewb.class))
+            return false;
+
         Skewb other = (Skewb) obj;
 
         return state.equals(other.getState());
