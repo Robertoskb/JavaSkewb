@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public abstract class Part<P> implements Subject{
     private P part;
     private SkewbColor color = SkewbColor.DEFAULT;
-    private SkewbColor lastColor= SkewbColor.DEFAULT;
 
     private final ArrayList<Observer> observers = new ArrayList<>();
 
@@ -26,14 +25,6 @@ public abstract class Part<P> implements Subject{
         observers.add(observer);
     }
 
-    public void alterColorDefault(){
-        if (color != SkewbColor.DEFAULT)
-            setColor(SkewbColor.DEFAULT);
-        else{
-            setColor(lastColor);
-        }
-    }
-
     public P getPart() {
         return part;
     }
@@ -47,18 +38,9 @@ public abstract class Part<P> implements Subject{
     }
 
     public void setColor(SkewbColor color) {
-        lastColor = this.color;
         this.color = color;
 
         notifyUpdateColor();
-    }
-
-    public SkewbColor getLastColor() {
-        return lastColor;
-    }
-
-    public void setLastColor(SkewbColor lastColor) {
-        this.lastColor = lastColor;
     }
 
     public ArrayList<Observer> getObservers() {

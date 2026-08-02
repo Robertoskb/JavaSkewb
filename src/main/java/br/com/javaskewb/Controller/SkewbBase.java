@@ -4,6 +4,7 @@ import br.com.javaskewb.Controller.parts.CenterPart;
 import br.com.javaskewb.Controller.parts.CenterSlot;
 import br.com.javaskewb.Controller.parts.FacePart;
 import br.com.javaskewb.Controller.parts.FaceSlot;
+import br.com.javaskewb.Controller.parts.base.SkewbColor;
 import br.com.javaskewb.Cube.Skewb;
 import br.com.javaskewb.Mapping.Parts.Center;
 import br.com.javaskewb.Mapping.Parts.Corner;
@@ -105,7 +106,7 @@ public class SkewbBase extends StackPane{
                 face22, face23, face24
         ));
 
-        update();
+        fillSlots();
 
         this.setMinSize(0, 0);
 
@@ -120,27 +121,32 @@ public class SkewbBase extends StackPane{
         resize();
     }
 
-    public void update(){
+    public void fillSlots(){
         for (int i = 0; i < centers.size(); i++) {
             Center center = new Center(i, skewb.getState().getCenters().get(i).getValue());
             CenterPart centerPart = new CenterPart(center);
             centerSlots.add(new CenterSlot(i, centerPart, centers.get(i)));
-
-            Polygon polygon = centerSlots.get(i).getPolygon();
-
-            final int finalI = i;
-            // polygon.setOnMouseClicked(s -> setCenterColor(finalI));
-
         }
 
         for (int i = 0; i < faces.size(); i++) {
             FacePart facePart = new FacePart(skewb.getState().getFaces().get(i));
             faceSlots.add(new FaceSlot(i, facePart, faces.get(i)));
+        }
+    }
 
-            Polygon polygon = faceSlots.get(i).getPolygon();
+    public void update(){
+        for (int i=0; i < centers.size(); i++){
+            CenterSlot slot = centerSlots.get(i);
+            int value = skewb.getState().getCenters().get(i).getValue()+1;
 
-            final int finalI = i;
-            //polygon.setOnMouseClicked(s -> setFaceColor(finalI));
+            slot.getPart().setColor(CenterPart.getSkewbColors().get(value));
+        }
+
+        for (int i=0; i < faces.size(); i++){
+            FaceSlot slot = faceSlots.get(i);
+            int value = skewb.getState().getFaces().get(i)+1;
+
+            slot.getPart().setColor(FacePart.getSkewbColors().get(value));
         }
     }
 
@@ -188,13 +194,6 @@ public class SkewbBase extends StackPane{
         }
     }
 
-    public void setCenterColor(int slot){
-        centerSlots.get(slot).getPart().alterColorDefault();
-    }
-
-    public void setFaceColor(int slot){
-        faceSlots.get(slot).getPart().alterColorDefault();
-    }
 
     private void resize() {
         if (root.getWidth() == 0 || root.getHeight() == 0) {

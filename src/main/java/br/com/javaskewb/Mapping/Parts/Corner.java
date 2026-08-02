@@ -36,6 +36,10 @@ public class Corner {
         return true;
     }
 
+    public void setFace(int id, int value){
+        faces.set(id%2, value);
+    }
+
     @Override
     public int hashCode(){
         return Objects.hash(id, faces);

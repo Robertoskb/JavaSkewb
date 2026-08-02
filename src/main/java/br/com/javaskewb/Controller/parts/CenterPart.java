@@ -24,4 +24,8 @@ public class CenterPart extends Part<Center> {
     public CenterPart(Center center){
         super(center, skewbColors.get(center.getValue()+1));
     }
+
+    public static HashMap<Integer, SkewbColor> getSkewbColors() {
+        return skewbColors;
+    }
 }

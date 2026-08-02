@@ -46,4 +46,8 @@ public class FacePart extends Part<Integer> {
     public FacePart(Integer part) {
         super(part, skewbColors.get(part+1));
     }
+
+    public static HashMap<Integer, SkewbColor> getSkewbColors() {
+        return skewbColors;
+    }
 }
