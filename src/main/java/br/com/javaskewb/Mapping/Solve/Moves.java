@@ -11,16 +11,12 @@ import java.util.HashMap;
 abstract public class Moves {
     protected State state;
     protected boolean updateState;
-    HashMap<String, CentersFaces> notation = new HashMap<>();
 
-    public Moves(){
-        fill();
-    }
+    public Moves(){}
 
     public Moves(State state, boolean updateState){
         setState(state);
         setUpdateState(updateState);
-        fill();
     }
 
     protected abstract void fill();
@@ -28,15 +24,15 @@ abstract public class Moves {
     private ArrayList<CentersFaces> getAllMatrices(ArrayList<String> scramble){
         ArrayList<CentersFaces> allMatrices = new ArrayList<>();
         for (String s: scramble)
-            allMatrices.add(notation.get(s));
+            allMatrices.add(getNotation().get(s));
 
         return allMatrices;
     }
     public CentersFaces getMove(String move){
-        return notation.get(move);
+        return getNotation().get(move);
     }
 
-    public int[][] mulMatrices(int[][] matrix1, int[][] matrix2){
+    public static int[][] mulMatrices(int[][] matrix1, int[][] matrix2){
         int[][] matrix = new int[matrix1.length][matrix2[0].length];
 
         for (int i = 0; i < matrix1.length; i++) {
@@ -50,7 +46,7 @@ abstract public class Moves {
         return matrix;
     }
 
-    public int[][] invertMatrix(int[][] matrix){
+    public static int[][] invertMatrix(int[][] matrix){
         int[][] new_matrix = new int[matrix[0].length][matrix.length];
 
         for (int i = 0; i < matrix.length; i++) {
@@ -62,7 +58,7 @@ abstract public class Moves {
         return new_matrix;
     }
 
-    public CentersFaces invertMove(CentersFaces move){
+    public static CentersFaces invertMove(CentersFaces move){
         int[][] centers, faces;
 
         centers = move.getCentersMatrix();
@@ -80,8 +76,7 @@ abstract public class Moves {
         return newState;
     }
 
-
-    public ArrayList<Integer> moveCenters(int[][] matrix, ArrayList<Integer> centers){
+    public static ArrayList<Integer> moveCenters(int[][] matrix, ArrayList<Integer> centers){
         ArrayList<Integer> arrayCenters = new ArrayList<>();
 
         for (int[] ints : matrix) {
@@ -99,7 +94,7 @@ abstract public class Moves {
         return arrayCenters;
     }
 
-    public ArrayList<Integer> moveFaces(int[][] matrix, ArrayList<Integer> faces){
+    public static ArrayList<Integer> moveFaces(int[][] matrix, ArrayList<Integer> faces){
         ArrayList<Integer> arrayFaces = new ArrayList<>();
 
         for (int[] ints : matrix) {
@@ -118,6 +113,10 @@ abstract public class Moves {
     }
 
     public State move(CentersFaces centersFaces){
+        return move(state, centersFaces, updateState);
+    }
+
+    public static State move(State state, CentersFaces centersFaces, boolean updateState){
         ArrayList<Integer> centers, faces;
         int[][] centersMatrix, facesMatrix;
 
@@ -150,7 +149,11 @@ abstract public class Moves {
         return new State(arrayCenters, arrayCorners);
     }
 
-    protected static int[][] getCenterMatrix(){
+    public static State move(State state, CentersFaces centersFaces){
+        return move(state, centersFaces, false);
+    }
+
+    public static int[][] getCenterMatrix(){
         int[][] matrix = new int[6][6];
 
         for (int i = 0; i < 6; i++) {
@@ -160,7 +163,7 @@ abstract public class Moves {
         return matrix;
     }
 
-    protected static int[][] getFacesMatrix(){
+    public static int[][] getFacesMatrix(){
         int[][] matrix = new int[24][24];
 
         for (int i = 0; i < 24; i++) {
@@ -186,7 +189,5 @@ abstract public class Moves {
         this.updateState = updateState;
     }
 
-    public HashMap<String, CentersFaces> getNotation() {
-        return notation;
-    }
+    public abstract HashMap<String, CentersFaces> getNotation();
 }

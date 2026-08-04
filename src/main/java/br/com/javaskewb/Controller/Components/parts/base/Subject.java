@@ -1,4 +1,4 @@
-package br.com.javaskewb.Controller.parts.base;
+package br.com.javaskewb.Controller.Components.parts.base;
 
 public interface Subject {
     void notifyUpdateColor();

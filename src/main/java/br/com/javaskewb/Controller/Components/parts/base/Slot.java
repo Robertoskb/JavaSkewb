@@ -1,4 +1,4 @@
-package br.com.javaskewb.Controller.parts.base;
+package br.com.javaskewb.Controller.Components.parts.base;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;

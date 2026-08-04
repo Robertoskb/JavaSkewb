@@ -7,6 +7,7 @@ import br.com.javaskewb.Mapping.State;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Skewb {
     private State state;
@@ -79,13 +80,13 @@ public class Skewb {
     }
     public void toWCA(){setMoves(wcaMoves);}
 
-    public void applyScramble(ArrayList<String> scramble){
+    public void applyScramble(List<String> scramble){
         for (String s: scramble)
             moves.applyMove(s);
     }
 
     public void applyScramble(String scramble){
-        applyScramble(new ArrayList<String>(Arrays.asList(scramble.split(" "))));
+        applyScramble(Arrays.asList(scramble.split(" ")));
     }
 
     @Override
@@ -112,6 +113,13 @@ public class Skewb {
 
     public void setState(State state) {
         this.state = state;
+        if (wcaMoves != null || advancedMoves != null){
+            setSolvedStates(generatePerspectiveStates(state));
+            if (wcaMoves != null)
+                wcaMoves.setState(state);
+            if (advancedMoves != null)
+                advancedMoves.setState(state);
+        }
     }
 
     public WCAMoves getWcaMoves() {

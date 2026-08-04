@@ -1,14 +1,15 @@
-package br.com.javaskewb.Controller.parts.base;
+package br.com.javaskewb.Controller.Components.parts.base;
 
 public enum SkewbColor {
 
-    DEFAULT(-1, "#d3d3d3"),
+    DEFAULT(-1, "#D3D3D3"),
+
     WHITE(0, "#FFFFFF"),
-    YELLOW(1,"#FFFF00"),
-    RED(2,"#FF0000"),
-    ORANGE(3,"#FFA500"),
-    BLUE(4, "#0000FF"),
-    GREEN(5, "#00FF00");
+    YELLOW(1, "#F4F04D"),
+    RED(2, "#F04A4A"),
+    ORANGE(3, "#F6A93B"),
+    BLUE(4, "#3B82F6"),
+    GREEN(5, "#4CAF50");
 
     private final int id;
     private final String hex;

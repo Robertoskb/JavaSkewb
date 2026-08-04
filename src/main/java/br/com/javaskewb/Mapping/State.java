@@ -4,7 +4,6 @@ import br.com.javaskewb.Mapping.Parts.Center;
 import br.com.javaskewb.Mapping.Parts.Corner;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Objects;
 
 public class State {
@@ -37,7 +36,7 @@ public class State {
         return new State(new_centers, new_corners);
     }
 
-    public State cloneStage(){
+    public State cloneState(){
         ArrayList<Center> new_centers = new ArrayList<>();
         ArrayList<Corner> new_corners = new ArrayList<>();
 
@@ -52,6 +51,9 @@ public class State {
     }
 
     public void maskSide(int side){
+        if (side < 0 || side > 5)
+            return;
+
         for (Center center: centers)
             if (center.getValue() != side)
                 center.setValue(-1);

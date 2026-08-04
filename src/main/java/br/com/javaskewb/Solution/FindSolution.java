@@ -22,8 +22,7 @@ public class FindSolution {
         setTargetStates(new ArrayList<>(List.of(State.getSolvedState())));
     }
 
-    public ArrayList<String> find(State initialState){
-
+    public ArrayList<String> find(State initialState, ArrayList<State> targetStates){
         HashMap<State, ArrayList<String>> visitedInitial, visitedTarget;
         PriorityQueue<StateNode> queueInitial, queueTarget;
 
@@ -94,6 +93,10 @@ public class FindSolution {
         }
 
         return null;
+    }
+
+    public ArrayList<String> find(State initialState){
+        return find(initialState, targetStates);
     }
 
     public static ArrayList<String> invertScramble(ArrayList<String> scramble){

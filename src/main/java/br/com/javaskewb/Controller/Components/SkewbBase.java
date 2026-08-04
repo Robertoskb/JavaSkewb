@@ -1,10 +1,9 @@
-package br.com.javaskewb.Controller;
+package br.com.javaskewb.Controller.Components;
 
-import br.com.javaskewb.Controller.parts.CenterPart;
-import br.com.javaskewb.Controller.parts.CenterSlot;
-import br.com.javaskewb.Controller.parts.FacePart;
-import br.com.javaskewb.Controller.parts.FaceSlot;
-import br.com.javaskewb.Controller.parts.base.SkewbColor;
+import br.com.javaskewb.Controller.Components.parts.CenterPart;
+import br.com.javaskewb.Controller.Components.parts.CenterSlot;
+import br.com.javaskewb.Controller.Components.parts.FacePart;
+import br.com.javaskewb.Controller.Components.parts.FaceSlot;
 import br.com.javaskewb.Cube.Skewb;
 import br.com.javaskewb.Mapping.Parts.Center;
 import br.com.javaskewb.Mapping.Parts.Corner;
@@ -19,7 +18,6 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class SkewbBase extends StackPane{
@@ -74,6 +72,8 @@ public class SkewbBase extends StackPane{
     private final Skewb skewb;
 
     private boolean invisiblePolygons = false;
+    private boolean disablePolygons = false;
+    private boolean disableBottom = false;
 
     public SkewbBase() throws IOException {
         skewb = new Skewb();
@@ -162,6 +162,36 @@ public class SkewbBase extends StackPane{
 
         for (int face: faces)
             faceSlots.get(face).getPolygon().setOpacity(opacity);
+    }
+
+    public void changeDisabled(){
+        int[] centers = {3, 4, 5};
+        int[] faces = {5, 7, 14, 16, 13, 23, 8, 10, 12, 15, 18, 21};
+
+
+        for (int center: centers)
+            centerSlots.get(center).getPolygon().setVisible(disablePolygons);
+
+        for (int face: faces)
+            faceSlots.get(face).getPolygon().setVisible(disablePolygons);
+
+        disablePolygons = !disablePolygons;
+
+    }
+
+    public void changeBottomDisabled(){
+        int[] centers = {3};
+        int[] faces = {12, 15, 18, 21};
+
+
+        for (int center: centers)
+            centerSlots.get(center).getPolygon().setVisible(disableBottom);
+
+        for (int face: faces)
+            faceSlots.get(face).getPolygon().setVisible(disableBottom);
+
+        disableBottom = !disableBottom;
+
     }
 
     public void applyScramble(String scramble){

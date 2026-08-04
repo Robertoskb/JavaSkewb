@@ -1,22 +1,27 @@
 package br.com.javaskewb.Controller;
 
+import br.com.javaskewb.Controller.Components.SkewbBase;
+import br.com.javaskewb.Cube.Skewb;
 import br.com.javaskewb.Mapping.Solve.AdvancedMoves;
 import br.com.javaskewb.Mapping.Solve.WCAMoves;
 import br.com.javaskewb.Mapping.State;
+import br.com.javaskewb.Patterns.Case;
+import br.com.javaskewb.Patterns.NS.L2L.LC.L3C.L3CCase;
+import br.com.javaskewb.Patterns.NS.L2L.LC.L3C.L3CCases;
+import br.com.javaskewb.Patterns.NS.L2L.LC.L4C.L4CCase;
+import br.com.javaskewb.Patterns.NS.L2L.LC.L4C.L4CCases;
+import br.com.javaskewb.Patterns.NS.L2L.LC.L5C.L5CCases;
+import br.com.javaskewb.Patterns.NS.NSCases;
 import br.com.javaskewb.Solution.FindSolution;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class MainController {
     @FXML
@@ -29,7 +34,7 @@ public class MainController {
     private Text scrambleText;
 
     @FXML
-    private VBox skewbContainer;
+    private StackPane skewbContainer;
 
     @FXML
     private HBox movesContainer;
@@ -42,6 +47,9 @@ public class MainController {
 
     @FXML
     private VBox leftContainer;
+
+    @FXML
+    private VBox rightContainer;
 
     private SkewbBase skewbBase;
 
@@ -56,20 +64,29 @@ public class MainController {
         State state = State.getSolvedState();
 
         skewbBase = new SkewbBase(state);
+        skewbBase.changeDisabled();
 
-
-        for (int i = 0; i < 6; i++) {
+        for (Case LLCase : new NSCases().getCases()) {
             State miniState = State.getSolvedState();
-            miniState.maskSide(i);
-            leftContainer.getChildren().add(new SkewbBase(miniState));
+            LLCase.applyCase(miniState);
+            SkewbBase miniBase = new SkewbBase(miniState);
+            miniBase.changeBottomDisabled();
+
+            miniBase.setOnMouseClicked(event -> {
+                LLCase.applyCase(skewbBase.getSkewb().getState());
+                skewbBase.update();
+                isSolved();
+            });
+
+            rightContainer.getChildren().add(miniBase);
         }
+
 
         skewbBase.getSkewb().toAdvanced();
         moveMode.setText("WCA");
 
         findSolution = new FindSolution(advancedMoves, skewbBase.getSkewb().getSolvedStates());
 
-        skewbBase.changeVisibility();
 
         skewbContainer.getChildren().add(skewbBase);
 
@@ -104,9 +121,17 @@ public class MainController {
     public void autoSolve(){
         changeButtonsDisable();
 
-        String scramble = String.join(" ", findSolution.find(skewbBase.getSkewb().getState()));
+        Skewb skewb = skewbBase.getSkewb();
+        ArrayList<String> solution = findSolution.find(skewb.getState(), skewb.getSolvedStates());
 
-        scrambleText.setText("Self Solution: " + scramble);
+        if (solution == null){
+            scrambleText.setText("Solução não encontrada");
+            return;
+        }
+
+        String scramble = String.join(" ", solution);
+
+        scrambleText.setText("Auto Solution: " + scramble);
 
         skewbBase.applyScrambleAnimation(scramble, () -> {
             changeButtonsDisable();

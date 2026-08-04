@@ -4,13 +4,20 @@ import br.com.javaskewb.Mapping.Solve.Matrices.CentersFaces;
 import br.com.javaskewb.Mapping.Solve.Matrices.MatrixSwap;
 import br.com.javaskewb.Mapping.State;
 
+import java.util.HashMap;
+
 public class WCAMoves extends Moves {
+    private static final HashMap<String, CentersFaces> notation = new HashMap<>();
 
     public WCAMoves() {
         super();
+        if (getNotation().isEmpty())
+            fill();
     }
     public WCAMoves(State state, boolean updateState) {
         super(state, updateState);
+        if (getNotation().isEmpty())
+            fill();
     }
 
     @Override
@@ -159,5 +166,10 @@ public class WCAMoves extends Moves {
         faces.swap(15, 11);
 
         return new CentersFaces(centers.getMatrix(), faces.getMatrix());
+    }
+
+    @Override
+    public HashMap<String, CentersFaces> getNotation() {
+        return notation;
     }
 }

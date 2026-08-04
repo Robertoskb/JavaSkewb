@@ -1,7 +1,7 @@
-package br.com.javaskewb.Controller.parts;
+package br.com.javaskewb.Controller.Components.parts;
 
-import br.com.javaskewb.Controller.parts.base.Part;
-import br.com.javaskewb.Controller.parts.base.SkewbColor;
+import br.com.javaskewb.Controller.Components.parts.base.Part;
+import br.com.javaskewb.Controller.Components.parts.base.SkewbColor;
 import br.com.javaskewb.Mapping.Parts.Center;
 
 import java.util.HashMap;

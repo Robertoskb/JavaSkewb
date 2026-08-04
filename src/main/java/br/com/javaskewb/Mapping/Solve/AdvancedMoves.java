@@ -5,14 +5,22 @@ import br.com.javaskewb.Mapping.Solve.Matrices.MatrixSwap;
 import br.com.javaskewb.Mapping.State;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class AdvancedMoves extends Moves{
+    private static final HashMap<String, CentersFaces> notation = new HashMap<>();
+
     public AdvancedMoves(){
         super();
+        if (getNotation().isEmpty())
+            fill();
     }
 
     public AdvancedMoves(State state, boolean updateState) {
         super(state, updateState);
+
+        if (getNotation().isEmpty())
+            fill();
     }
 
     @Override
@@ -22,12 +30,6 @@ public class AdvancedMoves extends Moves{
 
         notation.put("R", R());
         notation.put("R'", invertMove(notation.get("R")));
-
-        notation.put("b", b());
-        notation.put("b'", invertMove(notation.get("b")));
-
-        notation.put("B", B());
-        notation.put("B'", invertMove(notation.get("B")));
 
         notation.put("l", l());
         notation.put("l'", invertMove(notation.get("l")));
@@ -40,6 +42,12 @@ public class AdvancedMoves extends Moves{
 
         notation.put("f", f());
         notation.put("f'", invertMove(notation.get("f")));
+
+        notation.put("b", b());
+        notation.put("b'", invertMove(notation.get("b")));
+
+        notation.put("B", B());
+        notation.put("B'", invertMove(notation.get("B")));
 
         notation.put("x", x());
         notation.put("x'", invertMove(notation.get("x")));
@@ -374,5 +382,10 @@ public class AdvancedMoves extends Moves{
         sequence.add(x());
 
         return applySequence(sequence);
+    }
+
+    @Override
+    public HashMap<String, CentersFaces> getNotation() {
+        return notation;
     }
 }
