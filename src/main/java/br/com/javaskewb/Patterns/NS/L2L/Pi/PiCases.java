@@ -32,7 +32,7 @@ public class PiCases extends Cases<PiCase> {
 
                 centersFaces = new CentersFaces(centersMatrix, PiCase.faces);
 
-                cases.add(new PiCase("Peanut + " + baseCase.getName(), centersFaces));
+                cases.add(new PiCase("Pi + " + baseCase.getName(), centersFaces));
             }
         }
     }
