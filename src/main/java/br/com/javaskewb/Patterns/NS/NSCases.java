@@ -2,12 +2,6 @@ package br.com.javaskewb.Patterns.NS;
 
 import br.com.javaskewb.Patterns.Cases;
 import br.com.javaskewb.Patterns.NS.L2L.L2LCases;
-import br.com.javaskewb.Patterns.NS.L2L.LC.L3C.L3CCases;
-import br.com.javaskewb.Patterns.NS.L2L.LC.L4C.L4CCases;
-import br.com.javaskewb.Patterns.NS.L2L.LC.L5C.L5CCases;
-import br.com.javaskewb.Patterns.NS.L2L.Peanut.PeanutCase;
-import br.com.javaskewb.Patterns.NS.L2L.Peanut.PeanutCases;
-import br.com.javaskewb.Patterns.NS.L2L.Pi.PiCases;
 
 import java.util.ArrayList;
 

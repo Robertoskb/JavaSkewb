@@ -3,13 +3,15 @@ package br.com.javaskewb.Patterns.NS.L2L.LC.L5C;
 import br.com.javaskewb.Mapping.Solve.Matrices.CentersFaces;
 import br.com.javaskewb.Mapping.Solve.Matrices.MatrixSwap;
 import br.com.javaskewb.Mapping.Solve.Moves;
-import br.com.javaskewb.Patterns.NS.L2L.LC.L4C.L4CCase;
+import br.com.javaskewb.Patterns.Cases;
+import br.com.javaskewb.Patterns.NS.L2L.LC.LCCase;
 import br.com.javaskewb.Patterns.NS.L2L.LC.LCCases;
 
 import java.util.ArrayList;
 
-public class L5CCases extends LCCases<L5CCase> {
+public class L5CCases extends Cases<L5CCase> {
     private static final ArrayList<L5CCase> cases = new ArrayList<>();
+    private static final int[][] facesMatrix = LCCase.getFacesMatrix();
 
     @Override
     public void fillCases() {

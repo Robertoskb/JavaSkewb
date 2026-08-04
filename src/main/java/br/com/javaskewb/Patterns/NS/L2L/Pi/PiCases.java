@@ -7,6 +7,7 @@ import br.com.javaskewb.Patterns.Cases;
 import br.com.javaskewb.Patterns.NS.L2L.LC.L3C.L3CCases;
 import br.com.javaskewb.Patterns.NS.L2L.LC.L4C.L4CCases;
 import br.com.javaskewb.Patterns.NS.L2L.LC.L5C.L5CCases;
+import br.com.javaskewb.Patterns.NS.L2L.LC.LCCases;
 
 import java.util.ArrayList;
 
@@ -17,9 +18,7 @@ public class PiCases extends Cases<PiCase> {
     public void fillCases() {
         if (cases.isEmpty()){
             cases.add(new PiCase("Pure Pi", new CentersFaces(Moves.getCenterMatrix(), PiCase.faces)));
-            fill(new L3CCases());
-            fill(new L4CCases());
-            fill(new L5CCases());
+            fill(new LCCases());
         }
     }
 

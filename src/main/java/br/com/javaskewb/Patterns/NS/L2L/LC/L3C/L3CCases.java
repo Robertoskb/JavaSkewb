@@ -9,8 +9,9 @@ import br.com.javaskewb.Patterns.NS.L2L.LC.LCCases;
 
 import java.util.ArrayList;
 
-public class L3CCases extends LCCases<L3CCase> {
+public class L3CCases extends Cases<L3CCase> {
     private static final ArrayList<L3CCase> cases = new ArrayList<>();
+    private static final int[][] facesMatrix = LCCase.getFacesMatrix();
 
     @Override
     public void fillCases() {
