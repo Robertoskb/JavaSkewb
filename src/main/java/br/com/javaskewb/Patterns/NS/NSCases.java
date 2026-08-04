@@ -1,6 +1,7 @@
 package br.com.javaskewb.Patterns.NS;
 
 import br.com.javaskewb.Patterns.Cases;
+import br.com.javaskewb.Patterns.NS.L2L.L2LCases;
 import br.com.javaskewb.Patterns.NS.L2L.LC.L3C.L3CCases;
 import br.com.javaskewb.Patterns.NS.L2L.LC.L4C.L4CCases;
 import br.com.javaskewb.Patterns.NS.L2L.LC.L5C.L5CCases;
@@ -16,12 +17,7 @@ public class NSCases extends Cases<NSCase> {
     @Override
     public void fillCases() {
         if (cases.isEmpty()){
-            cases.addAll(new L3CCases().getCases());
-            cases.addAll(new L4CCases().getCases());
-            cases.addAll(new L5CCases().getCases());
-
-            cases.addAll(new PeanutCases().getCases());
-            cases.addAll(new PiCases().getCases());
+            cases.addAll(new L2LCases().getCases());
         }
     }
 
