@@ -60,7 +60,7 @@ public class AdvancedMoves extends Moves{
 
         notation.put("x2", x2());
         notation.put("y2", y2());
-        notation.put("z2", y2());
+        notation.put("z2", z2());
 
     }
 

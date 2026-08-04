@@ -7,12 +7,12 @@ import br.com.javaskewb.Solution.utils.StateNode;
 import java.util.*;
 
 public class BFSSkewb {
-    public static HashMap<State, ArrayList<String>> BFS(int max, State initialState){
+    public static HashSet<State> BFS(int max, State initialState){
         PriorityQueue<StateNode> queue = new PriorityQueue<>(Comparator.comparingInt(StateNode::getDistance));
-        HashMap<State, ArrayList<String>> visited = new HashMap<>();
+        HashSet<State> visited = new HashSet<>();
 
         queue.add(new StateNode(initialState, 0));
-        visited.put(initialState, new ArrayList<>());
+        visited.add(initialState);
 
         WCAMoves moves = new WCAMoves();
 
@@ -21,7 +21,6 @@ public class BFSSkewb {
 
             State state = node.getState();
             int distance = node.getDistance();
-            ArrayList<String> scramble = node.getScramble();
 
             if (distance >= max)
                 continue;
@@ -31,12 +30,10 @@ public class BFSSkewb {
             for (String move: moves.getNotation().keySet()){
                 State newState = moves.applyMove(move);
 
-                if (!visited.containsKey(newState)){
-                    ArrayList<String> newScramble = new ArrayList<>(scramble);
-                    newScramble.add(move);
-                    visited.put(state, newScramble);
+                if (!visited.contains(newState)){
+                    visited.add(state);
 
-                    queue.add(new StateNode(newState, distance+1, newScramble));
+                    queue.add(new StateNode(newState, distance+1));
                 }
             }
         }
@@ -44,14 +41,14 @@ public class BFSSkewb {
         return visited;
     }
 
-    public static HashMap<State, ArrayList<String>> BFS(int max){
+    public static HashSet<State> BFS(int max){
         return BFS(max, State.getSolvedState());
     }
 
     public static void main(String[] args) {
         State state = State.getSolvedState();
 
-        HashMap<State, ArrayList<String>> bfs = BFS(9, state);
+        HashSet<State> bfs = BFS(6, state);
 
         System.out.println(bfs.size());
 

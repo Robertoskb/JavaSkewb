@@ -46,6 +46,15 @@ abstract public class Moves {
         return matrix;
     }
 
+    public static CentersFaces mulCenterFaces(CentersFaces centersFaces1, CentersFaces centersFaces2){
+        int[][] centers, faces;
+
+        centers = mulMatrices(centersFaces1.getCentersMatrix(), centersFaces2.getCentersMatrix());
+        faces = mulMatrices(centersFaces1.getFacesMatrix(), centersFaces2.getFacesMatrix());
+
+        return new CentersFaces(centers, faces);
+    }
+
     public static int[][] invertMatrix(int[][] matrix){
         int[][] new_matrix = new int[matrix[0].length][matrix.length];
 

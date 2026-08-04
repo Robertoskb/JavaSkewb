@@ -19,7 +19,8 @@ public abstract class Case {
         setCentersFaces(centersFaces);
     }
 
-    public abstract ArrayList<State> getVariants(State initialState);
+    public abstract ArrayList<State> getStatesVariants(State initialState);
+    public abstract ArrayList<Case> getCasesVariants();
 
     public void applyCase(State initialState){
         Moves.move(initialState, centersFaces, true);
@@ -43,10 +44,8 @@ public abstract class Case {
 
     @Override
     public boolean equals(Object object){
-        if (!object.getClass().isAssignableFrom(Case.class))
+        if (!(object instanceof Case other))
             return false;
-
-        Case other = (Case) object;
 
         return other.getName().equals(name) && other.getCentersFaces().equals(centersFaces);
     }

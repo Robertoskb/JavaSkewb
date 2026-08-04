@@ -11,6 +11,8 @@ import br.com.javaskewb.Patterns.NS.L2L.LC.L3C.L3CCases;
 import br.com.javaskewb.Patterns.NS.L2L.LC.L4C.L4CCase;
 import br.com.javaskewb.Patterns.NS.L2L.LC.L4C.L4CCases;
 import br.com.javaskewb.Patterns.NS.L2L.LC.L5C.L5CCases;
+import br.com.javaskewb.Patterns.NS.L2L.Peanut.PeanutCases;
+import br.com.javaskewb.Patterns.NS.L2L.Pi.PiCases;
 import br.com.javaskewb.Patterns.NS.NSCases;
 import br.com.javaskewb.Solution.FindSolution;
 import javafx.fxml.FXML;
@@ -68,8 +70,11 @@ public class MainController {
 
         for (Case LLCase : new NSCases().getCases()) {
             State miniState = State.getSolvedState();
+
             LLCase.applyCase(miniState);
+
             SkewbBase miniBase = new SkewbBase(miniState);
+
             miniBase.changeBottomDisabled();
 
             miniBase.setOnMouseClicked(event -> {
