@@ -6,9 +6,11 @@ import br.com.javaskewb.Mapping.State;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class AdvancedMoves extends Moves{
     private static final HashMap<String, CentersFaces> notation = new HashMap<>();
+    private static final HashMap<String, Integer> costs = new HashMap<>();
 
     public AdvancedMoves(){
         super();
@@ -61,7 +63,11 @@ public class AdvancedMoves extends Moves{
         notation.put("x2", x2());
         notation.put("y2", y2());
         notation.put("z2", z2());
+    }
 
+    @Override
+    public int getCost(String move){
+        return costs.getOrDefault(move, 1);
     }
 
     private CentersFaces x(){

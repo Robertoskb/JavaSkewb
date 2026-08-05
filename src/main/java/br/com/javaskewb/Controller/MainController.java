@@ -1,18 +1,12 @@
 package br.com.javaskewb.Controller;
 
+import br.com.javaskewb.Controller.Components.CaseCard;
 import br.com.javaskewb.Controller.Components.SkewbBase;
 import br.com.javaskewb.Cube.Skewb;
 import br.com.javaskewb.Mapping.Solve.AdvancedMoves;
 import br.com.javaskewb.Mapping.Solve.WCAMoves;
 import br.com.javaskewb.Mapping.State;
 import br.com.javaskewb.Patterns.Case;
-import br.com.javaskewb.Patterns.NS.L2L.LC.L3C.L3CCase;
-import br.com.javaskewb.Patterns.NS.L2L.LC.L3C.L3CCases;
-import br.com.javaskewb.Patterns.NS.L2L.LC.L4C.L4CCase;
-import br.com.javaskewb.Patterns.NS.L2L.LC.L4C.L4CCases;
-import br.com.javaskewb.Patterns.NS.L2L.LC.L5C.L5CCases;
-import br.com.javaskewb.Patterns.NS.L2L.Peanut.PeanutCases;
-import br.com.javaskewb.Patterns.NS.L2L.Pi.PiCases;
 import br.com.javaskewb.Patterns.NS.NSCases;
 import br.com.javaskewb.Solution.FindSolution;
 import javafx.fxml.FXML;
@@ -68,7 +62,7 @@ public class MainController {
         skewbBase = new SkewbBase(state);
         skewbBase.changeDisabled();
 
-        for (Case LLCase : new NSCases().getCases()) {
+        for (Case LLCase : new NSCases().getPiBLCases()) {
             State miniState = State.getSolvedState();
 
             LLCase.applyCase(miniState);
@@ -77,13 +71,18 @@ public class MainController {
 
             miniBase.changeBottomDisabled();
 
-            miniBase.setOnMouseClicked(event -> {
+            CaseCard caseCard = new CaseCard();
+
+            caseCard.setSkewbComponent(miniBase);
+            caseCard.setCaseName(LLCase.getName());
+
+            caseCard.setOnMouseClicked(event -> {
                 LLCase.applyCase(skewbBase.getSkewb().getState());
                 skewbBase.update();
                 isSolved();
             });
 
-            rightContainer.getChildren().add(miniBase);
+            rightContainer.getChildren().add(caseCard);
         }
 
 
@@ -142,8 +141,9 @@ public class MainController {
             changeButtonsDisable();
 
             isSolved();
-        });
 
+            scrambleText.setText(scramble);
+        });
     }
 
     public void changeVisibility(){

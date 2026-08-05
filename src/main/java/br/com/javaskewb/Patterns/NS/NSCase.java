@@ -42,7 +42,7 @@ public class NSCase extends Case {
         String[] movesSequence = {"y", "y'", "y2"};
         String[] movesInverseSequence = {"y'", "y", "y2"};
 
-        int total = "U1 U2 U3 U4".contains(name) ? 2 : 3;
+        int total = "U3 U4".contains(name) ? 1 : 3;
 
         cases.add(this);
         for (int i = 0; i < total; i++){

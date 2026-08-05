@@ -59,7 +59,7 @@ public class FindSolution {
                             return scrambleConstructor(newScramble, visitedTarget.get(state));
 
                         visitedInitial.put(state, newScramble);
-                        queueInitial.add(new StateNode(state, distance+1, newScramble));
+                        queueInitial.add(new StateNode(state, distance+ moves.getCost(move), newScramble));
                     }
 
                 }
@@ -84,7 +84,7 @@ public class FindSolution {
                             return scrambleConstructor(visitedInitial.get(state), newScramble);
 
                         visitedTarget.put(state, newScramble);
-                        queueTarget.add(new StateNode(state, distance+1, newScramble));
+                        queueTarget.add(new StateNode(state, distance+ moves.getCost(move), newScramble));
                     }
                 }
 
@@ -102,11 +102,15 @@ public class FindSolution {
     public static ArrayList<String> invertScramble(ArrayList<String> scramble){
         ArrayList<String> newScramble = new ArrayList<>();
 
+        List<String> noInvert = Arrays.stream("x2 y2 z2".split(" ")).toList();
+
         for (String move: scramble.reversed())
             if (move.contains("'"))
                 newScramble.add(move.replace("'", ""));
-            else
+            else if (!noInvert.contains(move))
                 newScramble.add(move + "'");
+            else
+                newScramble.add(move);
 
         return newScramble;
 

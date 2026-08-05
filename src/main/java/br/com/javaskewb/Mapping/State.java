@@ -2,6 +2,7 @@ package br.com.javaskewb.Mapping;
 
 import br.com.javaskewb.Mapping.Parts.Center;
 import br.com.javaskewb.Mapping.Parts.Corner;
+import br.com.javaskewb.Mapping.Solve.AdvancedMoves;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -34,6 +35,32 @@ public class State {
 
 
         return new State(new_centers, new_corners);
+    }
+
+    public static ArrayList<State> generatePerspectivesStates(State baseState){
+        ArrayList<State> states = new ArrayList<>();
+
+        String[] moves = "x y z x' y' z'".split(" ");
+
+        ArrayList<State> queue = new ArrayList<>();
+        queue.add(baseState);
+
+        AdvancedMoves advancedMoves = new AdvancedMoves();
+
+        while (!queue.isEmpty()){
+            advancedMoves.setState(queue.removeLast());
+            for (String move: moves){
+                State state = advancedMoves.applyMove(move);
+
+                if (!states.contains(state)){
+                    queue.add(state);
+                    states.add(state);
+                }
+
+            }
+        }
+
+        return states;
     }
 
     public State cloneState(){

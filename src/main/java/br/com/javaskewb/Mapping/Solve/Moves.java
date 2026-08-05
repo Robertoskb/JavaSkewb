@@ -162,6 +162,10 @@ abstract public class Moves {
         return move(state, centersFaces, false);
     }
 
+    public int getCost(String move){
+        return 1;
+    }
+
     public static int[][] getCenterMatrix(){
         int[][] matrix = new int[6][6];
 

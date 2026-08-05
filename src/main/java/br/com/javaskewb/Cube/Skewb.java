@@ -35,27 +35,7 @@ public class Skewb {
     }
 
     public ArrayList<State> generatePerspectiveStates(State baseState){
-        ArrayList<State> states = new ArrayList<>();
-
-        String[] moves = "x y z x' y' z'".split(" ");
-
-        ArrayList<State> queue = new ArrayList<>();
-        queue.add(baseState);
-
-        while (!queue.isEmpty()){
-            AdvancedMoves advanced = new AdvancedMoves(queue.removeLast(), false);
-            for (String move: moves){
-                State state = advanced.applyMove(move);
-
-                if (!states.contains(state)){
-                    queue.add(state);
-                    states.add(state);
-                }
-
-            }
-        }
-
-        return states;
+        return State.generatePerspectivesStates(baseState);
     }
 
     public void maskSide(int side){

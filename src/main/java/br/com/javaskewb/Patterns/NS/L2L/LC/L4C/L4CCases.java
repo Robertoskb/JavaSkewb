@@ -67,7 +67,7 @@ public class L4CCases extends Cases<L4CCase> {
 
         CentersFaces centersFaces = new CentersFaces(centers.getMatrix(), facesMatrix);
 
-        return new L4CCase("Triple S", centersFaces);
+        return new L4CCase("3S", centersFaces);
     }
 
     public L4CCase Z1(){
