@@ -31,7 +31,7 @@ public class PeanutCases extends Cases<PeanutCase> {
 
                 centersFaces = new CentersFaces(centersMatrix, PeanutCase.faces);
 
-                cases.add(new PeanutCase("Peanut + " + baseCase.getName(), centersFaces));
+                cases.add(new PeanutCase("Peanut + " + subCase.getName(), centersFaces));
             }
         }
     }

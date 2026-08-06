@@ -44,7 +44,7 @@ public class NSCase extends Case {
 
         int total = "U3 U4".contains(name) ? 1 : 3;
 
-        cases.add(this);
+        cases.add(new NSCase(name + " 1", centersFaces));
         for (int i = 0; i < total; i++){
             String move = movesSequence[i];
             String inverseMove = movesInverseSequence[i];
@@ -52,11 +52,14 @@ public class NSCase extends Case {
             CentersFaces baseCentersFaces = Moves.mulCenterFaces(centersFaces, moves.getMove(move));
             CentersFaces newCenterFaces = Moves.mulCenterFaces(moves.getMove(inverseMove), baseCentersFaces);
 
-            Case newCase = new NSCase(name, newCenterFaces);
+            Case newCase = new NSCase(name + " " + (i+2), newCenterFaces);
 
             if (!cases.contains(newCase))
                 cases.add(newCase);
         }
+
+        if (cases.size() == 1)
+            cases.getFirst().setName(name);
 
         return cases;
     }

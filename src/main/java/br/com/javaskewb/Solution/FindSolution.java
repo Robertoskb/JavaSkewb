@@ -1,5 +1,6 @@
 package br.com.javaskewb.Solution;
 
+import br.com.javaskewb.Mapping.Solve.AdvancedMoves;
 import br.com.javaskewb.Mapping.Solve.Moves;
 import br.com.javaskewb.Mapping.Solve.WCAMoves;
 import br.com.javaskewb.Mapping.State;
@@ -41,6 +42,15 @@ public class FindSolution {
             visitedTarget.put(targetState, new ArrayList<>());
         }
 
+        Set<String> notation;
+
+        if (! (moves instanceof AdvancedMoves))
+            notation = moves.getNotation().keySet();
+
+        else
+            notation = new HashSet<>(List.of("r R' r' R b b' B B' x x' x2 y y' y2 z z' z2".split(" ")));
+
+
         while (!queueInitial.isEmpty() || !queueTarget.isEmpty()){
             if (!queueInitial.isEmpty()){
                 StateNode stateNodeInitial = queueInitial.poll();
@@ -49,7 +59,7 @@ public class FindSolution {
                 int distance = stateNodeInitial.getDistance();
                 ArrayList<String> scramble = stateNodeInitial.getScramble();
 
-                for (String move: moves.getNotation().keySet()){
+                for (String move: notation){
                     State state = moves.applyMove(move);
 
                     if (!visitedInitial.containsKey(state)){
@@ -73,7 +83,7 @@ public class FindSolution {
                 int distance = stateNodeTarget.getDistance();
                 ArrayList<String> scramble = stateNodeTarget.getScramble();
 
-                for (String move: moves.getNotation().keySet()){
+                for (String move: notation){
                     State state = moves.applyMove(move);
 
                     if (!visitedTarget.containsKey(state)){

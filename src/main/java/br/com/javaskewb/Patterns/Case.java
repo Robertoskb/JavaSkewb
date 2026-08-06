@@ -47,11 +47,11 @@ public abstract class Case {
         if (!(object instanceof Case other))
             return false;
 
-        return other.getName().equals(name) && other.getCentersFaces().equals(centersFaces);
+        return other.getCentersFaces().equals(centersFaces);
     }
 
     @Override
     public int hashCode(){
-        return Objects.hash(name, centersFaces);
+        return Objects.hash(centersFaces);
     }
 }

@@ -62,7 +62,7 @@ public class MainController {
         skewbBase = new SkewbBase(state);
         skewbBase.changeDisabled();
 
-        for (Case LLCase : new NSCases().getPiBLCases()) {
+        for (Case LLCase : new NSCases().getCases()) {
             State miniState = State.getSolvedState();
 
             LLCase.applyCase(miniState);
