@@ -1,5 +1,9 @@
 package br.com.javaskewb.Controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.javaskewb.Controller.Components.CaseCard;
 import br.com.javaskewb.Controller.Components.SkewbBase;
 import br.com.javaskewb.Cube.Skewb;
@@ -7,17 +11,21 @@ import br.com.javaskewb.Mapping.Solve.AdvancedMoves;
 import br.com.javaskewb.Mapping.Solve.WCAMoves;
 import br.com.javaskewb.Mapping.State;
 import br.com.javaskewb.Patterns.Case;
+import br.com.javaskewb.Patterns.NS.L2L.CC.CLCase;
+import br.com.javaskewb.Patterns.NS.L2L.CC.Peanut.PeanutCases;
+import br.com.javaskewb.Patterns.NS.L2L.CC.Pi.PiCase;
+import br.com.javaskewb.Patterns.NS.L2L.CC.Pi.PiCases;
+import br.com.javaskewb.Patterns.NS.NSCase;
 import br.com.javaskewb.Patterns.NS.NSCases;
 import br.com.javaskewb.Solution.FindSolution;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainController {
     @FXML
@@ -62,7 +70,10 @@ public class MainController {
         skewbBase = new SkewbBase(state);
         skewbBase.changeDisabled();
 
-        for (Case LLCase : new NSCases().getCases()) {
+        ArrayList<NSCase> cases = new NSCases().getCases();
+
+        System.out.println(cases.size());
+        for (Case LLCase : cases) {
             State miniState = State.getSolvedState();
 
             LLCase.applyCase(miniState);

@@ -1,11 +1,12 @@
-package br.com.javaskewb.Patterns.NS.L2L.Pi;
+package br.com.javaskewb.Patterns.NS.L2L.CC.Pi;
 
 import br.com.javaskewb.Mapping.Solve.Matrices.CentersFaces;
 import br.com.javaskewb.Mapping.Solve.Matrices.MatrixSwap;
 import br.com.javaskewb.Mapping.Solve.Moves;
-import br.com.javaskewb.Patterns.NS.L2L.L2LCase;
+import br.com.javaskewb.Patterns.NS.L2L.CC.CCCase;
+import br.com.javaskewb.Patterns.NS.L2L.CC.CLCase;
 
-public class PiCase extends L2LCase {
+public class PiCase extends CLCase {
     protected final static int[][] faces = getPiMatrix();
 
     private static int[][] getPiMatrix() {
@@ -33,5 +34,9 @@ public class PiCase extends L2LCase {
 
     public PiCase(String name, CentersFaces centersFaces) {
         super(name, centersFaces);
+    }
+
+    public static int[][] getFaces() {
+        return faces;
     }
 }

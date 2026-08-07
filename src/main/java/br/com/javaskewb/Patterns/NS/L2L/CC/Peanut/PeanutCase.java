@@ -1,12 +1,12 @@
-package br.com.javaskewb.Patterns.NS.L2L.Peanut;
+package br.com.javaskewb.Patterns.NS.L2L.CC.Peanut;
 
 import br.com.javaskewb.Mapping.Solve.Matrices.CentersFaces;
 import br.com.javaskewb.Mapping.Solve.Matrices.MatrixSwap;
 import br.com.javaskewb.Mapping.Solve.Moves;
-import br.com.javaskewb.Patterns.Case;
-import br.com.javaskewb.Patterns.NS.L2L.L2LCase;
+import br.com.javaskewb.Patterns.NS.L2L.CC.CCCase;
+import br.com.javaskewb.Patterns.NS.L2L.CC.CLCase;
 
-public class PeanutCase extends L2LCase {
+public class PeanutCase extends CLCase {
     protected final static int[][] faces = getPeanutMatrix();
 
     public PeanutCase(String name, CentersFaces centersFaces) {
@@ -25,5 +25,9 @@ public class PeanutCase extends L2LCase {
         matrixSwap.swap(6,4);
 
         return matrixSwap.getMatrix();
+    }
+
+    public static int[][] getFaces() {
+        return faces;
     }
 }
