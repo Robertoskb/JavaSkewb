@@ -1,8 +1,10 @@
 package br.com.javaskewb.Patterns.NS.L2L;
 
+import br.com.javaskewb.Patterns.Case;
 import br.com.javaskewb.Patterns.Cases;
 import br.com.javaskewb.Patterns.NS.L2L.LC.LCCases;
 import br.com.javaskewb.Patterns.NS.L2L.CC.CCCases;
+import br.com.javaskewb.Patterns.NS.NSCase;
 
 import java.util.ArrayList;
 
@@ -28,7 +30,18 @@ public class L2LCases extends Cases<L2LCase> {
         return LCCases;
     }
 
-    public CCCases getZBLLCases() {
+    public CCCases getCCCCases() {
         return CCCases;
+    }
+
+    public static void main(String[] args) {
+        L2LCases cases1 = new L2LCases();
+
+        ArrayList<Case> total = new ArrayList<>();
+
+        for (L2LCase l2LCase: cases1.getCases())
+            total.addAll(l2LCase.getCasesVariants());
+
+        System.out.println(total.size()*24);
     }
 }

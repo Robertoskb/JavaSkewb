@@ -1,7 +1,7 @@
 package br.com.javaskewb.Mapping.Solve;
 
 import br.com.javaskewb.Mapping.Solve.Matrices.CentersFaces;
-import br.com.javaskewb.Mapping.State;
+import br.com.javaskewb.Cube.State;
 import br.com.javaskewb.Mapping.Parts.Center;
 import br.com.javaskewb.Mapping.Parts.Corner;
 
@@ -12,11 +12,17 @@ abstract public class Moves {
     protected State state;
     protected boolean updateState;
 
-    public Moves(){}
+    public Moves(){
+        if (getNotation().isEmpty())
+            fill();
+    }
 
     public Moves(State state, boolean updateState){
         setState(state);
         setUpdateState(updateState);
+
+        if (getNotation().isEmpty())
+            fill();
     }
 
     protected abstract void fill();

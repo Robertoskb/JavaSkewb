@@ -2,7 +2,7 @@ package br.com.javaskewb.Mapping.Solve;
 
 import br.com.javaskewb.Mapping.Solve.Matrices.CentersFaces;
 import br.com.javaskewb.Mapping.Solve.Matrices.MatrixSwap;
-import br.com.javaskewb.Mapping.State;
+import br.com.javaskewb.Cube.State;
 
 import java.util.HashMap;
 
@@ -11,13 +11,9 @@ public class WCAMoves extends Moves {
 
     public WCAMoves() {
         super();
-        if (getNotation().isEmpty())
-            fill();
     }
     public WCAMoves(State state, boolean updateState) {
         super(state, updateState);
-        if (getNotation().isEmpty())
-            fill();
     }
 
     @Override

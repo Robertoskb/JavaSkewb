@@ -1,9 +1,12 @@
 package br.com.javaskewb.Patterns.NS.L2L.CC.Pi;
 
 
+import br.com.javaskewb.Mapping.Solve.Matrices.CentersFaces;
+import br.com.javaskewb.Mapping.Solve.Moves;
 import br.com.javaskewb.Patterns.Cases;
 import br.com.javaskewb.Patterns.NS.L2L.CC.CLCase;
 import br.com.javaskewb.Patterns.NS.L2L.CC.Pi.CL.*;
+import br.com.javaskewb.Patterns.NS.L2L.LC.LCCase;
 
 import java.util.ArrayList;
 
@@ -18,6 +21,7 @@ public class PiCases extends Cases<PiCase> {
     @Override
     public void fillCases() {
         if (cases.isEmpty()){
+            cases.add(new PiCase("", new CentersFaces(Moves.getCenterMatrix(), PiCase.getFaces())));
             cases.addAll(piUCase.getCases());
             cases.addAll(piFRCases.getCases());
             cases.addAll(piFLCases.getCases());

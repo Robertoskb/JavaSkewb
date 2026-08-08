@@ -19,7 +19,6 @@ public class LCCases extends Cases<LCCase> {
     @Override
     public void fillCases() {
         if (cases.isEmpty()){
-            cases.add(new LCCase("", new CentersFaces(Moves.getCenterMatrix(), Moves.getFacesMatrix())));
             cases.addAll(L3CCases.getCases());
             cases.addAll(L4CCases.getCases());
             cases.addAll(L5CCases.getCases());

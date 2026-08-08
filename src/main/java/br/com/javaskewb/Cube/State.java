@@ -1,4 +1,4 @@
-package br.com.javaskewb.Mapping;
+package br.com.javaskewb.Cube;
 
 import br.com.javaskewb.Mapping.Parts.Center;
 import br.com.javaskewb.Mapping.Parts.Corner;

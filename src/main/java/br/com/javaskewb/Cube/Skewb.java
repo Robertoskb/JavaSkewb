@@ -3,7 +3,6 @@ package br.com.javaskewb.Cube;
 import br.com.javaskewb.Mapping.Solve.AdvancedMoves;
 import br.com.javaskewb.Mapping.Solve.Moves;
 import br.com.javaskewb.Mapping.Solve.WCAMoves;
-import br.com.javaskewb.Mapping.State;
 
 import java.util.ArrayList;
 import java.util.Arrays;

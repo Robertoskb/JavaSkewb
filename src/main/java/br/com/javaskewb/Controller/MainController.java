@@ -9,15 +9,10 @@ import br.com.javaskewb.Controller.Components.SkewbBase;
 import br.com.javaskewb.Cube.Skewb;
 import br.com.javaskewb.Mapping.Solve.AdvancedMoves;
 import br.com.javaskewb.Mapping.Solve.WCAMoves;
-import br.com.javaskewb.Mapping.State;
+import br.com.javaskewb.Cube.State;
 import br.com.javaskewb.Patterns.Case;
-import br.com.javaskewb.Patterns.NS.L2L.CC.CLCase;
-import br.com.javaskewb.Patterns.NS.L2L.CC.Peanut.PeanutCases;
-import br.com.javaskewb.Patterns.NS.L2L.CC.Pi.PiCase;
-import br.com.javaskewb.Patterns.NS.L2L.CC.Pi.PiCases;
 import br.com.javaskewb.Patterns.NS.NSCase;
-import br.com.javaskewb.Patterns.NS.NSCases;
-import br.com.javaskewb.Solution.FindSolution;
+import br.com.javaskewb.Solution.Solution;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -57,7 +52,7 @@ public class MainController {
 
     private SkewbBase skewbBase;
 
-    private FindSolution findSolution;
+    private Solution solution;
 
     private final AdvancedMoves advancedMoves = new AdvancedMoves();
     private final WCAMoves wcaMoves = new WCAMoves();
@@ -66,13 +61,13 @@ public class MainController {
 
     public void initialize() throws IOException {
         State state = State.getSolvedState();
+        state.maskSide(3);
 
         skewbBase = new SkewbBase(state);
         skewbBase.changeDisabled();
 
-        ArrayList<NSCase> cases = new NSCases().getCases();
+        ArrayList<NSCase> cases = new ArrayList<>();
 
-        System.out.println(cases.size());
         for (Case LLCase : cases) {
             State miniState = State.getSolvedState();
 
@@ -100,7 +95,7 @@ public class MainController {
         skewbBase.getSkewb().toAdvanced();
         moveMode.setText("WCA");
 
-        findSolution = new FindSolution(advancedMoves, skewbBase.getSkewb().getSolvedStates());
+        solution = new Solution(advancedMoves, skewbBase.getSkewb().getSolvedStates());
 
 
         skewbContainer.getChildren().add(skewbBase);
@@ -137,7 +132,7 @@ public class MainController {
         changeButtonsDisable();
 
         Skewb skewb = skewbBase.getSkewb();
-        ArrayList<String> solution = findSolution.find(skewb.getState(), skewb.getSolvedStates());
+        ArrayList<String> solution = this.solution.findSolution(skewb.getState(), skewb.getSolvedStates());
 
         if (solution == null){
             scrambleText.setText("Solução não encontrada");
@@ -172,11 +167,11 @@ public class MainController {
     public void changeMoveMode(){
         if (wcaMode) {
             skewbBase.getSkewb().toAdvanced();
-            findSolution.setMoves(advancedMoves);
+            solution.setMoves(advancedMoves);
             moveMode.setText("WCA");
         } else {
             skewbBase.getSkewb().toWCA();
-            findSolution.setMoves(wcaMoves);
+            solution.setMoves(wcaMoves);
             moveMode.setText("Advanced");
         }
 

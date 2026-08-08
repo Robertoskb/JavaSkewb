@@ -2,7 +2,7 @@ package br.com.javaskewb.Patterns.NS;
 
 import br.com.javaskewb.Mapping.Solve.Matrices.CentersFaces;
 import br.com.javaskewb.Mapping.Solve.Moves;
-import br.com.javaskewb.Mapping.State;
+import br.com.javaskewb.Cube.State;
 import br.com.javaskewb.Patterns.Case;
 
 import java.util.ArrayList;
@@ -52,7 +52,7 @@ public class NSCase extends Case {
             CentersFaces baseCentersFaces = Moves.mulCenterFaces(centersFaces, moves.getMove(move));
             CentersFaces newCenterFaces = Moves.mulCenterFaces(moves.getMove(inverseMove), baseCentersFaces);
 
-            Case newCase = new NSCase(name + " " + (i+2), newCenterFaces);
+            NSCase newCase = new NSCase(name + " " + (i+2), newCenterFaces);
 
             if (!cases.contains(newCase))
                 cases.add(newCase);

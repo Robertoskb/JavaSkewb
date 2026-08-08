@@ -2,6 +2,8 @@ package br.com.javaskewb.Patterns.NS.L2L.CC.Peanut;
 
 import java.util.ArrayList;
 
+import br.com.javaskewb.Mapping.Solve.Matrices.CentersFaces;
+import br.com.javaskewb.Mapping.Solve.Moves;
 import br.com.javaskewb.Patterns.Cases;
 import br.com.javaskewb.Patterns.NS.L2L.CC.Peanut.CL.PeanutBLCases;
 import br.com.javaskewb.Patterns.NS.L2L.CC.Peanut.CL.PeanutBRCases;
@@ -9,6 +11,7 @@ import br.com.javaskewb.Patterns.NS.L2L.CC.Peanut.CL.PeanutCLCases;
 import br.com.javaskewb.Patterns.NS.L2L.CC.Peanut.CL.PeanutFLCases;
 import br.com.javaskewb.Patterns.NS.L2L.CC.Peanut.CL.PeanutFRCases;
 import br.com.javaskewb.Patterns.NS.L2L.CC.Peanut.CL.PeanutUCases;
+import br.com.javaskewb.Patterns.NS.L2L.CC.Pi.PiCase;
 
 public class PeanutCases extends Cases<PeanutCase> {
     protected static final ArrayList<PeanutCase> cases =  new ArrayList<>();
@@ -21,6 +24,7 @@ public class PeanutCases extends Cases<PeanutCase> {
     @Override
     public void fillCases() {
         if (cases.isEmpty()){
+            cases.add(new PeanutCase("", new CentersFaces(Moves.getCenterMatrix(), PeanutCase.getFaces())));
             cases.addAll(peanutUCase.getCases());
             cases.addAll(peanutFRCases.getCases());
             cases.addAll(peanutFLCases.getCases());

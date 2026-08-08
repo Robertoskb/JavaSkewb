@@ -2,11 +2,10 @@ package br.com.javaskewb.Mapping.Solve;
 
 import br.com.javaskewb.Mapping.Solve.Matrices.CentersFaces;
 import br.com.javaskewb.Mapping.Solve.Matrices.MatrixSwap;
-import br.com.javaskewb.Mapping.State;
+import br.com.javaskewb.Cube.State;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class AdvancedMoves extends Moves{
     private static final HashMap<String, CentersFaces> notation = new HashMap<>();
@@ -14,15 +13,10 @@ public class AdvancedMoves extends Moves{
 
     public AdvancedMoves(){
         super();
-        if (getNotation().isEmpty())
-            fill();
     }
 
     public AdvancedMoves(State state, boolean updateState) {
         super(state, updateState);
-
-        if (getNotation().isEmpty())
-            fill();
     }
 
     @Override

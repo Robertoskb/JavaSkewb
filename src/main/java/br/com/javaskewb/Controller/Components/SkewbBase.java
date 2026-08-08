@@ -7,7 +7,7 @@ import br.com.javaskewb.Controller.Components.parts.FaceSlot;
 import br.com.javaskewb.Cube.Skewb;
 import br.com.javaskewb.Mapping.Parts.Center;
 import br.com.javaskewb.Mapping.Parts.Corner;
-import br.com.javaskewb.Mapping.State;
+import br.com.javaskewb.Cube.State;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
