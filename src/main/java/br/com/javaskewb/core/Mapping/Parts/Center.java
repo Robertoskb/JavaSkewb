@@ -1,0 +1,56 @@
+package br.com.javaskewb.core.Mapping.Parts;
+
+import java.util.Objects;
+
+public class Center {
+    private int id;
+    private int value;
+
+    public Center(int id){
+        setId(id);
+        setValue(id);
+    }
+
+    public Center(int id, int value){
+        setId(id);
+        setValue(value);
+    }
+
+
+
+    @Override
+    public boolean equals(Object obj){
+        if (!obj.getClass().isAssignableFrom(Center.class))
+            return false;
+
+        Center other = (Center) obj;
+        return other.getId() == id & other.getValue() == value;
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(id, value);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    @Override
+    public String toString(){
+        return "(" + id + ", " + value + ")";
+    }
+
+}
