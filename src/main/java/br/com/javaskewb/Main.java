@@ -1,40 +1,29 @@
 package br.com.javaskewb;
 
-import br.com.javaskewb.Controller.SkewbBase;
-import br.com.javaskewb.Cube.Skewb;
-import br.com.javaskewb.Mapping.Parts.Center;
-import br.com.javaskewb.Mapping.Parts.Corner;
-import br.com.javaskewb.Mapping.State;
-import br.com.javaskewb.Solution.BFSSkewb;
+import br.com.javaskewb.ui.ScreenManager;
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        ScreenManager screenManager = ScreenManager.getInstance();
+        stage.setMaximized(true);
+        screenManager.setStage(stage);
 
-        SkewbBase skewbBase = new SkewbBase();
+        screenManager.setScene("Main.fxml");
 
-        StackPane root = new StackPane();
-
-        root.getChildren().add(skewbBase);
-
-        Scene scene = new Scene(root);
-
-        stage.setScene(scene);
-
-        stage.show();
-        skewbBase.applyScrambleAnimation("U L R' B R' L R L'");
+        screenManager.show();
 
     }
 
     public static void main(String[] args) {
         launch(args);
+//        SkewbTranslation translation = new SkewbTranslation();
+//        // "U' B L B' L R' L B'"
+//        for (String scramble: translation.translate("R B"))
+//            System.out.println(scramble + "\n");
     }
+
 }

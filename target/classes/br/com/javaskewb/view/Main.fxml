@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="622.0" prefWidth="898.0" style="-fx-background-color: #F4F6F9;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.javaskewb.Controller.MainController">
+
+    <left>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxWidth="182.0" prefHeight="622.0" prefWidth="182.0" style="-fx-background: #1E293B; -fx-border-color: #1E293B;" BorderPane.alignment="CENTER">
+            <content>
+                <VBox fx:id="leftContainer" alignment="TOP_CENTER" spacing="20.0" style="-fx-background-color: #1E293B; -fx-padding: 20;" />
+            </content>
+        </ScrollPane>
+    </left>
+
+    <center>
+        <VBox alignment="TOP_CENTER" prefHeight="674.0" prefWidth="723.0" spacing="10.0" style="-fx-padding: 25;">
+
+            <children>
+
+                <VBox prefHeight="20" />
+
+                <VBox fx:id="scrambleContainer" alignment="CENTER" prefHeight="70.0" prefWidth="500.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: #D6D9E0; -fx-border-radius: 12; -fx-padding: 15;">
+                    <children>
+                        <Text fx:id="scrambleText" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-fill: #334155;" text="Scramble" />
+                    </children>
+                </VBox>
+
+                            <StackPane fx:id="skewbContainer" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="375.0" prefWidth="484.0" style="-fx-background-color: white; -fx-background-radius: 18; -fx-border-color: #D6D9E0; -fx-border-radius: 18; -fx-padding: 20;" VBox.vgrow="ALWAYS" />
+
+                      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="430.0" spacing="10.0">
+                    <children>
+                        <Button fx:id="moveMode" mnemonicParsing="false" onAction="#changeMoveMode" text="Button" />
+
+                              <HBox fx:id="movesContainer" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="1000.0" spacing="10.0" HBox.hgrow="ALWAYS" />
+
+                              <Button fx:id="solveButton" mnemonicParsing="false" onAction="#autoSolve" text="Solve" />
+                    </children>
+                </HBox>
+            <HBox prefHeight="57.0" prefWidth="484.0" style="-fx-background-color: green;" />
+
+            </children>
+
+        </VBox>
+    </center>
+   <right>
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxWidth="182.0" prefHeight="622.0" prefWidth="182.0" style="-fx-background: #1E293B; -fx-border-color: #1E293B;" BorderPane.alignment="CENTER">
+         <content>
+            <VBox fx:id="rightContainer" spacing="20.0" style="-fx-background-color: #1E293B; -fx-padding: 20;" />
+         </content>
+      </ScrollPane>
+   </right>
+
+</BorderPane>
