@@ -58,6 +58,12 @@ public class FLCases extends Cases<FLCase> {
         return cases;
     }
 
+    public FLCase getRandomFLByMoves(int moves){
+        ArrayList<FLCase> flMoves = CaseByMoves.get(moves);
+
+        return flMoves.get(random.nextInt(0, flMoves.size()));
+    }
+
     public ArrayList<FLCase> getZeroMoveCases() {
         return ZeroMoveCases;
     }

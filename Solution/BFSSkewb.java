@@ -71,8 +71,9 @@ public class BFSSkewb {
     public static void main(String[] args) {
         ArrayList<ArrayList<Scramble>> scrambles = getFLScrambles(new FLMoves());
 
+        int cont = 0;
         for (ArrayList<Scramble> fl: scrambles){
-            System.out.println(fl.size());
+            System.out.println(cont++ + " " + fl.size());
         }
 
     }
