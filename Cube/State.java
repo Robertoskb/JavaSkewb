@@ -6,8 +6,10 @@ import br.com.javaskewb.core.Mapping.Moves.AdvancedMoves;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Random;
 
 public class State {
+    private static final Random random = new Random();
     private ArrayList<Center> centers;
     private ArrayList<Corner> corners;
 
@@ -32,7 +34,6 @@ public class State {
         int cont = 0;
         for (int i=0; i<24; i+=3)
             new_corners.add(new Corner(cont++, new int[] {i, i+1, i+2}));
-
 
         return new State(new_centers, new_corners);
     }
@@ -61,6 +62,10 @@ public class State {
         }
 
         return states;
+    }
+
+    public static State getRandomPerspective(){
+        return generatePerspectivesStates(getSolvedState()).get(random.nextInt(0, 24));
     }
 
     public State cloneState(){

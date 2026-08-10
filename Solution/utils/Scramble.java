@@ -11,4 +11,9 @@ public class Scramble extends ArrayList<String> {
     public Scramble(){
         super();
     }
+
+    @Override
+    public String toString() {
+        return String.join(" ", this);
+    }
 }

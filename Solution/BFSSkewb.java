@@ -73,7 +73,7 @@ public class BFSSkewb {
 
         int cont = 0;
         for (ArrayList<Scramble> fl: scrambles){
-            System.out.println(cont++ + " " + fl.size());
+            System.out.println(cont++ + " Moves: " + fl.size());
         }
 
     }
