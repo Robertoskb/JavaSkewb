@@ -1,14 +1,18 @@
 package br.com.javaskewb.core.Patterns.NS.FL;
 
+import br.com.javaskewb.core.Cube.State;
 import br.com.javaskewb.core.Mapping.Moves.FLMoves;
 import br.com.javaskewb.core.Mapping.Moves.Matrices.CentersFaces;
 import br.com.javaskewb.core.Mapping.Moves.Moves;
+import br.com.javaskewb.core.Patterns.Case;
 import br.com.javaskewb.core.Patterns.Cases;
 import br.com.javaskewb.core.Solution.BFSSkewb;
 import br.com.javaskewb.core.Solution.utils.Scramble;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class FLCases extends Cases<FLCase> {
     private static final ArrayList<FLCase> cases = new ArrayList<>();
@@ -37,7 +41,11 @@ public class FLCases extends Cases<FLCase> {
         FLMoves flMoves = new FLMoves();
         ArrayList<ArrayList<Scramble>> ArrayScramble = BFSSkewb.getFLScrambles(flMoves);
 
+        FLCase zeroMove = new FLCase("0 move case", new CentersFaces(Moves.getCenterMatrix(), Moves.getFacesMatrix()));
+        cases.add(zeroMove);
+        ZeroMoveCases.add(zeroMove);
         for (int i = 1; i < 8; i++) {
+            Set<Case> variants = new HashSet<>();
             ArrayList<Scramble> scrambles = ArrayScramble.get(i);
             for (Scramble scramble: scrambles){
                 CentersFaces centersFaces = new CentersFaces(Moves.getCenterMatrix(), Moves.getFacesMatrix());
@@ -46,11 +54,21 @@ public class FLCases extends Cases<FLCase> {
                     centersFaces = Moves.mulCenterFaces(flMoves.getMove(move), centersFaces);
                 }
 
-                FLCase flCase = new FLCase(i + " Move Case", centersFaces);
-                CaseByMoves.get(i).add(flCase);
-                cases.add(flCase);
+                FLCase flCase = new FLCase(i + " Move Case " + scramble, centersFaces);
+                if (!variants.contains(flCase)) {
+                    CaseByMoves.get(i).add(flCase);
+                    cases.add(flCase);
+                }
+
+                else
+                    continue;
+                variants.addAll(flCase.getCasesVariants());
             }
         }
+    }
+
+    public static void main(String[] args) {
+        
     }
 
     @Override
