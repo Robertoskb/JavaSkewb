@@ -95,15 +95,13 @@ abstract public class Moves {
         ArrayList<Integer> arrayCenters = new ArrayList<>();
 
         for (int[] ints : matrix) {
-            for (int j = 0; j < 1; j++) {
-                int sum = 0;
+            int sum = 0;
 
-                for (int k = 0; k < ints.length; k++) {
-                    sum += ints[k] * centers.get(k);
-                }
-
-                arrayCenters.add(sum);
+            for (int k = 0; k < ints.length; k++) {
+                sum += ints[k] * centers.get(k);
             }
+
+            arrayCenters.add(sum);
         }
 
         return arrayCenters;
@@ -113,15 +111,14 @@ abstract public class Moves {
         ArrayList<Integer> arrayFaces = new ArrayList<>();
 
         for (int[] ints : matrix) {
-            for (int j = 0; j < 1; j++) {
-                int sum = 0;
+            int sum = 0;
 
-                for (int k = 0; k < ints.length; k++) {
-                    sum += ints[k] * faces.get(k);
-                }
-
-                arrayFaces.add(sum);
+            for (int k = 0; k < ints.length; k++) {
+                sum += ints[k] * faces.get(k);
             }
+
+            arrayFaces.add(sum);
+
         }
 
         return arrayFaces;

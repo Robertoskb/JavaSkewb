@@ -12,6 +12,7 @@ import br.com.javaskewb.core.Mapping.Moves.WCAMoves;
 import br.com.javaskewb.core.Cube.State;
 import br.com.javaskewb.core.Patterns.Case;
 import br.com.javaskewb.core.Patterns.NS.NSCase;
+import br.com.javaskewb.core.Patterns.NS.NSCases;
 import br.com.javaskewb.core.Solution.Solution;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -61,12 +62,11 @@ public class MainController {
 
     public void initialize() throws IOException {
         State state = State.getSolvedState();
-        state.maskSide(3);
 
         skewbBase = new SkewbBase(state);
         skewbBase.changeDisabled();
 
-        ArrayList<NSCase> cases = new ArrayList<>();
+        ArrayList<NSCase> cases = new NSCases().getCases();
 
         for (Case LLCase : cases) {
             State miniState = State.getSolvedState();

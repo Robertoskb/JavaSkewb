@@ -71,6 +71,8 @@ public class SkewbBase extends StackPane{
 
     private final Skewb skewb;
 
+    private final State solvedState = State.getSolvedState();
+
     private boolean invisiblePolygons = false;
     private boolean disablePolygons = false;
     private boolean disableBottom = false;
@@ -148,6 +150,10 @@ public class SkewbBase extends StackPane{
 
             slot.getPart().setColor(FacePart.getSkewbColors().get(value));
         }
+    }
+
+    public void reset(){
+        skewb.setState(solvedState.cloneState());
     }
 
     public void changeVisibility(){

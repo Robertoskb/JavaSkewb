@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="rootPane" focusTraversable="true" onKeyPressed="#handleKeyPressed" onKeyReleased="#handleKeyReleased" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #1e1e1e;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.javaskewb.Controller.TimerController">
+    <top>
+        <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: #252526; -fx-padding: 20px;" BorderPane.alignment="CENTER">
+            <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+               <children>
+                      <Label fx:id="scrambleLabel" alignment="CENTER" contentDisplay="CENTER" text="R2 U' B2 R2 F2 U L2 U2 B2 U' R' B F D U2 L B' F2 R'" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                          <font>
+                              <Font name="Monospaced Bold" size="22.0" />
+                          </font>
+                      </Label>
+                  <Spinner fx:id="moveSelector" editable="true" prefHeight="26.0" prefWidth="55.0" style="-fx-background-color: #252526;">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </Spinner>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            </children>
+        </VBox>
+    </top>
+
+    <center>
+        <StackPane alignment="CENTER" BorderPane.alignment="CENTER">
+            <children>
+                <Label fx:id="timerLabel" text="0.00" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="110.0" />
+                    </font>
+                </Label>
+            </children>
+        </StackPane>
+    </center>
+
+    <bottom>
+        <AnchorPane prefHeight="180.0" style="-fx-padding: 15px;" BorderPane.alignment="CENTER">
+            <children>
+                <Label text="Pressione e segure a barra de ESPAÇO para preparar" textFill="#888888" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+
+                <StackPane fx:id="cubeContainer" prefHeight="160.0" prefWidth="160.0" style="-fx-background-color: #2d2d2d; -fx-background-radius: 8px; -fx-border-color: #3e3e42; -fx-border-radius: 8px;" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                    <children>
+                        <Label text="Container do Cubo" textFill="#666666" />
+                    </children>
+                </StackPane>
+            </children>
+        </AnchorPane>
+    </bottom>
+
+</BorderPane>

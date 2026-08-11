@@ -1,6 +1,5 @@
 package br.com.javaskewb.core.Solution;
 
-import br.com.javaskewb.core.Mapping.Moves.FLMoves;
 import br.com.javaskewb.core.Mapping.Moves.Moves;
 import br.com.javaskewb.core.Mapping.Moves.WCAMoves;
 import br.com.javaskewb.core.Cube.State;
@@ -17,6 +16,8 @@ public class BFSSkewb {
         queue.add(new StateNode(initialState, 0));
         visited.put(initialState, new Scramble());
 
+        Set<String> notation = moves.getNotation().keySet();
+
         while (!queue.isEmpty()){
             StateNode node = queue.poll();
 
@@ -29,7 +30,7 @@ public class BFSSkewb {
 
             moves.setState(state);
 
-            for (String move: moves.getNotation().keySet()){
+            for (String move: notation){
                 State newState = moves.applyMove(move);
                 Scramble newScramble = new Scramble(scramble);
                 newScramble.add(move);
@@ -69,12 +70,7 @@ public class BFSSkewb {
     }
 
     public static void main(String[] args) {
-        ArrayList<ArrayList<Scramble>> scrambles = getFLScrambles(new FLMoves());
 
-        int cont = 0;
-        for (ArrayList<Scramble> fl: scrambles){
-            System.out.println(cont++ + " Moves: " + fl.size());
-        }
 
     }
 }
