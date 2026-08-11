@@ -18,12 +18,19 @@ public class Solution {
         setTargetStates(targetStates);
     }
 
+    public Solution(Moves moves){
+        setMoves(moves);
+    }
+
     public Solution(){
         setMoves(new WCAMoves());
         setTargetStates(new ArrayList<>(List.of(State.getSolvedState())));
     }
 
     public Scramble findSolution(State initialState, ArrayList<State> targetStates){
+        if (targetStates.contains(initialState))
+            return new Scramble();
+
         HashMap<State, Scramble> visitedInitial, visitedTarget;
         PriorityQueue<StateNode> queueInitial, queueTarget;
 
@@ -109,8 +116,23 @@ public class Solution {
         return findSolution(initialState, targetStates);
     }
 
+    public Scramble findSolution(State initialState, State target){
+        return findSolution(initialState, State.generatePerspectivesStates(target));
+    }
+
     public Scramble findScramble(State targetState){
         return findSolution(State.getSolvedState(), State.generatePerspectivesStates(targetState));
+    }
+
+    public ArrayList<Integer> FLInfos(State state){
+        ArrayList<Integer> infos = new ArrayList<>(6);
+        LinkedHashMap<State, State> states = state.getMaskSides();
+
+        states.forEach((initial, solved) ->
+           infos.add(findSolution(initial, solved).size())
+        );
+
+        return infos;
     }
 
     public static Scramble invertScramble(ArrayList<String> scramble){

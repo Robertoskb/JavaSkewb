@@ -26,6 +26,10 @@ public abstract class Case {
         Moves.move(initialState, centersFaces, true);
     }
 
+    public State applyCase(State initialState, boolean updateState){
+        return Moves.move(initialState, centersFaces, updateState);
+    }
+
     public CentersFaces getCentersFaces() {
         return centersFaces;
     }
