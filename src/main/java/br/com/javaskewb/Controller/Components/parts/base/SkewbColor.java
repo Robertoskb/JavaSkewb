@@ -6,10 +6,10 @@ public enum SkewbColor {
 
     WHITE(0, "#FFFFFF"),
     RED(1, "#F04A4A"),
-    ORANGE(2, "#F6A93B"),
+    GREEN(2, "#4CAF50"),
     YELLOW(3, "#F4F04D"),
     BLUE(4, "#3B82F6"),
-    GREEN(5, "#4CAF50");
+    ORANGE(5, "#F6A93B");
 
     private final int id;
     private final String hex;

@@ -76,7 +76,7 @@ public class Solution {
                             return scrambleConstructor(newScramble, visitedTarget.get(state));
 
                         visitedInitial.put(state, newScramble);
-                        queueInitial.add(new StateNode(state, distance+ moves.getCost(move), newScramble));
+                        queueInitial.add(new StateNode(state, distance + moves.getCost(move), newScramble));
                     }
 
                 }
@@ -88,7 +88,7 @@ public class Solution {
 
                 moves.setState(stateNodeTarget.getState());
                 int distance = stateNodeTarget.getDistance();
-                ArrayList<String> scramble = stateNodeTarget.getScramble();
+                Scramble scramble = stateNodeTarget.getScramble();
 
                 for (String move: notation){
                     State state = moves.applyMove(move);
@@ -101,7 +101,7 @@ public class Solution {
                             return scrambleConstructor(visitedInitial.get(state), newScramble);
 
                         visitedTarget.put(state, newScramble);
-                        queueTarget.add(new StateNode(state, distance+ moves.getCost(move), newScramble));
+                        queueTarget.add(new StateNode(state, distance + moves.getCost(move), newScramble));
                     }
                 }
 

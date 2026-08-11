@@ -2,7 +2,6 @@ package br.com.javaskewb.Controller;
 
 import br.com.javaskewb.Controller.Components.SkewbBase;
 import br.com.javaskewb.Controller.Components.parts.base.SkewbColor;
-import br.com.javaskewb.core.Cube.State;
 import br.com.javaskewb.core.Mapping.Moves.FLMoves;
 import br.com.javaskewb.core.Solution.Solution;
 import br.com.javaskewb.core.Solution.utils.Scramble;
@@ -127,9 +126,11 @@ public class TimerController {
         ArrayList<Integer> infos = solution.FLInfos(skewbBase.getSkewb().getState());
         for (int i = 0; i < 6; i++) {
             Label label = labels.get(i);
-            String colorName = SkewbColor.getColoById(i).toString();
+            SkewbColor skewbColor = SkewbColor.getColoById(i);
+            String colorName = skewbColor.toString();
 
             label.setText(colorName + ": " + infos.get(i));
+            label.setTextFill(Color.web(skewbColor.getHex()));
         }
     }
 
