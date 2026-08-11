@@ -60,11 +60,25 @@
                     </font>
                 </Label>
 
-                <StackPane fx:id="cubeContainer" prefHeight="160.0" prefWidth="160.0" style="-fx-background-color: #2d2d2d; -fx-background-radius: 8px; -fx-border-color: #3e3e42; -fx-border-radius: 8px;" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                      <StackPane fx:id="cubeContainer" prefHeight="160.0" prefWidth="160.0" style="-fx-background-color: #2d2d2d; -fx-background-radius: 8px; -fx-border-color: #3e3e42; -fx-border-radius: 8px;" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
                     <children>
                         <Label text="Container do Cubo" textFill="#666666" />
                     </children>
                 </StackPane>
+            <StackPane layoutX="541.0" layoutY="45.0" prefHeight="160.0" prefWidth="160.0" style="-fx-background-color: #2d2d2d; -fx-background-radius: 8px; -fx-border-color: #3e3e42; -fx-border-radius: 8px;" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="200.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="118.0" prefWidth="158.0" spacing="5.0">
+                     <children>
+                        <Label fx:id="color0" text="color" textFill="#666666" />
+                        <Label fx:id="color1" text="color" textFill="#666666" />
+                        <Label fx:id="color2" text="color" textFill="#666666" />
+                        <Label fx:id="color3" layoutX="39.0" layoutY="10.0" text="color" textFill="#666666" />
+                        <Label fx:id="color4" layoutX="39.0" layoutY="40.0" text="color" textFill="#666666" />
+                        <Label fx:id="color5" layoutX="39.0" layoutY="71.0" text="color" textFill="#666666" />
+                     </children>
+                  </VBox>
+               </children>
+            </StackPane>
             </children>
         </AnchorPane>
     </bottom>

@@ -11,10 +11,10 @@ import java.util.*;
 public class BFSSkewb {
     public static HashMap<State, Scramble> BFS(int max, State initialState, Moves moves){
         PriorityQueue<StateNode> queue = new PriorityQueue<>(Comparator.comparingInt(StateNode::getDistance));
-        HashMap<State, Scramble> visited = new HashMap<>();
+        HashMap<State, Scramble> bfs = new HashMap<>();
 
         queue.add(new StateNode(initialState, 0));
-        visited.put(initialState, new Scramble());
+        HashSet<State> visited = new HashSet<>(State.generatePerspectivesStates(initialState));
 
         Set<String> notation = moves.getNotation().keySet();
 
@@ -35,15 +35,17 @@ public class BFSSkewb {
                 Scramble newScramble = new Scramble(scramble);
                 newScramble.add(move);
 
-                if (!visited.containsKey(newState)){
-                    visited.put(newState, newScramble);
+                if (!visited.contains(newState)){
+                    bfs.put(newState, newScramble);
+                    visited.addAll(State.generatePerspectivesStates(newState));
 
                     queue.add(new StateNode(newState, distance+1, newScramble));
+
                 }
             }
         }
 
-        return visited;
+        return bfs;
     }
 
     public static HashMap<State, Scramble> BFS(int max){
@@ -61,7 +63,7 @@ public class BFSSkewb {
 
         state.maskSide(3);
 
-        HashMap<State, Scramble> bfs = BFS(7, state, moves);
+        HashMap<State, Scramble> bfs = BFS(8, state, moves);
 
         for (Scramble scramble: bfs.values())
             scrambles.get(scramble.size()).add(scramble);

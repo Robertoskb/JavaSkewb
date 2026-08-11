@@ -6,13 +6,13 @@ import br.com.javaskewb.core.Mapping.Moves.Matrices.CentersFaces;
 import br.com.javaskewb.core.Mapping.Moves.Moves;
 import br.com.javaskewb.core.Patterns.Case;
 import br.com.javaskewb.core.Patterns.Cases;
+import br.com.javaskewb.core.Patterns.NS.NSCase;
+import br.com.javaskewb.core.Patterns.NS.NSCases;
 import br.com.javaskewb.core.Solution.BFSSkewb;
+import br.com.javaskewb.core.Solution.Solution;
 import br.com.javaskewb.core.Solution.utils.Scramble;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class FLCases extends Cases<FLCase> {
     private static final ArrayList<FLCase> cases = new ArrayList<>();
@@ -68,7 +68,11 @@ public class FLCases extends Cases<FLCase> {
     }
 
     public static void main(String[] args) {
-        
+        NSCases nsCases = new NSCases();
+        FLCases flCases = nsCases.getFlCases();
+
+        for (ArrayList<FLCase> flCaseArrayList: flCases.getCaseByMoves())
+            System.out.println(flCaseArrayList.size());
     }
 
     @Override

@@ -4,9 +4,7 @@ import br.com.javaskewb.core.Mapping.Parts.Center;
 import br.com.javaskewb.core.Mapping.Parts.Corner;
 import br.com.javaskewb.core.Mapping.Moves.AdvancedMoves;
 
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
 
 public class State {
     private static final Random random = new Random();
@@ -104,6 +102,23 @@ public class State {
                 corner.setFaces(new int[] {-1, -1, -1});
 
         }
+    }
+
+    public LinkedHashMap<State, State> getMaskSides(){
+        LinkedHashMap<State, State> states = new LinkedHashMap<>();
+
+        State solved = State.getSolvedState();
+        for (int i = 0; i < 6; i++) {
+            State state = this.cloneState();
+            State newSolved = solved.cloneState();
+
+            state.maskSide(i);
+            newSolved.maskSide(i);
+
+            states.put(state, newSolved);
+        }
+
+        return states;
     }
 
     @Override

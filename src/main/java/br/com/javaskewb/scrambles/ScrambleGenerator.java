@@ -19,10 +19,10 @@ public class ScrambleGenerator {
         do {
             NSCase nsCase = nsCases.getRandomCase();
             FLCase flCase = flCases.getRandomFLByMoves(flMoves);
-            State state = State.getRandomPerspective();
+            State state = State.getSolvedState();
 
-            Moves.move(state, nsCase.getCentersFaces(), true);
-            Moves.move(state, flCase.getCentersFaces(), true);
+            nsCase.applyCase(state);
+            flCase.applyCase(state);
 
             scramble = solution.findScramble(state);
         } while (scramble.size() < 7);

@@ -1,7 +1,10 @@
 package br.com.javaskewb.Controller;
 
 import br.com.javaskewb.Controller.Components.SkewbBase;
+import br.com.javaskewb.Controller.Components.parts.base.SkewbColor;
 import br.com.javaskewb.core.Cube.State;
+import br.com.javaskewb.core.Mapping.Moves.FLMoves;
+import br.com.javaskewb.core.Solution.Solution;
 import br.com.javaskewb.core.Solution.utils.Scramble;
 import br.com.javaskewb.scrambles.ScrambleGenerator;
 import javafx.animation.AnimationTimer;
@@ -17,6 +20,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TimerController {
 
@@ -35,8 +40,24 @@ public class TimerController {
     @FXML
     private Label timerLabel;
 
-    public TimerController() throws IOException {
-    }
+    @FXML
+    private Label color0;
+
+    @FXML
+    private Label color1;
+
+    @FXML
+    private Label color2;
+
+    @FXML
+    private Label color3;
+
+    @FXML
+    private Label color4;
+
+    @FXML
+    private Label color5;
+
 
     private enum TimerState { STOPPED, HOLDING, READY, RUNNING }
     private TimerState currentState = TimerState.STOPPED;
@@ -48,14 +69,22 @@ public class TimerController {
     private AnimationTimer timer;
     private AnimationTimer holdCheckTimer;
 
-
     private final SkewbBase skewbBase = new SkewbBase();
 
     private final ScrambleGenerator scrambleGenerator = new ScrambleGenerator();
 
+    private final Solution solution = new Solution(new FLMoves());
+
+    private final ArrayList<Label> labels = new ArrayList<>();
+
+    public TimerController() throws IOException {
+    }
+
     @FXML
     public void initialize() throws IOException {
         Platform.runLater(() -> rootPane.requestFocus());
+
+        labels.addAll(List.of(color0, color1, color2, color3, color4, color5));
 
         timer = new AnimationTimer() {
             @Override
@@ -94,6 +123,14 @@ public class TimerController {
         skewbBase.reset();
 
         skewbBase.applyScramble(scramble);
+
+        ArrayList<Integer> infos = solution.FLInfos(skewbBase.getSkewb().getState());
+        for (int i = 0; i < 6; i++) {
+            Label label = labels.get(i);
+            String colorName = SkewbColor.getColoById(i).toString();
+
+            label.setText(colorName + ": " + infos.get(i));
+        }
     }
 
     @FXML
