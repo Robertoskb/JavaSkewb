@@ -19,7 +19,7 @@ public class ScrambleGenerator {
         do {
             NSCase nsCase = nsCases.getRandomCase();
             FLCase flCase = flCases.getRandomFLByMoves(flMoves);
-            State state = State.getSolvedState();
+            State state = State.getRandomPerspective();
 
             nsCase.applyCase(state);
             flCase.applyCase(state);
