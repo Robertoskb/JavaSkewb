@@ -59,7 +59,7 @@ public class Solution {
 
 
         while (!queueInitial.isEmpty() || !queueTarget.isEmpty()){
-            if (!queueInitial.isEmpty()){
+            if (queueInitial.peek().getDistance() <= queueTarget.peek().getDistance()){
                 StateNode stateNodeInitial = queueInitial.poll();
 
                 moves.setState(stateNodeInitial.getState());
@@ -83,7 +83,7 @@ public class Solution {
 
             }
 
-            if (!queueTarget.isEmpty()){
+            else {
                 StateNode stateNodeTarget = queueTarget.poll();
 
                 moves.setState(stateNodeTarget.getState());

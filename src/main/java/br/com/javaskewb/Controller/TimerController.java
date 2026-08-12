@@ -72,7 +72,7 @@ public class TimerController {
 
     private final ScrambleGenerator scrambleGenerator = new ScrambleGenerator();
 
-    private final Solution solution = new Solution(new FLMoves());
+    private final Solution solution = new Solution();
 
     private final ArrayList<Label> labels = new ArrayList<>();
 
