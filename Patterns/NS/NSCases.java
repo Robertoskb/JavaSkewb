@@ -2,20 +2,23 @@ package br.com.javaskewb.core.Patterns.NS;
 
 import br.com.javaskewb.core.Patterns.Cases;
 import br.com.javaskewb.core.Patterns.NS.FL.FLCases;
+import br.com.javaskewb.core.Patterns.NS.L2L.L2LCase;
 import br.com.javaskewb.core.Patterns.NS.L2L.L2LCases;
 
 import java.util.ArrayList;
 
 public class NSCases extends Cases<NSCase> {
-    private static final ArrayList<NSCase> cases = new ArrayList<>();
     private static final L2LCases L2LCases = new L2LCases();
     private static final FLCases FlCases = new FLCases();
+    private static final ArrayList<NSCase> cases = fillCase();
 
     @Override
     public void fillCases() {
-        if (cases.isEmpty()){
-            cases.addAll(L2LCases.getCases());
-        }
+
+    }
+
+    private static ArrayList<NSCase> fillCase(){
+        return new ArrayList<>(L2LCases.getCases());
     }
 
     @Override

@@ -10,6 +10,7 @@ public class State {
     private static final Random random = new Random();
     private ArrayList<Center> centers;
     private ArrayList<Corner> corners;
+    int perspective;
 
     private int[][] sides = {{0, 1, 2, 3}, {0, 3, 6, 7}, {0, 1, 5, 6}, {4, 5, 6, 7}, {2, 3, 4, 7}, {1, 2, 4, 5}};
     private int[][] faces = {
@@ -46,12 +47,14 @@ public class State {
 
         AdvancedMoves advancedMoves = new AdvancedMoves();
 
+        int cont = 0;
         while (!queue.isEmpty()){
             advancedMoves.setState(queue.removeLast());
             for (String move: moves){
                 State state = advancedMoves.applyMove(move);
 
                 if (!states.contains(state)){
+                    state.setPerspective(cont++);
                     queue.add(state);
                     states.add(state);
                 }
@@ -64,6 +67,10 @@ public class State {
 
     public static State getRandomPerspective(){
         return generatePerspectivesStates(getSolvedState()).get(random.nextInt(0, 24));
+    }
+
+    public static State getPerspective(int perspective){
+        return generatePerspectivesStates(getSolvedState()).get(perspective);
     }
 
     public State cloneState(){
@@ -144,6 +151,14 @@ public class State {
             centers.add(center.getValue());
 
         return centers;
+    }
+
+    public int getPerspective() {
+        return perspective;
+    }
+
+    public void setPerspective(int perspective) {
+        this.perspective = perspective;
     }
 
     public ArrayList<Center> getCenters() {
