@@ -72,6 +72,10 @@ public class BFSSkewb {
     }
 
     public static void main(String[] args) {
+        State state = State.getSolvedState();
+
+        HashMap<State, Scramble> bfs = BFS(11, state, new WCAMoves());
+
 
 
     }
