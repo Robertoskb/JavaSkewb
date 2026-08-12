@@ -1,7 +1,6 @@
 package br.com.javaskewb.scrambles;
 
 import br.com.javaskewb.core.Cube.State;
-import br.com.javaskewb.core.Mapping.Moves.Moves;
 import br.com.javaskewb.core.Patterns.NS.FL.FLCase;
 import br.com.javaskewb.core.Patterns.NS.FL.FLCases;
 import br.com.javaskewb.core.Patterns.NS.NSCase;
@@ -13,6 +12,7 @@ public class ScrambleGenerator {
     private final NSCases nsCases = new NSCases();
     private final FLCases flCases = new FLCases();
     private final Solution solution = new Solution();
+
 
     public Scramble FLNSScramble(int flMoves){
         Scramble scramble;
@@ -28,6 +28,20 @@ public class ScrambleGenerator {
         } while (scramble.size() < 7);
 
         return scramble;
+    }
+
+    public StateConfig randomConfig(int flMoves){
+        FLNSConfig.Builder builder = new FLNSConfig.Builder();
+
+        State state = State.getRandomPerspective();
+
+        builder.nsCase(nsCases.getRandomCase());
+        builder.flCase(flCases.getRandomFLByMoves(flMoves));
+        builder.perspective(state.getPerspective());
+
+        FLNSConfig flnsConfig = builder.build();
+
+        return new StateConfig(state, flnsConfig);
     }
 
 

@@ -10,6 +10,7 @@ public abstract class Cases<C extends Case> {
         fillCases();
     }
 
+    @Deprecated
     public abstract void fillCases();
 
     public abstract ArrayList<C> getCases();

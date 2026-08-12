@@ -2,10 +2,11 @@ package br.com.javaskewb.Controller;
 
 import br.com.javaskewb.Controller.Components.SkewbBase;
 import br.com.javaskewb.Controller.Components.parts.base.SkewbColor;
-import br.com.javaskewb.core.Mapping.Moves.FLMoves;
+import br.com.javaskewb.core.Cube.State;
 import br.com.javaskewb.core.Solution.Solution;
 import br.com.javaskewb.core.Solution.utils.Scramble;
 import br.com.javaskewb.scrambles.ScrambleGenerator;
+import br.com.javaskewb.scrambles.StateConfig;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -83,6 +84,8 @@ public class TimerController {
     public void initialize() throws IOException {
         Platform.runLater(() -> rootPane.requestFocus());
 
+        moveSelector.setEditable(false);
+
         labels.addAll(List.of(color0, color1, color2, color3, color4, color5));
 
         timer = new AnimationTimer() {
@@ -115,7 +118,10 @@ public class TimerController {
     }
 
     private void updateScramble(){
-        Scramble scramble = scrambleGenerator.FLNSScramble(moveSelector.getValue());
+        StateConfig stateConfig = scrambleGenerator.randomConfig(moveSelector.getValue());
+
+        Scramble scramble = stateConfig.getScramble();
+        State state = stateConfig.getState();
 
         scrambleLabel.setText(scramble.toString());
 
@@ -130,8 +136,11 @@ public class TimerController {
             String colorName = skewbColor.toString();
 
             label.setText(colorName + ": " + infos.get(i));
+            label.setStyle("-fx-font-weight: normal;");
             label.setTextFill(Color.web(skewbColor.getHex()));
         }
+
+        labels.get(state.getCenters().get(3).getValue()).setStyle("-fx-font-weight: bold;");
     }
 
     @FXML

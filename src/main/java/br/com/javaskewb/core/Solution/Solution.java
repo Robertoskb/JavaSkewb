@@ -24,7 +24,6 @@ public class Solution {
 
     public Solution(){
         setMoves(new WCAMoves());
-        setTargetStates(new ArrayList<>(List.of(State.getSolvedState())));
     }
 
     public Scramble findSolution(State initialState, ArrayList<State> targetStates){
