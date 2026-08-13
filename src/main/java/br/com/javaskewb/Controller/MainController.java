@@ -11,6 +11,7 @@ import br.com.javaskewb.core.Mapping.Moves.AdvancedMoves;
 import br.com.javaskewb.core.Mapping.Moves.WCAMoves;
 import br.com.javaskewb.core.Cube.State;
 import br.com.javaskewb.core.Patterns.Case;
+import br.com.javaskewb.core.Patterns.NS.L2L.L2LCase;
 import br.com.javaskewb.core.Patterns.NS.NSCase;
 import br.com.javaskewb.core.Patterns.NS.NSCases;
 import br.com.javaskewb.core.Solution.Solution;
@@ -68,7 +69,7 @@ public class MainController {
 
         ArrayList<NSCase> cases = new NSCases().getCases();
 
-        for (Case LLCase : cases) {
+        for (NSCase LLCase : cases) {
             State miniState = State.getSolvedState();
 
             LLCase.applyCase(miniState);

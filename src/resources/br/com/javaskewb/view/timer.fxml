@@ -67,7 +67,7 @@
                 </StackPane>
             <StackPane layoutX="541.0" layoutY="45.0" prefHeight="160.0" prefWidth="160.0" style="-fx-background-color: #2d2d2d; -fx-background-radius: 8px; -fx-border-color: #3e3e42; -fx-border-radius: 8px;" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="200.0">
                <children>
-                  <VBox alignment="CENTER" prefHeight="118.0" prefWidth="158.0" spacing="5.0">
+                  <VBox alignment="CENTER" prefHeight="158.0" prefWidth="133.0" spacing="5.0">
                      <children>
                         <Label fx:id="color0" text="color" textFill="#666666" />
                         <Label fx:id="color1" text="color" textFill="#666666" />
@@ -77,6 +77,11 @@
                         <Label fx:id="color5" layoutX="39.0" layoutY="71.0" text="color" textFill="#666666" />
                      </children>
                   </VBox>
+               </children>
+            </StackPane>
+            <StackPane fx:id="cubeContainer1" layoutX="370.0" layoutY="30.0" prefHeight="160.0" prefWidth="160.0" style="-fx-background-color: #2d2d2d; -fx-background-radius: 8px; -fx-border-color: #3e3e42; -fx-border-radius: 8px;" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="370.0">
+               <children>
+                  <Label text="Container do Cubo" textFill="#666666" />
                </children>
             </StackPane>
             </children>

@@ -7,12 +7,12 @@ import br.com.javaskewb.scrambles.base.Config;
 
 public class StateConfig {
     private State state;
-    private Config config;
+    private FLNSConfig config;
     private Scramble scramble;
 
     private final Solution solution = new Solution();
 
-    public StateConfig(State state, Config config){
+    public StateConfig(State state, FLNSConfig config){
         setState(state);
         setConfig(config);
         setScramble();
@@ -27,11 +27,11 @@ public class StateConfig {
         return scramble;
     }
 
-    public Config getConfig() {
+    public FLNSConfig getConfig() {
         return config;
     }
 
-    public void setConfig(Config config) {
+    public void setConfig(FLNSConfig config) {
         this.config = config;
     }
 

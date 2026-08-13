@@ -3,6 +3,7 @@ package br.com.javaskewb.Controller;
 import br.com.javaskewb.Controller.Components.SkewbBase;
 import br.com.javaskewb.Controller.Components.parts.base.SkewbColor;
 import br.com.javaskewb.core.Cube.State;
+import br.com.javaskewb.core.Patterns.Case;
 import br.com.javaskewb.core.Solution.Solution;
 import br.com.javaskewb.core.Solution.utils.Scramble;
 import br.com.javaskewb.scrambles.ScrambleGenerator;
@@ -33,6 +34,9 @@ public class TimerController {
 
     @FXML
     private StackPane cubeContainer;
+
+    @FXML
+    private StackPane cubeContainer1;
 
     @FXML
     private Label scrambleLabel;
@@ -70,6 +74,7 @@ public class TimerController {
     private AnimationTimer holdCheckTimer;
 
     private final SkewbBase skewbBase = new SkewbBase();
+    private final SkewbBase skewbFL = new SkewbBase();
 
     private final ScrambleGenerator scrambleGenerator = new ScrambleGenerator();
 
@@ -112,7 +117,9 @@ public class TimerController {
         SpinnerValueFactory<Integer> spinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 7);
         moveSelector.setValueFactory(spinnerValueFactory);
 
+
         cubeContainer.getChildren().add(skewbBase);
+        cubeContainer1.getChildren().add(skewbFL);
 
         updateScramble();
     }
@@ -123,11 +130,20 @@ public class TimerController {
         Scramble scramble = stateConfig.getScramble();
         State state = stateConfig.getState();
 
+        Case flCase = stateConfig.getConfig().getFlCase();
+
+        int perspective = stateConfig.getConfig().getPerspective();
+
         scrambleLabel.setText(scramble.toString());
 
         skewbBase.reset();
+        skewbFL.reset();
+        skewbFL.getSkewb().getState().maskSide(3);
 
         skewbBase.applyScramble(scramble);
+
+        flCase.applyCase(skewbFL.getSkewb().getState());
+        skewbFL.update();
 
         ArrayList<Integer> infos = solution.FLInfos(skewbBase.getSkewb().getState());
         for (int i = 0; i < 6; i++) {

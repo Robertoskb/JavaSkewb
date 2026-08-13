@@ -1,14 +1,14 @@
 package br.com.javaskewb.scrambles;
 
+import br.com.javaskewb.core.Patterns.Case;
 import br.com.javaskewb.core.Patterns.NS.FL.FLCase;
 import br.com.javaskewb.core.Patterns.NS.NSCase;
-import br.com.javaskewb.core.Solution.utils.Scramble;
 import br.com.javaskewb.scrambles.base.Config;
 
 
 public class FLNSConfig extends Config {
     private final NSCase nsCase;
-    private final FLCase flCase;
+    private final Case flCase;
     private final int perspective;
 
     private FLNSConfig(Builder builder){
@@ -23,7 +23,7 @@ public class FLNSConfig extends Config {
 
     public static class Builder{
         private NSCase nsCase;
-        private FLCase flCase;
+        private Case flCase;
         private int perspective;
 
         public Builder nsCase(NSCase nsCase){
@@ -32,7 +32,7 @@ public class FLNSConfig extends Config {
             return this;
         }
 
-        public Builder flCase(FLCase flCase){
+        public Builder flCase(Case flCase){
             this.flCase = flCase;
 
             return this;
@@ -53,7 +53,7 @@ public class FLNSConfig extends Config {
         return nsCase;
     }
 
-    public FLCase getFlCase() {
+    public Case getFlCase() {
         return flCase;
     }
 

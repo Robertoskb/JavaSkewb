@@ -12,7 +12,7 @@ public class FLMoves extends Moves{
         if (notation.isEmpty()){
             AdvancedMoves advancedMoves = new AdvancedMoves();
 
-            String[] moves = {"F", "F'", "B", "B'", "R", "R'", "L", "L'"};
+            String[] moves = {"R", "R'", "F", "F'", "L", "L'", "B", "B'"};
 
             for (String move: moves)
                 notation.put(move, advancedMoves.getMove(move));
