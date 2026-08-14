@@ -11,6 +11,7 @@ import br.com.javaskewb.scrambles.StateConfig;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
@@ -62,6 +63,9 @@ public class TimerController {
     @FXML
     private Label color5;
 
+    @FXML
+    private CheckBox pin;
+
 
     private enum TimerState { STOPPED, HOLDING, READY, RUNNING }
     private TimerState currentState = TimerState.STOPPED;
@@ -75,6 +79,8 @@ public class TimerController {
 
     private final SkewbBase skewbBase = new SkewbBase();
     private final SkewbBase skewbFL = new SkewbBase();
+
+    private Case currentFlcase;
 
     private final ScrambleGenerator scrambleGenerator = new ScrambleGenerator();
 
@@ -125,12 +131,18 @@ public class TimerController {
     }
 
     private void updateScramble(){
-        StateConfig stateConfig = scrambleGenerator.randomConfig(moveSelector.getValue());
+        StateConfig stateConfig;
+        if (pin.isSelected())
+            stateConfig = scrambleGenerator.randomConfig(currentFlcase);
+        else
+            stateConfig = scrambleGenerator.randomConfig(moveSelector.getValue());
 
         Scramble scramble = stateConfig.getScramble();
         State state = stateConfig.getState();
 
         Case flCase = stateConfig.getConfig().getFlCase();
+
+        currentFlcase = flCase;
 
         int perspective = stateConfig.getConfig().getPerspective();
 
@@ -141,8 +153,8 @@ public class TimerController {
         skewbFL.getSkewb().getState().maskSide(3);
 
         skewbBase.applyScramble(scramble);
-
         flCase.applyCase(skewbFL.getSkewb().getState());
+
         skewbFL.update();
 
         ArrayList<Integer> infos = solution.FLInfos(skewbBase.getSkewb().getState());
@@ -177,6 +189,8 @@ public class TimerController {
             moveSelector.increment();
         } else if (event.getCode() == KeyCode.DOWN) {
             moveSelector.decrement();
+        } else if (event.getCode() == KeyCode.P) {
+            pin.setSelected(!pin.isSelected());
     }
     }
 

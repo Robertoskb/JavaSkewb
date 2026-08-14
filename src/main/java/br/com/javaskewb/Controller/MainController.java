@@ -11,6 +11,8 @@ import br.com.javaskewb.core.Mapping.Moves.AdvancedMoves;
 import br.com.javaskewb.core.Mapping.Moves.WCAMoves;
 import br.com.javaskewb.core.Cube.State;
 import br.com.javaskewb.core.Patterns.Case;
+import br.com.javaskewb.core.Patterns.NS.FL.FLCase;
+import br.com.javaskewb.core.Patterns.NS.FL.FLCases;
 import br.com.javaskewb.core.Patterns.NS.L2L.L2LCase;
 import br.com.javaskewb.core.Patterns.NS.NSCase;
 import br.com.javaskewb.core.Patterns.NS.NSCases;
@@ -67,16 +69,16 @@ public class MainController {
         skewbBase = new SkewbBase(state);
         skewbBase.changeDisabled();
 
-        ArrayList<NSCase> cases = new NSCases().getCases();
+        ArrayList<FLCase> cases = new FLCases().getThreeMoveCases();
 
-        for (NSCase LLCase : cases) {
+        for (FLCase LLCase : cases) {
             State miniState = State.getSolvedState();
+            miniState.maskSide(3);
 
             LLCase.applyCase(miniState);
 
             SkewbBase miniBase = new SkewbBase(miniState);
 
-            miniBase.changeBottomDisabled();
 
             CaseCard caseCard = new CaseCard();
 

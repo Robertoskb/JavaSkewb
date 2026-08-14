@@ -8,16 +8,18 @@ import br.com.javaskewb.core.Patterns.NS.L2L.CC.CCCases;
 import java.util.ArrayList;
 
 public class L2LCases extends Cases<L2LCase> {
-    private static final ArrayList<L2LCase> cases = new ArrayList<>();
     private static final LCCases LCCases = new LCCases();
     private static final CCCases CCCases = new CCCases();
 
-    @Override
-    public void fillCases() {
-        if (cases.isEmpty()){
-            cases.addAll(LCCases.getCases());
-            cases.addAll(CCCases.getCases());
-        }
+    private static final ArrayList<L2LCase> cases = fill();
+
+
+    private static ArrayList<L2LCase> fill(){
+        ArrayList<L2LCase> cases = new ArrayList<>();
+        cases.addAll(LCCases.getCases());
+        cases.addAll(CCCases.getCases());
+
+        return cases;
     }
 
     @Override

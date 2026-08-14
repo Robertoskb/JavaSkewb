@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -79,9 +80,14 @@
                   </VBox>
                </children>
             </StackPane>
-            <StackPane fx:id="cubeContainer1" layoutX="370.0" layoutY="30.0" prefHeight="160.0" prefWidth="160.0" style="-fx-background-color: #2d2d2d; -fx-background-radius: 8px; -fx-border-color: #3e3e42; -fx-border-radius: 8px;" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="370.0">
+            <StackPane alignment="TOP_CENTER" layoutX="354.3999938964844" layoutY="15.199999809265137" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="370.0">
                <children>
-                  <Label text="Container do Cubo" textFill="#666666" />
+                  <StackPane fx:id="cubeContainer1" prefHeight="160.0" prefWidth="160.0" style="-fx-background-color: #2d2d2d; -fx-background-radius: 8px; -fx-border-color: #3e3e42; -fx-border-radius: 8px;">
+                     <children>
+                        <Label text="Container do Cubo" textFill="#666666" />
+                     </children>
+                  </StackPane>
+                  <CheckBox fx:id="pin" mnemonicParsing="false" text="fixar" />
                </children>
             </StackPane>
             </children>

@@ -37,7 +37,7 @@ public class Corner {
     }
 
     public void setFace(int id, int value){
-        faces.set(id%2, value);
+        faces.set(id%3, value);
     }
 
     @Override

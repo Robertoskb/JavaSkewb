@@ -8,12 +8,7 @@ import java.util.ArrayList;
 
 
 public abstract class CLCases<C extends CLCase> extends Cases<C>{
-    protected abstract ArrayList<C> fill(String name, LCCases centerCases);
-
-    public boolean checkCenter(Case baseCase){
-        return baseCase.getCentersFaces().getCentersMatrix()[getCenter()][0] == 1;
+    public static boolean checkCenter(Case baseCase, int center){
+        return baseCase.getCentersFaces().getCentersMatrix()[center][0] == 1;
     }
-
-    public abstract int getCenter();
-    public abstract int[][] getFacesMatrix();
 }

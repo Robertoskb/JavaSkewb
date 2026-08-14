@@ -50,6 +50,21 @@ public class ScrambleGenerator {
         return new StateConfig(state, flnsConfig);
     }
 
+    public StateConfig randomConfig(Case flCase){
+        FLNSConfig.Builder builder = new FLNSConfig.Builder();
+
+        State state = State.getRandomPerspective();
+
+        builder.nsCase(nsCases.getRandomCase());
+        ArrayList<Case> FLVariants = flCase.getCasesVariants();
+        builder.flCase(FLVariants.get(random.nextInt(0, FLVariants.size())));
+        builder.perspective(state.getPerspective());
+
+        FLNSConfig flnsConfig = builder.build();
+
+        return new StateConfig(state, flnsConfig);
+    }
+
 
     public static void main(String[] args) {
         ScrambleGenerator scrambleGenerator = new ScrambleGenerator();

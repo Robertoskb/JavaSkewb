@@ -6,13 +6,10 @@ import br.com.javaskewb.core.Patterns.NS.L2L.LC.LCCases;
 import java.util.ArrayList;
 
 public class PeanutBRCases extends PeanutCLCases{
-    private static final ArrayList<PeanutCase> cases = new ArrayList<>();
+    private static final ArrayList<PeanutCase> cases = fill();
 
-    @Override
-    public void fillCases() {
-        if (cases.isEmpty()){
-            cases.addAll(fill("Peanut", new LCCases()));
-        }
+    private static ArrayList<PeanutCase> fill(){
+        return fill("Peanut", new LCCases(), 4);
     }
 
     @Override
@@ -20,9 +17,4 @@ public class PeanutBRCases extends PeanutCLCases{
         return cases;
     }
 
-
-    @Override
-    public int getCenter() {
-        return 4;
-    }
 }

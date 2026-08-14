@@ -12,7 +12,7 @@ public class State {
     private ArrayList<Corner> corners;
     int perspective;
 
-    private int[][] sides = {{0, 1, 2, 3}, {0, 3, 6, 7}, {0, 1, 5, 6}, {4, 5, 6, 7}, {2, 3, 4, 7}, {1, 2, 4, 5}};
+    private int[][] sides = {{0, 1, 2, 3}, {0, 3, 6, 7}, {0, 1, 5, 6}, {4, 5, 6, 7}, {4, 3, 2, 7}, {4, 1, 2, 5}};
     private int[][] faces = {
             {0, 1, 2}, {3, 4, 5}, {6, 7, 8}, {9, 10, 11},
             {12, 13, 14}, {15, 16, 17}, {18, 19, 20}, {21, 23, 23}
@@ -108,6 +108,27 @@ public class State {
             if (!find)
                 corner.setFaces(new int[] {-1, -1, -1});
 
+        }
+    }
+
+
+    public void maskFace(int side){
+        if (side < 0 || side > 5)
+            return;
+
+        maskSide(side);
+
+        for (Corner corner: corners){
+            for (int id: sides[side]){
+                for (int face: faces[id]){
+                    int index = corner.getFaces().indexOf(face);
+                    if (index != -1){
+                        corner.setFace(index, faces[sides[side][0]][side%3]);
+                        corner.setFace(index+1, -1);
+                        corner.setFace(index+2, -1);
+                    }
+                }
+            }
         }
     }
 

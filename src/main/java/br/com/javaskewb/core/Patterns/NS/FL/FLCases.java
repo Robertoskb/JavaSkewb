@@ -1,21 +1,17 @@
 package br.com.javaskewb.core.Patterns.NS.FL;
 
-import br.com.javaskewb.core.Cube.State;
 import br.com.javaskewb.core.Mapping.Moves.FLMoves;
 import br.com.javaskewb.core.Mapping.Moves.Matrices.CentersFaces;
 import br.com.javaskewb.core.Mapping.Moves.Moves;
 import br.com.javaskewb.core.Patterns.Case;
 import br.com.javaskewb.core.Patterns.Cases;
-import br.com.javaskewb.core.Patterns.NS.NSCase;
 import br.com.javaskewb.core.Patterns.NS.NSCases;
 import br.com.javaskewb.core.Solution.BFSSkewb;
-import br.com.javaskewb.core.Solution.Solution;
 import br.com.javaskewb.core.Solution.utils.Scramble;
 
 import java.util.*;
 
 public class FLCases extends Cases<FLCase> {
-    private static final ArrayList<FLCase> cases = new ArrayList<>();
     private static final ArrayList<FLCase> ZeroMoveCases = new ArrayList<>();
     private static final ArrayList<FLCase> OneMoveCases = new ArrayList<>();
     private static final ArrayList<FLCase> TwoMoveCases = new ArrayList<>();
@@ -30,14 +26,10 @@ public class FLCases extends Cases<FLCase> {
             FourMoveCases, FiveMoveCases, SixMoveCases, SevenMoveCases
     ));
 
-    @Override
-    public void fillCases() {
-        if (cases.isEmpty()){
-            fill();
-        }
-    }
+    private static final ArrayList<FLCase> cases = fill();
 
-    public static void fill(){
+    public static ArrayList<FLCase> fill(){
+        ArrayList<FLCase> cases = new ArrayList<>();
         FLMoves flMoves = new FLMoves();
         ArrayList<ArrayList<Scramble>> ArrayScramble = BFSSkewb.getFLScrambles(flMoves);
 
@@ -65,14 +57,17 @@ public class FLCases extends Cases<FLCase> {
                 variants.addAll(flCase.getCasesVariants());
             }
         }
+
+        return cases;
     }
 
     public static void main(String[] args) {
         NSCases nsCases = new NSCases();
         FLCases flCases = nsCases.getFlCases();
 
+        int cont = 0;
         for (ArrayList<FLCase> flCaseArrayList: flCases.getCaseByMoves())
-            System.out.println(flCaseArrayList.size());
+            System.out.println(cont++ + " Moves: " + flCaseArrayList.size());
     }
 
     @Override

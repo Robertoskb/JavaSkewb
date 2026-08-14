@@ -8,18 +8,19 @@ import br.com.javaskewb.core.Patterns.NS.L2L.LC.L5C.L5CCases;
 import java.util.ArrayList;
 
 public class LCCases extends Cases<LCCase> {
-    private static final ArrayList<LCCase> cases = new ArrayList<>();
     private static final L3CCases L3CCases = new L3CCases();
     private static final L4CCases L4CCases = new L4CCases();
     private static final L5CCases L5CCases = new L5CCases();
 
-    @Override
-    public void fillCases() {
-        if (cases.isEmpty()){
-            cases.addAll(L3CCases.getCases());
-            cases.addAll(L4CCases.getCases());
-            cases.addAll(L5CCases.getCases());
-        }
+    private static final ArrayList<LCCase> cases = fill();
+
+    private static ArrayList<LCCase> fill(){
+        ArrayList<LCCase> cases = new ArrayList<>();
+        cases.addAll(L3CCases.getCases());
+        cases.addAll(L4CCases.getCases());
+        cases.addAll(L5CCases.getCases());
+
+        return cases;
     }
 
     @Override
