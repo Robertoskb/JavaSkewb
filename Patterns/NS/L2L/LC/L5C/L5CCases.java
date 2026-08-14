@@ -9,22 +9,22 @@ import br.com.javaskewb.core.Patterns.NS.L2L.LC.LCCase;
 import java.util.ArrayList;
 
 public class L5CCases extends Cases<L5CCase> {
-    private static final ArrayList<L5CCase> cases = new ArrayList<>();
     private static final int[][] facesMatrix = LCCase.getFacesMatrix();
+    private static final ArrayList<L5CCase> cases = fill();
 
-    @Override
-    public void fillCases() {
-        if (cases.isEmpty()){
-            cases.add(X1());
-            cases.add(X2());
-            cases.add(W1());
-            cases.add(W2());
-            cases.add(S1());
-            cases.add(S2());
-        }
+    private static ArrayList<L5CCase> fill(){
+        ArrayList<L5CCase> cases = new ArrayList<>();
+        cases.add(X1());
+        cases.add(X2());
+        cases.add(W1());
+        cases.add(W2());
+        cases.add(S1());
+        cases.add(S2());
+
+        return cases;
     }
 
-    public L5CCase X1(){
+    public static L5CCase X1(){
         MatrixSwap centers;
 
         centers = new MatrixSwap(Moves.getCenterMatrix());
@@ -40,7 +40,7 @@ public class L5CCases extends Cases<L5CCase> {
         return new L5CCase("X1", centersFaces);
     }
 
-    public L5CCase X2(){
+    public static L5CCase X2(){
         MatrixSwap centers;
 
         centers = new MatrixSwap(Moves.getCenterMatrix());
@@ -56,7 +56,7 @@ public class L5CCases extends Cases<L5CCase> {
         return new L5CCase("X2", centersFaces);
     }
 
-    public L5CCase W1(){
+    public static L5CCase W1(){
         MatrixSwap centers;
 
         centers = new MatrixSwap(Moves.getCenterMatrix());
@@ -72,7 +72,7 @@ public class L5CCases extends Cases<L5CCase> {
         return new L5CCase("W1", centersFaces);
     }
 
-    public L5CCase W2(){
+    public static L5CCase W2(){
         MatrixSwap centers;
 
         centers = new MatrixSwap(Moves.getCenterMatrix());
@@ -88,7 +88,7 @@ public class L5CCases extends Cases<L5CCase> {
         return new L5CCase("W2", centersFaces);
     }
 
-    public L5CCase S1(){
+    public static L5CCase S1(){
         MatrixSwap centers;
 
         centers = new MatrixSwap(Moves.getCenterMatrix());
@@ -104,7 +104,7 @@ public class L5CCases extends Cases<L5CCase> {
         return new L5CCase("S1", centersFaces);
     }
 
-    public L5CCase S2(){
+    public static L5CCase S2(){
         MatrixSwap centers;
 
         centers = new MatrixSwap(Moves.getCenterMatrix());

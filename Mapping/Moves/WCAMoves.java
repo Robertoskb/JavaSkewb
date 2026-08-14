@@ -7,7 +7,7 @@ import br.com.javaskewb.core.Cube.State;
 import java.util.HashMap;
 
 public class WCAMoves extends Moves {
-    private static final HashMap<String, CentersFaces> notation = new HashMap<>();
+    private static final HashMap<String, CentersFaces> notation = fill();
 
     public WCAMoves() {
         super();
@@ -16,8 +16,9 @@ public class WCAMoves extends Moves {
         super(state, updateState);
     }
 
-    @Override
-    protected void fill() {
+    private static HashMap<String, CentersFaces> fill() {
+        HashMap<String, CentersFaces> notation = new HashMap<>();
+
         notation.put("R", R());
         notation.put("R'", invertMove(notation.get("R")));
 
@@ -29,9 +30,11 @@ public class WCAMoves extends Moves {
 
         notation.put("L", L());
         notation.put("L'", invertMove(notation.get("L")));
+
+        return notation;
     }
 
-    private CentersFaces R() {
+    private static CentersFaces R() {
         MatrixSwap centers, faces;
 
         centers = new MatrixSwap(getCenterMatrix());
@@ -64,7 +67,7 @@ public class WCAMoves extends Moves {
         return new CentersFaces(centers.getMatrix(), faces.getMatrix());
     }
 
-    private CentersFaces L() {
+    private static CentersFaces L() {
         MatrixSwap centers, faces;
 
         centers = new MatrixSwap(getCenterMatrix());
@@ -98,7 +101,7 @@ public class WCAMoves extends Moves {
     }
 
 
-    private CentersFaces B() {
+    private static CentersFaces B() {
         MatrixSwap centers, faces;
 
         centers = new MatrixSwap(getCenterMatrix());
@@ -131,7 +134,7 @@ public class WCAMoves extends Moves {
         return new CentersFaces(centers.getMatrix(), faces.getMatrix());
     }
 
-    private CentersFaces U() {
+    private static CentersFaces U() {
         MatrixSwap centers, faces;
 
         centers = new MatrixSwap(getCenterMatrix());

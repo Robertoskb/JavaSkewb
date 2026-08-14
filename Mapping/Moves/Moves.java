@@ -12,20 +12,13 @@ abstract public class Moves {
     protected State state;
     protected boolean updateState;
 
-    public Moves(){
-        if (getNotation().isEmpty())
-            fill();
-    }
+    public Moves(){}
 
     public Moves(State state, boolean updateState){
         setState(state);
         setUpdateState(updateState);
-
-        if (getNotation().isEmpty())
-            fill();
     }
 
-    protected abstract void fill();
 
     private ArrayList<CentersFaces> getAllMatrices(ArrayList<String> scramble){
         ArrayList<CentersFaces> allMatrices = new ArrayList<>();

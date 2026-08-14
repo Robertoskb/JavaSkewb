@@ -13,23 +13,25 @@ import br.com.javaskewb.core.Patterns.NS.L2L.CC.Peanut.CL.PeanutFRCases;
 import br.com.javaskewb.core.Patterns.NS.L2L.CC.Peanut.CL.PeanutUCases;
 
 public class PeanutCases extends Cases<PeanutCase> {
-    protected static final ArrayList<PeanutCase> cases =  new ArrayList<>();
     private static final PeanutCLCases peanutUCase = new PeanutUCases();
     private static final PeanutCLCases peanutFRCases = new PeanutFRCases();
     private static final PeanutCLCases peanutFLCases = new PeanutFLCases();
     private static final PeanutCLCases peanutBLCases = new PeanutBLCases();
     private static final PeanutCLCases peanutBRCases = new PeanutBRCases();
 
-    @Override
-    public void fillCases() {
-        if (cases.isEmpty()){
-            cases.add(new PeanutCase("", new CentersFaces(Moves.getCenterMatrix(), PeanutCase.getFaces())));
-            cases.addAll(peanutUCase.getCases());
-            cases.addAll(peanutFRCases.getCases());
-            cases.addAll(peanutFLCases.getCases());
-            cases.addAll(peanutBRCases.getCases());
-            cases.addAll(peanutBLCases.getCases());
-        }
+    protected static final ArrayList<PeanutCase> cases = fill();
+
+    private static ArrayList<PeanutCase> fill(){
+        ArrayList<PeanutCase> cases = new ArrayList<>();
+
+        cases.add(new PeanutCase("", new CentersFaces(Moves.getCenterMatrix(), PeanutCase.getFaces())));
+        cases.addAll(peanutUCase.getCases());
+        cases.addAll(peanutFRCases.getCases());
+        cases.addAll(peanutFLCases.getCases());
+        cases.addAll(peanutBRCases.getCases());
+        cases.addAll(peanutBLCases.getCases());
+
+        return cases;
     }
 
 

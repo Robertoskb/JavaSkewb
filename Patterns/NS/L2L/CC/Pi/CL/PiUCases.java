@@ -6,23 +6,14 @@ import br.com.javaskewb.core.Patterns.NS.L2L.LC.LCCases;
 import java.util.ArrayList;
 
 public class PiUCases extends PiCLCases {
-    private static final ArrayList<PiCase> cases = new ArrayList<>();
+    private static final ArrayList<PiCase> cases = fill();
 
-    @Override
-    public void fillCases() {
-        if (cases.isEmpty()){
-            cases.addAll(fill("Pi", new LCCases()));
-        }
+    private static ArrayList<PiCase> fill(){
+        return fill("Pi", new LCCases(), 0);
     }
 
     @Override
     public ArrayList<PiCase> getCases() {
         return cases;
-    }
-
-
-    @Override
-    public int getCenter() {
-        return 0;
     }
 }

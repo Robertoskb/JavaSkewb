@@ -10,20 +10,18 @@ import br.com.javaskewb.core.Patterns.NS.L2L.LC.LCCases;
 import java.util.ArrayList;
 
 public abstract class PeanutCLCases extends CLCases<PeanutCase> {
-    @Override
-    public int[][] getFacesMatrix() {
+    public static int[][] getFacesMatrix() {
         return PeanutCase.getFaces();
     }
 
-    @Override
-    protected ArrayList<PeanutCase> fill(String name, LCCases centerCases) {
+    protected static ArrayList<PeanutCase> fill(String name, LCCases centerCases, int center) {
         ArrayList<PeanutCase> cases = new ArrayList<>();
 
         for (LCCase baseCase : centerCases.getCases()){
             for (Case subCase: baseCase.getCasesVariants()){
                 CentersFaces centersFaces;
 
-                if (checkCenter(subCase)){
+                if (checkCenter(subCase, center)){
                     int[][] centersMatrix = subCase.getCentersFaces().getCentersMatrix();
 
                     centersFaces = new CentersFaces(centersMatrix, getFacesMatrix());

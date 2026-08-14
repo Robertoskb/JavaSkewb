@@ -1,5 +1,6 @@
 package br.com.javaskewb.core.Solution;
 
+import br.com.javaskewb.core.Mapping.Moves.FLMoves;
 import br.com.javaskewb.core.Mapping.Moves.Moves;
 import br.com.javaskewb.core.Mapping.Moves.WCAMoves;
 import br.com.javaskewb.core.Cube.State;
@@ -13,6 +14,7 @@ public class BFSSkewb {
         PriorityQueue<StateNode> queue = new PriorityQueue<>(Comparator.comparingInt(StateNode::getDistance));
         HashMap<State, Scramble> bfs = new HashMap<>();
 
+        bfs.put(initialState, new Scramble());
         queue.add(new StateNode(initialState, 0));
         HashSet<State> visited = new HashSet<>(State.generatePerspectivesStates(initialState));
 
@@ -71,12 +73,34 @@ public class BFSSkewb {
         return scrambles;
     }
 
+    public static ArrayList<ArrayList<Scramble>> getFLEG2Scrambles(Moves moves){
+        ArrayList<ArrayList<Scramble>> scrambles = new ArrayList<>();
+
+        for (int i = 0; i < 8; i++) {
+            scrambles.add(new ArrayList<>());
+        }
+
+        State state = State.getSolvedState();
+
+        state.maskFace(3);
+
+        HashMap<State, Scramble> bfs = BFS(8, state, moves);
+
+        for (Scramble scramble: bfs.values())
+            scrambles.get(scramble.size()).add(scramble);
+
+        return scrambles;
+    }
+
     public static void main(String[] args) {
         State state = State.getSolvedState();
 
-        HashMap<State, Scramble> bfs = BFS(11, state, new WCAMoves());
+        ArrayList<ArrayList<Scramble>> bfs1 = getFLScrambles(new FLMoves());
+        ArrayList<ArrayList<Scramble>> bfs2 = getFLEG2Scrambles(new FLMoves());
 
-
+        for (int i = 0; i < 8; i++) {
+            System.out.println(i + " Moves: " + bfs1.get(i).size() + " -> " + bfs2.get(i).size());
+        }
 
     }
 }

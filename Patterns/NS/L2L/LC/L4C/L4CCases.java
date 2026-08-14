@@ -9,21 +9,23 @@ import br.com.javaskewb.core.Patterns.NS.L2L.LC.LCCase;
 import java.util.ArrayList;
 
 public class L4CCases extends Cases<L4CCase> {
-    private static final ArrayList<L4CCase> cases = new ArrayList<>();
     private static final int[][] facesMatrix = LCCase.getFacesMatrix();
 
-    @Override
-    public void fillCases() {
-        if (cases.isEmpty()){
-            cases.add(H());
-            cases.add(Z());
-            cases.add(TS());
-            cases.add(Z1());
-            cases.add(Z2());
-        }
+    private static final ArrayList<L4CCase> cases = fill();
+
+    private static ArrayList<L4CCase> fill(){
+        ArrayList<L4CCase> cases = new ArrayList<>();
+
+        cases.add(H());
+        cases.add(Z());
+        cases.add(TS());
+        cases.add(Z1());
+        cases.add(Z2());
+
+        return cases;
     }
 
-    public L4CCase H(){
+    public static L4CCase H(){
         MatrixSwap centers;
 
         centers = new MatrixSwap(Moves.getCenterMatrix());
@@ -38,7 +40,7 @@ public class L4CCases extends Cases<L4CCase> {
         return new L4CCase("H", centersFaces);
     }
 
-    public L4CCase Z(){
+    public static L4CCase Z(){
         MatrixSwap centers;
 
         centers = new MatrixSwap(Moves.getCenterMatrix());
@@ -53,7 +55,7 @@ public class L4CCases extends Cases<L4CCase> {
         return new L4CCase("Z", centersFaces);
     }
 
-    public L4CCase TS(){
+    public static L4CCase TS(){
         MatrixSwap centers;
 
         centers = new MatrixSwap(Moves.getCenterMatrix());
@@ -68,7 +70,7 @@ public class L4CCases extends Cases<L4CCase> {
         return new L4CCase("3S", centersFaces);
     }
 
-    public L4CCase Z1(){
+    public static L4CCase Z1(){
         MatrixSwap centers;
 
         centers = new MatrixSwap(Moves.getCenterMatrix());
@@ -83,7 +85,7 @@ public class L4CCases extends Cases<L4CCase> {
         return new L4CCase("Z1", centersFaces);
     }
 
-    public L4CCase Z2(){
+    public static L4CCase Z2(){
         MatrixSwap centers;
 
         centers = new MatrixSwap(Moves.getCenterMatrix());

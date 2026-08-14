@@ -6,12 +6,7 @@ import java.util.Random;
 public abstract class Cases<C extends Case> {
     protected static final Random random = new Random();
 
-    public Cases(){
-        fillCases();
-    }
-
-    @Deprecated
-    public abstract void fillCases();
+    public Cases(){}
 
     public abstract ArrayList<C> getCases();
 
