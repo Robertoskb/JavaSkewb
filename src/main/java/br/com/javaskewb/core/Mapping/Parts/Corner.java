@@ -54,7 +54,7 @@ public class Corner {
     }
 
     public void setFaces(int[] faces) {
-        this.faces = new ArrayList<>();
+        this.faces = new ArrayList<>(3);
         for (int face: faces)
             this.faces.add(face);
     }

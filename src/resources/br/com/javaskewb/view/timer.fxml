@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="rootPane" focusTraversable="true" onKeyPressed="#handleKeyPressed" onKeyReleased="#handleKeyReleased" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #1e1e1e;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.javaskewb.Controller.TimerController">
+<BorderPane fx:id="rootPane" focusTraversable="true" onKeyPressed="#handleKeyPressed" onKeyReleased="#handleKeyReleased" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #1e1e1e;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.javaskewb.Controller.TimerController">
     <top>
         <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: #252526; -fx-padding: 20px;" BorderPane.alignment="CENTER">
             <children>
@@ -43,7 +43,7 @@
     <center>
         <StackPane alignment="CENTER" BorderPane.alignment="CENTER">
             <children>
-                <Label fx:id="timerLabel" text="0.00" textFill="WHITE">
+                <Label fx:id="timerLabel" alignment="CENTER" contentDisplay="CENTER" text="0.00" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="110.0" />
                     </font>
@@ -66,21 +66,7 @@
                         <Label text="Container do Cubo" textFill="#666666" />
                     </children>
                 </StackPane>
-            <StackPane layoutX="541.0" layoutY="45.0" prefHeight="160.0" prefWidth="160.0" style="-fx-background-color: #2d2d2d; -fx-background-radius: 8px; -fx-border-color: #3e3e42; -fx-border-radius: 8px;" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="200.0">
-               <children>
-                  <VBox alignment="CENTER" prefHeight="158.0" prefWidth="133.0" spacing="5.0">
-                     <children>
-                        <Label fx:id="color0" text="color" textFill="#666666" />
-                        <Label fx:id="color1" text="color" textFill="#666666" />
-                        <Label fx:id="color2" text="color" textFill="#666666" />
-                        <Label fx:id="color3" layoutX="39.0" layoutY="10.0" text="color" textFill="#666666" />
-                        <Label fx:id="color4" layoutX="39.0" layoutY="40.0" text="color" textFill="#666666" />
-                        <Label fx:id="color5" layoutX="39.0" layoutY="71.0" text="color" textFill="#666666" />
-                     </children>
-                  </VBox>
-               </children>
-            </StackPane>
-            <StackPane alignment="TOP_CENTER" layoutX="354.3999938964844" layoutY="15.199999809265137" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="370.0">
+            <StackPane alignment="TOP_CENTER" layoutX="354.3999938964844" layoutY="15.199999809265137" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="200.0">
                <children>
                   <StackPane fx:id="cubeContainer1" prefHeight="160.0" prefWidth="160.0" style="-fx-background-color: #2d2d2d; -fx-background-radius: 8px; -fx-border-color: #3e3e42; -fx-border-radius: 8px;">
                      <children>
@@ -93,5 +79,20 @@
             </children>
         </AnchorPane>
     </bottom>
+   <right>
+      <VBox alignment="CENTER" prefHeight="251.0" prefWidth="200.0" spacing="5.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="color0" text="color" textFill="#666666" />
+            <Label fx:id="color1" text="color" textFill="#666666" />
+            <Label fx:id="color2" text="color" textFill="#666666" />
+            <Label fx:id="color3" layoutX="39.0" layoutY="10.0" text="color" textFill="#666666" />
+            <Label fx:id="color4" layoutX="39.0" layoutY="40.0" text="color" textFill="#666666" />
+            <Label fx:id="color5" layoutX="39.0" layoutY="71.0" text="color" textFill="#666666" />
+         </children>
+      </VBox>
+   </right>
+   <left>
+      <VBox prefHeight="259.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </left>
 
 </BorderPane>

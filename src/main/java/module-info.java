@@ -17,4 +17,5 @@ module JavaSkewb {
     opens br.com.javaskewb.Controller.Components.parts.base to javafx.fxml, javafx.graphics;
     exports br.com.javaskewb.Controller.Components;
     opens br.com.javaskewb.Controller.Components to javafx.fxml, javafx.graphics;
+    exports br.com.javaskewb.core.Cube.utils;
 }

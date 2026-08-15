@@ -24,8 +24,8 @@ public class State {
     }
 
     public static State getSolvedState(){
-        ArrayList<Center> new_centers = new ArrayList<>();
-        ArrayList<Corner> new_corners = new ArrayList<>();
+        ArrayList<Center> new_centers = new ArrayList<>(6);
+        ArrayList<Corner> new_corners = new ArrayList<>(8);
 
         for (int i=0; i<6; i++)
             new_centers.add(new Center(i));
@@ -38,7 +38,7 @@ public class State {
     }
 
     public static ArrayList<State> generatePerspectivesStates(State baseState){
-        ArrayList<State> states = new ArrayList<>();
+        ArrayList<State> states = new ArrayList<>(24);
 
         String[] moves = "x y z x' y' z'".split(" ");
 
@@ -172,6 +172,15 @@ public class State {
             centers.add(center.getValue());
 
         return centers;
+    }
+
+    public ArrayList<Integer> getIdCorners(){
+        ArrayList<Integer> ids = new ArrayList<>();
+
+        for (Corner corner: corners)
+            ids.add(corner.getId());
+
+        return ids;
     }
 
     public int getPerspective() {

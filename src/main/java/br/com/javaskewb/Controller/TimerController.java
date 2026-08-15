@@ -139,6 +139,7 @@ public class TimerController {
 
         Scramble scramble = stateConfig.getScramble();
         State state = stateConfig.getState();
+        int side = state.getCenters().get(3).getValue();
 
         Case flCase = stateConfig.getConfig().getFlCase();
 
@@ -149,12 +150,12 @@ public class TimerController {
         scrambleLabel.setText(scramble.toString());
 
         skewbBase.reset();
-        skewbFL.reset();
-        skewbFL.getSkewb().getState().maskSide(3);
 
         skewbBase.applyScramble(scramble);
-        flCase.applyCase(skewbFL.getSkewb().getState());
 
+        skewbFL.getSkewb().setState(State.getPerspective(perspective));
+        skewbFL.getSkewb().getState().maskSide(side);
+        flCase.applyCase(skewbFL.getSkewb().getState());
         skewbFL.update();
 
         ArrayList<Integer> infos = solution.FLInfos(skewbBase.getSkewb().getState());
@@ -168,7 +169,7 @@ public class TimerController {
             label.setTextFill(Color.web(skewbColor.getHex()));
         }
 
-        labels.get(state.getCenters().get(3).getValue()).setStyle("-fx-font-weight: bold;");
+        labels.get(side).setStyle("-fx-font-weight: bold;");
     }
 
     @FXML
