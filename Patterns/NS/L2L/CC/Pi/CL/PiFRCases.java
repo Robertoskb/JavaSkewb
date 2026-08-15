@@ -9,7 +9,7 @@ public class PiFRCases extends PiCLCases {
     private static final ArrayList<PiCase> cases = fill();
 
     private static ArrayList<PiCase> fill(){
-        return fill("Pi", new LCCases(), 1);
+        return fill("Pi FR", new LCCases(), 1);
     }
 
     @Override

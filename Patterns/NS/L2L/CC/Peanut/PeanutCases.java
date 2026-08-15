@@ -24,7 +24,7 @@ public class PeanutCases extends Cases<PeanutCase> {
     private static ArrayList<PeanutCase> fill(){
         ArrayList<PeanutCase> cases = new ArrayList<>();
 
-        cases.add(new PeanutCase("", new CentersFaces(Moves.getCenterMatrix(), PeanutCase.getFaces())));
+        cases.add(new PeanutCase("Peanut", new CentersFaces(Moves.getCenterMatrix(), PeanutCase.getFaces())));
         cases.addAll(peanutUCase.getCases());
         cases.addAll(peanutFRCases.getCases());
         cases.addAll(peanutFLCases.getCases());

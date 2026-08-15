@@ -9,7 +9,7 @@ public class PeanutBRCases extends PeanutCLCases{
     private static final ArrayList<PeanutCase> cases = fill();
 
     private static ArrayList<PeanutCase> fill(){
-        return fill("Peanut", new LCCases(), 4);
+        return fill("Peanut BR", new LCCases(), 4);
     }
 
     @Override

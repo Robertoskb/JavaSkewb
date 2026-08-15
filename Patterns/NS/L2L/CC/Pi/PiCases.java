@@ -20,7 +20,7 @@ public class PiCases extends Cases<PiCase> {
     private static ArrayList<PiCase> fill(){
         ArrayList<PiCase> cases = new ArrayList<>();
 
-        cases.add(new PiCase("", new CentersFaces(Moves.getCenterMatrix(), PiCase.getFaces())));
+        cases.add(new PiCase("Pi", new CentersFaces(Moves.getCenterMatrix(), PiCase.getFaces())));
         cases.addAll(piUCase.getCases());
         cases.addAll(piFRCases.getCases());
         cases.addAll(piFLCases.getCases());
