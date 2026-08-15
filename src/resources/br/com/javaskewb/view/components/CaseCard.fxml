@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root fx:id="root" style="-fx-background-color: transparent; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.18), 10, 0, 0, 4);"  type="VBox"
-         xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="root" style="-fx-background-color: transparent; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.18), 10, 0, 0, 4);" type="VBox" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
 
     <children>
         <StackPane style="-fx-background-color: #2C3E50; -fx-background-radius: 12 12 0 0;">
@@ -23,9 +22,6 @@
             </children>
         </StackPane>
         <StackPane fx:id="skewbContainer" style="-fx-background-color: #F9F4F4; -fx-background-radius: 0 0 12 12;" VBox.vgrow="ALWAYS">
-            <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-            </padding>
             <children>
             </children>
         </StackPane>

@@ -12,7 +12,7 @@ public class Main extends Application {
         stage.setMaximized(true);
         screenManager.setStage(stage);
 
-        screenManager.setScene("timer.fxml");
+        screenManager.setScene("cases.fxml");
 
         screenManager.show();
 

@@ -27,21 +27,14 @@ public class CaseCard extends VBox {
 
     @FXML
     public void initialize() {
-        // Inicialização padrão
     }
 
-    /**
-     * Define o título que aparecerá na barra colorida superior.
-     */
     public void setCaseName(String name) {
         if (caseNameLabel != null) {
             caseNameLabel.setText(name);
         }
     }
 
-    /**
-     * Injeta a sua view customizada do Skewb no espaço inferior.
-     */
     public void setSkewbComponent(Node skewbNode) {
         if (skewbContainer != null && skewbNode != null) {
             skewbContainer.getChildren().clear();
