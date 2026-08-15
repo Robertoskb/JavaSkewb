@@ -14,174 +14,191 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #121214;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.javaskewb.Controller.CasesController">
 
-    <top>
-        <HBox alignment="CENTER_LEFT" spacing="12.0" style="-fx-background-color: #18181b; -fx-border-color: #27272a; -fx-border-width: 0 0 1 0;" BorderPane.alignment="CENTER">
-            <padding>
-                <Insets bottom="15.0" left="25.0" right="25.0" top="15.0" />
-            </padding>
-            <children>
-                <Label text="Categoria:" textFill="#a1a1aa">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                    <HBox.margin>
-                        <Insets right="10.0" />
-                    </HBox.margin>
-                </Label>
-
-                <ToggleButton fx:id="btnFL" selected="true" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #27272a; -fx-border-color: #3f3f46; -fx-text-fill: #ffffff; -fx-cursor: hand; -fx-padding: 5 15 5 15;" text="FL">
-                    <toggleGroup>
-                        <ToggleGroup fx:id="groupFilters" />
-                    </toggleGroup>
-                </ToggleButton>
-                <ToggleButton fx:id="btnL5C" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: transparent; -fx-border-color: #3f3f46; -fx-text-fill: #a1a1aa; -fx-cursor: hand; -fx-padding: 5 15 5 15;" text="L5C" toggleGroup="$grupoFiltros" />
-                <ToggleButton fx:id="btnPi" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: transparent; -fx-border-color: #3f3f46; -fx-text-fill: #a1a1aa; -fx-cursor: hand; -fx-padding: 5 15 5 15;" text="Pi" toggleGroup="$grupoFiltros" />
-                <ToggleButton fx:id="btnPeanut" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: transparent; -fx-border-color: #3f3f46; -fx-text-fill: #a1a1aa; -fx-cursor: hand; -fx-padding: 5 15 5 15;" text="Peanut" toggleGroup="$grupoFiltros" />
-            </children>
-        </HBox>
-    </top>
-
-    <left>
-        <VBox prefWidth="180.0" spacing="10.0" style="-fx-background-color: #18181b; -fx-border-color: #27272a; -fx-border-width: 0 1 0 0;" BorderPane.alignment="CENTER">
-            <padding>
-                <Insets bottom="20.0" left="15.0" right="15.0" top="25.0" />
-            </padding>
-            <children>
-                <Label text="MÉTODOS" textFill="#71717a">
-                    <font>
-                        <Font name="System Bold" size="12.0" />
-                    </font>
-                    <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" />
-                    </VBox.margin>
-                </Label>
-
-                <ToggleButton fx:id="btnNS" alignment="CENTER_LEFT" maxWidth="Infinity" selected="true" style="-fx-background-color: #27272a; -fx-background-radius: 6; -fx-text-fill: #ffffff; -fx-font-size: 14px; -fx-cursor: hand;" text="NS">
-                    <padding>
-                        <Insets bottom="10.0" left="15.0" top="10.0" />
-                    </padding>
-                    <toggleGroup>
-                        <ToggleGroup fx:id="groupMethods" />
-                    </toggleGroup>
-                </ToggleButton>
-                <ToggleButton fx:id="btnEG2" alignment="CENTER_LEFT" maxWidth="Infinity" style="-fx-background-color: transparent; -fx-background-radius: 6; -fx-text-fill: #a1a1aa; -fx-font-size: 14px; -fx-cursor: hand;" text="EG2" toggleGroup="$grupoMetodos">
-                    <padding>
-                        <Insets bottom="10.0" left="15.0" top="10.0" />
-                    </padding>
-                </ToggleButton>
-            </children>
-        </VBox>
-    </left>
-
-    <center>
-        <VBox alignment="CENTER" BorderPane.alignment="CENTER">
-            <children>
-                <GridPane fx:id="gridCases" alignment="CENTER" hgap="25.0" vgap="25.0">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                    <children>
-
-                        <!-- Linha 0 -->
-                        <StackPane prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: #27272a; -fx-border-radius: 12;" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                            <Label text="Slot Vazio" textFill="#52525b" />
-                        </StackPane>
-                        <StackPane prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: #27272a; -fx-border-radius: 12;" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                            <Label text="Slot Vazio" textFill="#52525b" />
-                        </StackPane>
-                        <StackPane prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: #27272a; -fx-border-radius: 12;" GridPane.columnIndex="2" GridPane.rowIndex="0">
-                            <Label text="Slot Vazio" textFill="#52525b" />
-                        </StackPane>
-                        <StackPane prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: #27272a; -fx-border-radius: 12;" GridPane.columnIndex="3" GridPane.rowIndex="0">
-                            <Label text="Slot Vazio" textFill="#52525b" />
-                        </StackPane>
-
-                        <!-- Linha 1 -->
-                        <StackPane prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: #27272a; -fx-border-radius: 12;" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                            <Label text="Slot Vazio" textFill="#52525b" />
-                        </StackPane>
-                        <StackPane prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: #27272a; -fx-border-radius: 12;" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                            <Label text="Slot Vazio" textFill="#52525b" />
-                        </StackPane>
-                        <StackPane prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: #27272a; -fx-border-radius: 12;" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                            <Label text="Slot Vazio" textFill="#52525b" />
-                        </StackPane>
-                        <StackPane prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: #27272a; -fx-border-radius: 12;" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                            <Label text="Slot Vazio" textFill="#52525b" />
-                        </StackPane>
-
-                        <!-- Linha 2 -->
-                        <StackPane prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: #27272a; -fx-border-radius: 12;" GridPane.columnIndex="0" GridPane.rowIndex="2">
-                            <Label text="Slot Vazio" textFill="#52525b" />
-                        </StackPane>
-                        <StackPane prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: #27272a; -fx-border-radius: 12;" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                            <Label text="Slot Vazio" textFill="#52525b" />
-                        </StackPane>
-                        <StackPane prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: #27272a; -fx-border-radius: 12;" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                            <Label text="Slot Vazio" textFill="#52525b" />
-                        </StackPane>
-                        <StackPane prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: #27272a; -fx-border-radius: 12;" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                            <Label text="Slot Vazio" textFill="#52525b" />
-                        </StackPane>
-
-                        <!-- Linha 3 -->
-                        <StackPane prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: #27272a; -fx-border-radius: 12;" GridPane.columnIndex="0" GridPane.rowIndex="3">
-                            <Label text="Slot Vazio" textFill="#52525b" />
-                        </StackPane>
-                        <StackPane prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: #27272a; -fx-border-radius: 12;" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                            <Label text="Slot Vazio" textFill="#52525b" />
-                        </StackPane>
-                        <StackPane prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: #27272a; -fx-border-radius: 12;" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                            <Label text="Slot Vazio" textFill="#52525b" />
-                        </StackPane>
-                        <StackPane prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: #27272a; -fx-border-radius: 12;" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                            <Label text="Slot Vazio" textFill="#52525b" />
-                        </StackPane>
-                    </children>
-                </GridPane>
-            </children>
-            <padding>
-                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-            </padding>
-        </VBox>
-    </center>
-
-    <bottom>
-        <HBox alignment="CENTER" spacing="30.0" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
-            <padding>
-                <Insets bottom="25.0" left="20.0" right="20.0" top="10.0" />
-            </padding>
-            <children>
-                <Button fx:id="btnPrev" style="-fx-background-color: #18181b; -fx-border-color: #27272a; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #a1a1aa; -fx-cursor: hand; -fx-padding: 8 20 8 20;" text="&lt; Anterior">
-                    <font>
-                        <Font name="System Bold" size="13.0" />
-                    </font>
-                </Button>
-
-                <Label fx:id="lblPage" text="Página 1 de X" textFill="#71717a">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </Label>
-
-                <Button fx:id="btnNext" style="-fx-background-color: #3b82f6; -fx-background-radius: 6; -fx-cursor: hand; -fx-padding: 8 25 8 25;" text="Próxima &gt;" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="13.0" />
-                    </font>
-                </Button>
-            </children>
-        </HBox>
-    </bottom>
-
-</BorderPane>
+<StackPane fx:id="root" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.javaskewb.Controller.CasesController">
+   <children>
+      <BorderPane prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #121214;">
+      
+          <top>
+              <HBox alignment="CENTER_LEFT" spacing="12.0" style="-fx-background-color: #18181b; -fx-border-color: #27272a; -fx-border-width: 0 0 1 0;" BorderPane.alignment="CENTER">
+                  <padding>
+                      <Insets bottom="15.0" left="25.0" right="25.0" top="15.0" />
+                  </padding>
+                  <children>
+                      <Label text="Categoria:" textFill="#a1a1aa">
+                          <font>
+                              <Font name="System Bold" size="14.0" />
+                          </font>
+                          <HBox.margin>
+                              <Insets right="10.0" />
+                          </HBox.margin>
+                      </Label>
+                  <ToggleButton fx:id="btnAll" layoutX="125.0" layoutY="25.0" selected="true" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #27272a; -fx-border-color: #3f3f46; -fx-text-fill: #ffffff; -fx-cursor: hand; -fx-padding: 5 15 5 15;" text="Todas">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="groupFilters1" />
+                     </toggleGroup>
+                  </ToggleButton>
+      
+                      <ToggleButton fx:id="btnFL" selected="true" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: transparent; -fx-border-color: #3f3f46; -fx-text-fill: #a1a1aa; -fx-cursor: hand; -fx-padding: 5 15 5 15;" text="FL">
+                          <toggleGroup>
+                              <ToggleGroup fx:id="groupFilters" />
+                          </toggleGroup>
+                      </ToggleButton>
+                      <ToggleButton fx:id="btnL5C" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: transparent; -fx-border-color: #3f3f46; -fx-text-fill: #a1a1aa; -fx-cursor: hand; -fx-padding: 5 15 5 15;" text="L5C">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="grupoFiltros" />
+                     </toggleGroup>
+                  </ToggleButton>
+                      <ToggleButton fx:id="btnPi" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: transparent; -fx-border-color: #3f3f46; -fx-text-fill: #a1a1aa; -fx-cursor: hand; -fx-padding: 5 15 5 15;" text="Pi" toggleGroup="$grupoFiltros" />
+                      <ToggleButton fx:id="btnPeanut" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: transparent; -fx-border-color: #3f3f46; -fx-text-fill: #a1a1aa; -fx-cursor: hand; -fx-padding: 5 15 5 15;" text="Peanut" toggleGroup="$grupoFiltros" />
+                  </children>
+              </HBox>
+          </top>
+      
+          <left>
+              <VBox prefWidth="180.0" spacing="10.0" style="-fx-background-color: #18181b; -fx-border-color: #27272a; -fx-border-width: 0 1 0 0;" BorderPane.alignment="CENTER">
+                  <padding>
+                      <Insets bottom="20.0" left="15.0" right="15.0" top="25.0" />
+                  </padding>
+                  <children>
+                      <Label text="MÉTODOS" textFill="#71717a">
+                          <font>
+                              <Font name="System Bold" size="12.0" />
+                          </font>
+                          <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" />
+                          </VBox.margin>
+                      </Label>
+      
+                      <ToggleButton fx:id="btnNS" alignment="CENTER_LEFT" maxWidth="Infinity" selected="true" style="-fx-background-color: #27272a; -fx-background-radius: 6; -fx-text-fill: #ffffff; -fx-font-size: 14px; -fx-cursor: hand;" text="NS">
+                          <padding>
+                              <Insets bottom="10.0" left="15.0" top="10.0" />
+                          </padding>
+                          <toggleGroup>
+                              <ToggleGroup fx:id="groupMethods" />
+                          </toggleGroup>
+                      </ToggleButton>
+                      <ToggleButton fx:id="btnEG2" alignment="CENTER_LEFT" maxWidth="Infinity" style="-fx-background-color: transparent; -fx-background-radius: 6; -fx-text-fill: #a1a1aa; -fx-font-size: 14px; -fx-cursor: hand;" text="EG2">
+                          <padding>
+                              <Insets bottom="10.0" left="15.0" top="10.0" />
+                          </padding>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="grupoMetodos" />
+                     </toggleGroup>
+                      </ToggleButton>
+                  </children>
+              </VBox>
+          </left>
+      
+          <center>
+              <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+                  <children>
+                      <GridPane fx:id="gridCases" alignment="CENTER" hgap="25.0" vgap="25.0">
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                          <children>
+      
+                              <!-- Linha 0 -->
+                              <StackPane prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: #27272a; -fx-border-radius: 12;" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                  <Label text="Slot Vazio" textFill="#52525b" />
+                              </StackPane>
+                              <StackPane prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: #27272a; -fx-border-radius: 12;" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                  <Label text="Slot Vazio" textFill="#52525b" />
+                              </StackPane>
+                              <StackPane prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: #27272a; -fx-border-radius: 12;" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                                  <Label text="Slot Vazio" textFill="#52525b" />
+                              </StackPane>
+                              <StackPane prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: #27272a; -fx-border-radius: 12;" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                                  <Label text="Slot Vazio" textFill="#52525b" />
+                              </StackPane>
+      
+                              <!-- Linha 1 -->
+                              <StackPane prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: #27272a; -fx-border-radius: 12;" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                  <Label text="Slot Vazio" textFill="#52525b" />
+                              </StackPane>
+                              <StackPane prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: #27272a; -fx-border-radius: 12;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                  <Label text="Slot Vazio" textFill="#52525b" />
+                              </StackPane>
+                              <StackPane prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: #27272a; -fx-border-radius: 12;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                  <Label text="Slot Vazio" textFill="#52525b" />
+                              </StackPane>
+                              <StackPane prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: #27272a; -fx-border-radius: 12;" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                  <Label text="Slot Vazio" textFill="#52525b" />
+                              </StackPane>
+      
+                              <!-- Linha 2 -->
+                              <StackPane prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: #27272a; -fx-border-radius: 12;" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                                  <Label text="Slot Vazio" textFill="#52525b" />
+                              </StackPane>
+                              <StackPane prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: #27272a; -fx-border-radius: 12;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                  <Label text="Slot Vazio" textFill="#52525b" />
+                              </StackPane>
+                              <StackPane prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: #27272a; -fx-border-radius: 12;" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                  <Label text="Slot Vazio" textFill="#52525b" />
+                              </StackPane>
+                              <StackPane prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: #27272a; -fx-border-radius: 12;" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                  <Label text="Slot Vazio" textFill="#52525b" />
+                              </StackPane>
+      
+                              <!-- Linha 3 -->
+                              <StackPane prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: #27272a; -fx-border-radius: 12;" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                                  <Label text="Slot Vazio" textFill="#52525b" />
+                              </StackPane>
+                              <StackPane prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: #27272a; -fx-border-radius: 12;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                  <Label text="Slot Vazio" textFill="#52525b" />
+                              </StackPane>
+                              <StackPane prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: #27272a; -fx-border-radius: 12;" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                  <Label text="Slot Vazio" textFill="#52525b" />
+                              </StackPane>
+                              <StackPane prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: #27272a; -fx-border-radius: 12;" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                  <Label text="Slot Vazio" textFill="#52525b" />
+                              </StackPane>
+                          </children>
+                      </GridPane>
+                  </children>
+                  <padding>
+                      <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                  </padding>
+              </VBox>
+          </center>
+      
+          <bottom>
+              <HBox alignment="CENTER" spacing="30.0" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
+                  <padding>
+                      <Insets bottom="25.0" left="20.0" right="20.0" top="10.0" />
+                  </padding>
+                  <children>
+                      <Button fx:id="btnPrev" onAction="#prevPage" style="-fx-background-color: #18181b; -fx-border-color: #27272a; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #a1a1aa; -fx-cursor: hand; -fx-padding: 8 20 8 20;" text="&lt; Anterior">
+                          <font>
+                              <Font name="System Bold" size="13.0" />
+                          </font>
+                      </Button>
+      
+                      <Label fx:id="lblPage" text="Página 1 de X" textFill="#71717a">
+                          <font>
+                              <Font size="14.0" />
+                          </font>
+                      </Label>
+      
+                      <Button fx:id="btnNext" onAction="#nextPage" style="-fx-background-color: #3b82f6; -fx-background-radius: 6; -fx-cursor: hand; -fx-padding: 8 25 8 25;" text="Próxima &gt;" textFill="WHITE">
+                          <font>
+                              <Font name="System Bold" size="13.0" />
+                          </font>
+                      </Button>
+                  </children>
+              </HBox>
+          </bottom>
+      
+      </BorderPane>
+   </children>
+</StackPane>

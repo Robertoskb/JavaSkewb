@@ -41,10 +41,11 @@ public class NSCase extends Case {
 
         String[] movesSequence = {"y", "y'", "y2"};
         String[] movesInverseSequence = {"y'", "y", "y2"};
+        String[] names = {"₂", "₃", "₄"};
 
         int total = "U3 U4".contains(name) ? 1 : 3;
 
-        cases.add(new NSCase(name + " 1", centersFaces));
+        cases.add(new NSCase(name + " ₁", centersFaces));
         for (int i = 0; i < total; i++){
             String move = movesSequence[i];
             String inverseMove = movesInverseSequence[i];
@@ -52,7 +53,7 @@ public class NSCase extends Case {
             CentersFaces baseCentersFaces = Moves.mulCenterFaces(centersFaces, moves.getMove(move));
             CentersFaces newCenterFaces = Moves.mulCenterFaces(moves.getMove(inverseMove), baseCentersFaces);
 
-            NSCase newCase = new NSCase(name + " " + (i+2), newCenterFaces);
+            NSCase newCase = new NSCase(name + " " + names[i], newCenterFaces);
 
             if (!cases.contains(newCase))
                 cases.add(newCase);

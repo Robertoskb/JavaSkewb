@@ -1,5 +1,7 @@
 package br.com.javaskewb.Controller.Components;
 
+import br.com.javaskewb.core.Cube.State;
+import br.com.javaskewb.core.Patterns.Case;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -16,6 +18,8 @@ public class CaseCard extends VBox {
 
     @FXML
     private StackPane skewbContainer;
+
+    private Case skewbCase;
 
     public CaseCard() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/javaskewb/view/components/CaseCard.fxml"));
@@ -40,5 +44,13 @@ public class CaseCard extends VBox {
             skewbContainer.getChildren().clear();
             skewbContainer.getChildren().add(skewbNode);
         }
+    }
+
+    public void setSkewbCase(Case skewbCase) {
+        this.skewbCase = skewbCase;
+    }
+
+    public Case getSkewbCase() {
+        return skewbCase;
     }
 }
