@@ -3,8 +3,8 @@ package br.com.javaskewb.core.Patterns.NS.FL;
 import br.com.javaskewb.core.Mapping.Moves.FLMoves;
 import br.com.javaskewb.core.Mapping.Moves.Matrices.CentersFaces;
 import br.com.javaskewb.core.Mapping.Moves.Moves;
-import br.com.javaskewb.core.Patterns.Case;
-import br.com.javaskewb.core.Patterns.Cases;
+import br.com.javaskewb.core.Patterns.base.Case;
+import br.com.javaskewb.core.Patterns.base.Cases;
 import br.com.javaskewb.core.Patterns.NS.NSCases;
 import br.com.javaskewb.core.Solution.BFSSkewb;
 import br.com.javaskewb.core.Solution.utils.Scramble;
@@ -27,6 +27,10 @@ public class FLCases extends Cases<FLCase> {
     ));
 
     private static final ArrayList<FLCase> cases = fill();
+
+    public FLCases() {
+        super("FL");
+    }
 
     public static ArrayList<FLCase> fill(){
         ArrayList<FLCase> cases = new ArrayList<>();

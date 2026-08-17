@@ -1,4 +1,4 @@
-package br.com.javaskewb.core.Patterns;
+package br.com.javaskewb.core.Patterns.base;
 
 import br.com.javaskewb.core.Cube.State;
 import br.com.javaskewb.core.Mapping.Moves.Matrices.CentersFaces;

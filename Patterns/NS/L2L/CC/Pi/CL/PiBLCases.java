@@ -8,6 +8,10 @@ import java.util.ArrayList;
 public class PiBLCases extends PiCLCases{
     private static final ArrayList<PiCase> cases = fill();
 
+    public PiBLCases() {
+        super("BL");
+    }
+
     private static ArrayList<PiCase> fill(){
         return fill("Pi BL", new LCCases(), 5);
     }

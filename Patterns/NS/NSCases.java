@@ -1,6 +1,6 @@
 package br.com.javaskewb.core.Patterns.NS;
 
-import br.com.javaskewb.core.Patterns.Cases;
+import br.com.javaskewb.core.Patterns.base.Cases;
 import br.com.javaskewb.core.Patterns.NS.FL.FLCases;
 import br.com.javaskewb.core.Patterns.NS.L2L.L2LCases;
 
@@ -9,10 +9,17 @@ import java.util.ArrayList;
 public class NSCases extends Cases<NSCase> {
     private static final L2LCases L2LCases = new L2LCases();
     private static final FLCases FlCases = new FLCases();
+    private static final ArrayList<Cases<?>> subCases = new ArrayList<>();
 
     private static final ArrayList<NSCase> cases = fill();
 
+
+    public NSCases() {
+        super("NS");
+    }
+
     private static ArrayList<NSCase> fill(){
+        subCases.add(L2LCases);
 
         return new ArrayList<>(L2LCases.getCases());
     }
@@ -20,6 +27,11 @@ public class NSCases extends Cases<NSCase> {
     @Override
     public ArrayList<NSCase> getCases() {
         return cases;
+    }
+
+    @Override
+    public ArrayList<Cases<?>> getSubCases() {
+        return subCases;
     }
 
     public FLCases getFlCases() {

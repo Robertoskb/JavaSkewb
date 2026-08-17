@@ -8,6 +8,10 @@ import java.util.ArrayList;
 public class PeanutFLCases extends PeanutCLCases{
     private static final ArrayList<PeanutCase> cases = fill();
 
+    public PeanutFLCases() {
+        super("FL");
+    }
+
     private static ArrayList<PeanutCase> fill(){
         return fill("Peanut FL", new LCCases(), 2);
     }

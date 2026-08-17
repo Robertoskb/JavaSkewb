@@ -3,7 +3,7 @@ package br.com.javaskewb.core.Patterns.NS;
 import br.com.javaskewb.core.Mapping.Moves.Matrices.CentersFaces;
 import br.com.javaskewb.core.Mapping.Moves.Moves;
 import br.com.javaskewb.core.Cube.State;
-import br.com.javaskewb.core.Patterns.Case;
+import br.com.javaskewb.core.Patterns.base.Case;
 
 import java.util.ArrayList;
 

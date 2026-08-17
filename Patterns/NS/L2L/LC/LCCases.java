@@ -1,6 +1,6 @@
 package br.com.javaskewb.core.Patterns.NS.L2L.LC;
 
-import br.com.javaskewb.core.Patterns.Cases;
+import br.com.javaskewb.core.Patterns.base.Cases;
 import br.com.javaskewb.core.Patterns.NS.L2L.LC.L3C.L3CCases;
 import br.com.javaskewb.core.Patterns.NS.L2L.LC.L4C.L4CCases;
 import br.com.javaskewb.core.Patterns.NS.L2L.LC.L5C.L5CCases;
@@ -12,10 +12,21 @@ public class LCCases extends Cases<LCCase> {
     private static final L4CCases L4CCases = new L4CCases();
     private static final L5CCases L5CCases = new L5CCases();
 
+    private static final ArrayList<Cases<?>> subCases = new ArrayList<>();
+
     private static final ArrayList<LCCase> cases = fill();
+
+    public LCCases() {
+        super("LC");
+    }
 
     private static ArrayList<LCCase> fill(){
         ArrayList<LCCase> cases = new ArrayList<>();
+
+        subCases.add(L3CCases);
+        subCases.add(L4CCases);
+        subCases.add(L5CCases);
+
         cases.addAll(L3CCases.getCases());
         cases.addAll(L4CCases.getCases());
         cases.addAll(L5CCases.getCases());
@@ -26,6 +37,11 @@ public class LCCases extends Cases<LCCase> {
     @Override
     public ArrayList<LCCase> getCases() {
         return cases;
+    }
+
+    @Override
+    public ArrayList<Cases<?>> getSubCases() {
+        return subCases;
     }
 
     public L3CCases getL3CCases() {
