@@ -5,21 +5,23 @@ import br.com.javaskewb.core.Patterns.base.Cases;
 import java.util.IdentityHashMap;
 
 public class TreeCases {
-    private final Cases<?> root;
+    private Cases<?> root;
     private final IdentityHashMap<Cases<?>, Cases<?>> tree = new IdentityHashMap<>();
 
+    public TreeCases(){}
 
     public TreeCases(Cases<?> root){
-        initialize(root);
+        insertNodes(root);
         this.root = root;
     }
 
-    private void initialize(Cases<?> root){
+    public void insertNodes(Cases<?> root){
         for (Cases<?> cases: root.getSubCases()){
             tree.put(cases, root);
-            initialize(cases);
+            insertNodes(cases);
         }
     }
+
 
     public Cases<?> getParent(Cases<?> node){
         return tree.get(node);

@@ -11,6 +11,10 @@ public class Pagination<T> {
         setPageSize(pageSize);
     }
 
+    public Pagination(int pageSize) {
+        setPageSize(pageSize);
+    }
+
     public ArrayList<T> getPage(int page){
         int fromIndex = (page - 1) * pageSize;
         int toIndex = Math.min(fromIndex + pageSize, arrayList.size());

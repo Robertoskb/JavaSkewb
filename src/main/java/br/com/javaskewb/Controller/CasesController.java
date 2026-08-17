@@ -5,10 +5,11 @@ import br.com.javaskewb.Controller.Components.CaseInfo;
 import br.com.javaskewb.Controller.Components.SkewbBase;
 import br.com.javaskewb.Controller.utils.Pagination;
 import br.com.javaskewb.core.Cube.State;
+import br.com.javaskewb.core.Patterns.Methods.Methods;
 import br.com.javaskewb.core.Patterns.base.Case;
 
 import br.com.javaskewb.core.Patterns.base.Cases;
-import br.com.javaskewb.core.Patterns.NS.NSCases;
+import br.com.javaskewb.core.Patterns.Methods.NS.NSCases;
 import br.com.javaskewb.core.Patterns.utils.TreeCases;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -20,6 +21,7 @@ import javafx.scene.layout.GridPane;
 
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,11 +36,7 @@ public class CasesController {
     HBox categoryContainer;
 
     @FXML
-    private ToggleButton btnEG2;
-
-
-    @FXML
-    private ToggleButton btnNS;
+    VBox methodsContainer;
 
     @FXML
     private Button btnNext;
@@ -60,11 +58,13 @@ public class CasesController {
 
     private int currentPage = 1;
 
-    private Cases<?> currentCases = new NSCases();
-    private TreeCases treeCases;
+    private final Methods methods = new Methods();
+
+    private Cases<?> currentCases;
+    private final TreeCases treeCases = new TreeCases();
     private ArrayList<Cases<?>> currentSubCases;
 
-    private Pagination<CaseCard> casePagination;
+    private final Pagination<CaseCard> casePagination = new Pagination<>(16);
 
     private final CaseInfo caseInfo = new CaseInfo();
 
@@ -76,19 +76,41 @@ public class CasesController {
     public void initialize() throws IOException {
         root.getChildren().add(caseInfo);
 
+        for (Cases<?> method: methods.getMETHODS()){
+            treeCases.insertNodes(method);
+            Button button = new Button(method.getName());
+
+            button.setOnMouseClicked(event -> {
+                try {
+                    updateMethod(method);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+
+            for (Cases<?> subCases: method.getSubCases())
+                getCaseCards(subCases);
+
+            methodsContainer.getChildren().add(button);
+        }
+
+        updateMethod(methods.getMETHODS().getFirst());
+    }
+
+    private void updateMethod(Cases<?> method) throws IOException {
+        currentCases = method;
         while (currentCases.getSubCases().size() == 1){
             currentCases = currentCases.getSubCases().getFirst();
         }
         currentSubCases = currentCases.getSubCases();
-        treeCases = new TreeCases(currentCases);
 
+        categoryContainer.getChildren().clear();
         updateButtons();
-
         ArrayList<CaseCard> nodes = getCaseCards(currentCases);
-        casePagination = new Pagination<>(nodes, 16);
+        casePagination.setArrayList(nodes);
+        currentPage = 1;
         populateGrid(nodes);
     }
-
 
     private void updateButtons(){
         if (currentSubCases.isEmpty())
@@ -140,7 +162,6 @@ public class CasesController {
     }
 
     private ArrayList<CaseCard> getCaseCards(Cases<?> cases) throws IOException {
-
         ArrayList<CaseCard> nodes = new ArrayList<>();
         for (Case _case: cases.getCases()){
             State state;

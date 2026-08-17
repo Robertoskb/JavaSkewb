@@ -4,7 +4,7 @@ import br.com.javaskewb.core.Cube.State;
 import br.com.javaskewb.core.Mapping.Parts.Center;
 import br.com.javaskewb.core.Mapping.Parts.Corner;
 import br.com.javaskewb.core.Patterns.base.Case;
-import br.com.javaskewb.core.Patterns.NS.NSCases;
+import br.com.javaskewb.core.Patterns.Methods.NS.NSCases;
 
 import java.util.ArrayList;
 import java.util.List;
