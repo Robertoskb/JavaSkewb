@@ -1,6 +1,6 @@
 package br.com.javaskewb.Controller.Components;
 
-import br.com.javaskewb.core.Patterns.Case;
+import br.com.javaskewb.core.Patterns.base.Case;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;

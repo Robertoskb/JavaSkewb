@@ -1,5 +1,7 @@
 package br.com.javaskewb.core.Patterns.NS.L2L.CC.Peanut.CL;
 
+import br.com.javaskewb.core.Mapping.Moves.Matrices.CentersFaces;
+import br.com.javaskewb.core.Mapping.Moves.Moves;
 import br.com.javaskewb.core.Patterns.NS.L2L.CC.Peanut.PeanutCase;
 import br.com.javaskewb.core.Patterns.NS.L2L.LC.LCCases;
 
@@ -8,8 +10,15 @@ import java.util.ArrayList;
 public class PeanutUCases extends PeanutCLCases{
     private static final ArrayList<PeanutCase> cases = fill();
 
+    public PeanutUCases() {
+        super("U");
+    }
+
     private static ArrayList<PeanutCase> fill(){
-        return fill("Peanut U", new LCCases(), 0);
+        ArrayList<PeanutCase> peanutU = fill("Peanut U", new LCCases(), 0);
+        peanutU.addFirst(new PeanutCase("Peanut", new CentersFaces(Moves.getCenterMatrix(), PeanutCase.getFaces())));
+
+        return peanutU;
     }
 
     @Override

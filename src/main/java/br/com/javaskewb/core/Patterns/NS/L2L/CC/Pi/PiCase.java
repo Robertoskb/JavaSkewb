@@ -3,7 +3,7 @@ package br.com.javaskewb.core.Patterns.NS.L2L.CC.Pi;
 import br.com.javaskewb.core.Mapping.Moves.Matrices.CentersFaces;
 import br.com.javaskewb.core.Mapping.Moves.Matrices.MatrixSwap;
 import br.com.javaskewb.core.Mapping.Moves.Moves;
-import br.com.javaskewb.core.Patterns.NS.L2L.CC.CLCase;
+import br.com.javaskewb.core.Patterns.NS.L2L.CC.base.CLCase;
 
 public class PiCase extends CLCase {
     protected final static int[][] faces = getPiMatrix();

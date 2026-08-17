@@ -5,9 +5,11 @@ import br.com.javaskewb.Controller.Components.CaseInfo;
 import br.com.javaskewb.Controller.Components.SkewbBase;
 import br.com.javaskewb.Controller.utils.Pagination;
 import br.com.javaskewb.core.Cube.State;
-import br.com.javaskewb.core.Patterns.Case;
+import br.com.javaskewb.core.Patterns.base.Case;
 
+import br.com.javaskewb.core.Patterns.base.Cases;
 import br.com.javaskewb.core.Patterns.NS.NSCases;
+import br.com.javaskewb.core.Patterns.utils.TreeCases;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -16,16 +18,12 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class CasesController {
@@ -33,28 +31,17 @@ public class CasesController {
     @FXML StackPane root;
 
     @FXML
+    HBox categoryContainer;
+
+    @FXML
     private ToggleButton btnEG2;
 
-    @FXML
-    private ToggleButton btnAll;
-
-    @FXML
-    private ToggleButton btnFL;
-
-    @FXML
-    private ToggleButton btnL5C;
 
     @FXML
     private ToggleButton btnNS;
 
     @FXML
     private Button btnNext;
-
-    @FXML
-    private ToggleButton btnPeanut;
-
-    @FXML
-    private ToggleButton btnPi;
 
     @FXML
     private Button btnPrev;
@@ -73,43 +60,122 @@ public class CasesController {
 
     private int currentPage = 1;
 
+    private Cases<?> currentCases = new NSCases();
+    private TreeCases treeCases;
+    private ArrayList<Cases<?>> currentSubCases;
+
     private Pagination<CaseCard> casePagination;
 
     private final CaseInfo caseInfo = new CaseInfo();
+
+    private final HashMap<Case, CaseCard> caseCaseCardCache = new HashMap<>();
 
     public CasesController() throws IOException {
     }
 
     public void initialize() throws IOException {
-        ArrayList<CaseCard> nodes = new ArrayList<>();
-        casePagination = new Pagination<>(nodes, 16);
-
-
-        NSCases cases = new NSCases();
-
-        for (Case _case: cases.getCases()){
-            State state = State.getSolvedState();
-            _case.applyCase(state);
-
-            SkewbBase skewbBase = new SkewbBase(state);
-            skewbBase.changeBottomDisabled();
-
-            CaseCard caseCard = new CaseCard();
-            caseCard.setSkewbComponent(skewbBase);
-            caseCard.setCaseName(_case.getName());
-            caseCard.setSkewbCase(_case);
-
-            nodes.add(caseCard);
-        }
-
         root.getChildren().add(caseInfo);
 
+        while (currentCases.getSubCases().size() == 1){
+            currentCases = currentCases.getSubCases().getFirst();
+        }
+        currentSubCases = currentCases.getSubCases();
+        treeCases = new TreeCases(currentCases);
 
+        updateButtons();
+
+        ArrayList<CaseCard> nodes = getCaseCards(currentCases);
+        casePagination = new Pagination<>(nodes, 16);
         populateGrid(nodes);
     }
 
+
+    private void updateButtons(){
+        if (currentSubCases.isEmpty())
+            return;
+
+        categoryContainer.getChildren().clear();
+        Cases<?> parent = treeCases.getParent(currentSubCases.getFirst());
+        if (parent != null){
+            Button button = new Button("Voltar");
+
+            Cases<?> parentParent = treeCases.getParent(parent);
+            if (parentParent != null) {
+                button.setOnMouseClicked(e -> {
+                    try {
+                        updateCases(parentParent);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                });
+                categoryContainer.getChildren().add(button);
+
+            }
+        }
+
+        for (Cases<?> subCases: currentSubCases) {
+            Button button = new Button(subCases.getName());
+            if (!subCases.getCases().isEmpty())
+                button.setOnMouseClicked(e -> {
+                    try {
+                        updateCases(subCases);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                });
+
+            categoryContainer.getChildren().add(button);
+        }
+    }
+
+    private void updateCases(Cases<?> cases) throws IOException {
+        currentCases = cases;
+        currentSubCases = currentCases.getSubCases();
+
+        casePagination.setArrayList(getCaseCards(currentCases));
+        currentPage = 1;
+        populateGrid(casePagination.getPage(currentPage));
+
+        updateButtons();
+    }
+
+    private ArrayList<CaseCard> getCaseCards(Cases<?> cases) throws IOException {
+
+        ArrayList<CaseCard> nodes = new ArrayList<>();
+        for (Case _case: cases.getCases()){
+            State state;
+
+            if (caseCaseCardCache.containsKey(_case)){
+                nodes.add(caseCaseCardCache.get(_case));
+            }
+            else {
+                state = State.getSolvedState();
+                _case.applyCase(state);
+
+                SkewbBase skewbBase = new SkewbBase(state);
+                skewbBase.changeBottomDisabled();
+
+                CaseCard caseCard = new CaseCard();
+                caseCard.setSkewbComponent(skewbBase);
+                caseCard.setCaseName(_case.getName());
+                caseCard.setSkewbCase(_case);
+
+                caseCaseCardCache.put(_case, caseCard);
+
+                nodes.add(caseCard);
+            }
+        }
+
+
+
+        return nodes;
+    }
+
     public void populateGrid(List<CaseCard> components) {
-        lblPage.setText("Página " + currentPage + " de " + casePagination.getArrayList().size()/casePagination.getPageSize());
+        int division = casePagination.getArrayList().size() / casePagination.getPageSize();
+        if (division * casePagination.getPageSize() < casePagination.getArrayList().size())
+            division++;
+        lblPage.setText("Página " + currentPage + " de " + division);
         int index = 0;
 
         for (Node node : gridCases.getChildren()) {
@@ -139,7 +205,7 @@ public class CasesController {
 
     @FXML
     private void nextPage(){
-        if (casePagination.getPageSize()*(currentPage+1)  < casePagination.getArrayList().size()) {
+        if (casePagination.getPageSize()*(currentPage) < casePagination.getArrayList().size()) {
             currentPage++;
             populateGrid(casePagination.getPage(currentPage));
         }

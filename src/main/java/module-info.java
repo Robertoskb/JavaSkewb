@@ -9,7 +9,6 @@ module JavaSkewb {
     exports br.com.javaskewb.core.Solution;
     exports br.com.javaskewb.core.Solution.utils;
     exports br.com.javaskewb.core.Mapping.Parts;
-    exports br.com.javaskewb.core.Patterns;
     exports br.com.javaskewb.core.Mapping.Moves;
     exports br.com.javaskewb.core.Mapping.Moves.Matrices;
     exports br.com.javaskewb.Controller.Components.parts;
@@ -19,4 +18,5 @@ module JavaSkewb {
     exports br.com.javaskewb.Controller.Components;
     opens br.com.javaskewb.Controller.Components to javafx.fxml, javafx.graphics;
     exports br.com.javaskewb.core.Cube.utils;
+    exports br.com.javaskewb.core.Patterns.base;
 }

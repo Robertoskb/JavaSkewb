@@ -3,7 +3,7 @@ package br.com.javaskewb.core.Patterns.NS.L2L.LC.L4C;
 import br.com.javaskewb.core.Mapping.Moves.Matrices.CentersFaces;
 import br.com.javaskewb.core.Mapping.Moves.Matrices.MatrixSwap;
 import br.com.javaskewb.core.Mapping.Moves.Moves;
-import br.com.javaskewb.core.Patterns.Cases;
+import br.com.javaskewb.core.Patterns.base.Cases;
 import br.com.javaskewb.core.Patterns.NS.L2L.LC.LCCase;
 
 import java.util.ArrayList;
@@ -12,6 +12,10 @@ public class L4CCases extends Cases<L4CCase> {
     private static final int[][] facesMatrix = LCCase.getFacesMatrix();
 
     private static final ArrayList<L4CCase> cases = fill();
+
+    public L4CCases() {
+        super("L4C");
+    }
 
     private static ArrayList<L4CCase> fill(){
         ArrayList<L4CCase> cases = new ArrayList<>();

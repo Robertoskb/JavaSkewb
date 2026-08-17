@@ -3,7 +3,7 @@ package br.com.javaskewb.Controller;
 import br.com.javaskewb.Controller.Components.SkewbBase;
 import br.com.javaskewb.Controller.Components.parts.base.SkewbColor;
 import br.com.javaskewb.core.Cube.State;
-import br.com.javaskewb.core.Patterns.Case;
+import br.com.javaskewb.core.Patterns.base.Case;
 import br.com.javaskewb.core.Solution.Solution;
 import br.com.javaskewb.core.Solution.utils.Scramble;
 import br.com.javaskewb.scrambles.ScrambleGenerator;

@@ -3,7 +3,7 @@ package br.com.javaskewb.core.Patterns.NS.L2L.CC.Peanut;
 import br.com.javaskewb.core.Mapping.Moves.Matrices.CentersFaces;
 import br.com.javaskewb.core.Mapping.Moves.Matrices.MatrixSwap;
 import br.com.javaskewb.core.Mapping.Moves.Moves;
-import br.com.javaskewb.core.Patterns.NS.L2L.CC.CLCase;
+import br.com.javaskewb.core.Patterns.NS.L2L.CC.base.CLCase;
 
 public class PeanutCase extends CLCase {
     protected final static int[][] faces = getPeanutMatrix();

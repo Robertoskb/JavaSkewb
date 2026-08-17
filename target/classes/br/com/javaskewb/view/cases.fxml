@@ -14,45 +14,28 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<StackPane fx:id="root" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.javaskewb.Controller.CasesController">
+<StackPane fx:id="root" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.javaskewb.Controller.CasesController">
    <children>
       <BorderPane prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #121214;">
       
           <top>
-              <HBox alignment="CENTER_LEFT" spacing="12.0" style="-fx-background-color: #18181b; -fx-border-color: #27272a; -fx-border-width: 0 0 1 0;" BorderPane.alignment="CENTER">
-                  <padding>
-                      <Insets bottom="15.0" left="25.0" right="25.0" top="15.0" />
-                  </padding>
-                  <children>
-                      <Label text="Categoria:" textFill="#a1a1aa">
+            <HBox BorderPane.alignment="CENTER">
+               <children>
+                      <Label prefHeight="42.0" prefWidth="68.0" text="Categoria:" textFill="#a1a1aa">
                           <font>
                               <Font name="System Bold" size="14.0" />
                           </font>
                           <HBox.margin>
-                              <Insets right="10.0" />
+                              <Insets left="20.0" right="10.0" />
                           </HBox.margin>
                       </Label>
-                  <ToggleButton fx:id="btnAll" layoutX="125.0" layoutY="25.0" selected="true" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #27272a; -fx-border-color: #3f3f46; -fx-text-fill: #ffffff; -fx-cursor: hand; -fx-padding: 5 15 5 15;" text="Todas">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="groupFilters1" />
-                     </toggleGroup>
-                  </ToggleButton>
-      
-                      <ToggleButton fx:id="btnFL" selected="true" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: transparent; -fx-border-color: #3f3f46; -fx-text-fill: #a1a1aa; -fx-cursor: hand; -fx-padding: 5 15 5 15;" text="FL">
-                          <toggleGroup>
-                              <ToggleGroup fx:id="groupFilters" />
-                          </toggleGroup>
-                      </ToggleButton>
-                      <ToggleButton fx:id="btnL5C" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: transparent; -fx-border-color: #3f3f46; -fx-text-fill: #a1a1aa; -fx-cursor: hand; -fx-padding: 5 15 5 15;" text="L5C">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="grupoFiltros" />
-                     </toggleGroup>
-                  </ToggleButton>
-                      <ToggleButton fx:id="btnPi" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: transparent; -fx-border-color: #3f3f46; -fx-text-fill: #a1a1aa; -fx-cursor: hand; -fx-padding: 5 15 5 15;" text="Pi" toggleGroup="$grupoFiltros" />
-                      <ToggleButton fx:id="btnPeanut" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: transparent; -fx-border-color: #3f3f46; -fx-text-fill: #a1a1aa; -fx-cursor: hand; -fx-padding: 5 15 5 15;" text="Peanut" toggleGroup="$grupoFiltros" />
-                  </children>
-              </HBox>
+                    <HBox fx:id="categoryContainer" alignment="CENTER_LEFT" spacing="12.0" style="-fx-background-color: #18181b; -fx-border-color: #27272a; -fx-border-width: 0 0 1 0;">
+                        <padding>
+                            <Insets bottom="15.0" left="25.0" right="25.0" top="15.0" />
+                        </padding>
+                    </HBox>
+               </children>
+            </HBox>
           </top>
       
           <left>

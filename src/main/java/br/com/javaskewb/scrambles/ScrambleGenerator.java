@@ -1,7 +1,7 @@
 package br.com.javaskewb.scrambles;
 
 import br.com.javaskewb.core.Cube.State;
-import br.com.javaskewb.core.Patterns.Case;
+import br.com.javaskewb.core.Patterns.base.Case;
 import br.com.javaskewb.core.Patterns.NS.FL.FLCase;
 import br.com.javaskewb.core.Patterns.NS.FL.FLCases;
 import br.com.javaskewb.core.Patterns.NS.NSCase;

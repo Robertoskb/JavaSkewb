@@ -1,7 +1,6 @@
 package br.com.javaskewb.core.Patterns.NS.L2L;
 
-import br.com.javaskewb.core.Patterns.Case;
-import br.com.javaskewb.core.Patterns.Cases;
+import br.com.javaskewb.core.Patterns.base.Cases;
 import br.com.javaskewb.core.Patterns.NS.L2L.LC.LCCases;
 import br.com.javaskewb.core.Patterns.NS.L2L.CC.CCCases;
 
@@ -10,12 +9,20 @@ import java.util.ArrayList;
 public class L2LCases extends Cases<L2LCase> {
     private static final LCCases LCCases = new LCCases();
     private static final CCCases CCCases = new CCCases();
+    private static final ArrayList<Cases<?>> subCases = new ArrayList<>();
 
     private static final ArrayList<L2LCase> cases = fill();
+
+    public L2LCases() {
+        super("L2L");
+    }
 
 
     private static ArrayList<L2LCase> fill(){
         ArrayList<L2LCase> cases = new ArrayList<>();
+        subCases.add(LCCases);
+        subCases.add(CCCases);
+
         cases.addAll(LCCases.getCases());
         cases.addAll(CCCases.getCases());
 
@@ -27,6 +34,11 @@ public class L2LCases extends Cases<L2LCase> {
         return cases;
     }
 
+    @Override
+    public ArrayList<Cases<?>> getSubCases() {
+        return subCases;
+    }
+
     public LCCases getLCCases() {
         return LCCases;
     }
@@ -35,14 +47,16 @@ public class L2LCases extends Cases<L2LCase> {
         return CCCases;
     }
 
+    private static void printSubCases(Cases<?> cases, int tab){
+        for (Cases<?> subCases: cases.getSubCases()){
+            for (int i = 0; i < tab*3; i++)
+                System.out.print(" ");
+            System.out.println(subCases.getName());
+            printSubCases(subCases, tab+1);
+        }
+    }
+
     public static void main(String[] args) {
-        L2LCases cases1 = new L2LCases();
-
-        ArrayList<Case> total = new ArrayList<>();
-
-        for (L2LCase l2LCase: cases1.getCases())
-            total.addAll(l2LCase.getCasesVariants());
-
-        System.out.println(total.size()*24);
+        printSubCases(new L2LCases(), 0);
     }
 }
