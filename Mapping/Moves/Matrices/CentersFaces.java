@@ -12,6 +12,10 @@ public class CentersFaces {
         setFacesMatrix(facesMatrix);
     }
 
+    public CentersFaces copy(){
+        return new CentersFaces(centersMatrix.clone(), facesMatrix.clone());
+    }
+
     public int[][] getCentersMatrix() {
         return centersMatrix;
     }
