@@ -119,18 +119,19 @@ public class CasesController {
         categoryContainer.getChildren().clear();
         Cases<?> parent = treeCases.getParent(currentSubCases.getFirst());
         if (parent != null){
-            Button button = new Button("Voltar");
-
             Cases<?> parentParent = treeCases.getParent(parent);
             if (parentParent != null) {
-                button.setOnMouseClicked(e -> {
-                    try {
-                        updateCases(parentParent);
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                });
-                categoryContainer.getChildren().add(button);
+                if (parentParent.getSubCases().size() > 1) {
+                    Button button = new Button("Voltar");
+                    button.setOnMouseClicked(e -> {
+                        try {
+                            updateCases(parentParent);
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    });
+                    categoryContainer.getChildren().add(button);
+                }
 
             }
         }
