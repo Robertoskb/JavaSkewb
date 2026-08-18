@@ -75,6 +75,10 @@ abstract public class Moves {
         return new CentersFaces(invertMatrix(centers), invertMatrix(faces));
     }
 
+    public CentersFaces invertMove(String move){
+        return invertMove(getNotation().get(move));
+    }
+
     public State applyMove(String move){
         CentersFaces matrices = getMove(move);
         State newState;
