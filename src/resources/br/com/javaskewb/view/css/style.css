@@ -1,0 +1,32 @@
+.category-button {
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-background-color: transparent;
+    -fx-border-color: #3f3f46;
+    -fx-text-fill: #a1a1aa;
+    -fx-cursor: hand;
+    -fx-padding: 5 15 5 15;
+}
+
+.category-button:hover {
+    -fx-background-color: #27272a;
+    -fx-border-color: #3f3f46;
+    -fx-text-fill: #ffffff;
+}
+
+.method-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-text-fill: #a1a1aa;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-alignment: CENTER_LEFT;
+    -fx-max-width: Infinity;
+    -fx-padding: 10 15 10 15;
+}
+
+.method-button:hover {
+    -fx-background-color: #27272a;
+    -fx-text-fill: #ffffff;
+}

@@ -69,6 +69,10 @@ public class State {
         return generatePerspectivesStates(getSolvedState()).get(random.nextInt(0, 24));
     }
 
+    public static ArrayList<State> getSolvedPerspectives(){
+        return generatePerspectivesStates(State.getSolvedState());
+    }
+
     public static State getPerspective(int perspective){
         return generatePerspectivesStates(getSolvedState()).get(perspective);
     }

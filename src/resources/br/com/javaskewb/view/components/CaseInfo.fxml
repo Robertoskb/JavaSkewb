@@ -7,14 +7,14 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="551.0" prefWidth="459.0" spacing="12.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-border-color: #27272a; -fx-border-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: blue; -fx-border-width: 3;" type="VBox" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="551.0" prefWidth="459.0" spacing="12.0" style="-fx-background-color: #18181b; -fx-background-radius: 12; -fx-border-color: #27272a; -fx-border-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4); -fx-border-color: blue; -fx-border-width: 3;" type="VBox" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
 
     <padding>
         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
@@ -37,11 +37,11 @@
       </ToggleButton>
     </HBox>
 
-    <StackPane fx:id="skewbContainer" prefHeight="218.0" prefWidth="487.0" style="-fx-background-color: #27272a; -fx-background-radius: 8;">
+    <StackPane fx:id="skewbContainer" prefHeight="178.0" prefWidth="422.0" style="-fx-background-color: #27272a; -fx-background-radius: 8;">
         <Label text="Skewb" textFill="#71717a" />
     </StackPane>
 
-    <ComboBox fx:id="cbStatus" maxWidth="Infinity" style="-fx-background-color: #27272a; -fx-border-color: #3f3f46; -fx-border-radius: 6; -fx-background-radius: 6;" />
+    <ComboBox fx:id="cbStatus" maxWidth="Infinity" style="-fx-border-color: #3f3f46; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-inner-color: white;" />
 
     <Label text="Algoritmos:" textFill="#a1a1aa">
         <font>
@@ -49,7 +49,7 @@
         </font>
     </Label>
 
-    <ScrollPane fitToWidth="true" prefHeight="70.0" style="-fx-text-fill: white; -fx-background: #18181b; -fx-border-color: transparent; -fx-control-inner-background: #18181b; -fx-padding: 0;">
+    <ScrollPane fitToWidth="true" prefHeight="80.0" prefWidth="422.0" style="-fx-text-fill: white; -fx-background: #18181b; -fx-border-color: transparent; -fx-control-inner-background: #18181b; -fx-padding: 0;">
         <content>
             <VBox fx:id="algorithmsList" spacing="5.0" />
         </content>
@@ -63,5 +63,14 @@
             </font>
         </Button>
     </HBox>
+   <FlowPane fx:id="notationContainer" columnHalignment="CENTER" hgap="5.0" prefHeight="59.0" prefWidth="422.0" vgap="5.0">
+      <padding>
+         <Insets top="10.0" />
+      </padding>
+      <VBox.margin>
+         <Insets />
+      </VBox.margin>
+   </FlowPane>
+   <Button mnemonicParsing="false" onAction="#save" prefHeight="38.0" prefWidth="282.0" style="-fx-background-color: green; -fx-text-fill: white;" text="Salvar" />
 
 </fx:root>

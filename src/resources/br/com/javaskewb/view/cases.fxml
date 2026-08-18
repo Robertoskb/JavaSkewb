@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="root" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.javaskewb.Controller.CasesController">
+<StackPane fx:id="root" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.javaskewb.Controller.CasesController">
    <children>
       <BorderPane prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #121214;">
       
@@ -27,7 +27,7 @@
                               <Insets left="20.0" right="10.0" />
                           </HBox.margin>
                       </Label>
-                    <HBox fx:id="categoryContainer" alignment="CENTER_LEFT" spacing="12.0" style="-fx-background-color: #18181b; -fx-border-color: #27272a; -fx-border-width: 0 0 1 0;">
+                    <HBox fx:id="categoryContainer" alignment="CENTER_LEFT" spacing="12.0" style="-fx-background-color: #121214; -fx-border-color: #27272a; -fx-border-width: 0 0 1 0;">
                         <padding>
                             <Insets bottom="15.0" left="25.0" right="25.0" top="15.0" />
                         </padding>

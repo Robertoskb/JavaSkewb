@@ -5,6 +5,8 @@ import br.com.javaskewb.Controller.Components.parts.CenterSlot;
 import br.com.javaskewb.Controller.Components.parts.FacePart;
 import br.com.javaskewb.Controller.Components.parts.FaceSlot;
 import br.com.javaskewb.core.Cube.Skewb;
+import br.com.javaskewb.core.Mapping.Moves.Matrices.CentersFaces;
+import br.com.javaskewb.core.Mapping.Moves.Moves;
 import br.com.javaskewb.core.Mapping.Parts.Center;
 import br.com.javaskewb.core.Mapping.Parts.Corner;
 import br.com.javaskewb.core.Cube.State;
@@ -207,6 +209,11 @@ public class SkewbBase extends StackPane{
 
     public void applyScramble(ArrayList<String> scramble){
         skewb.applyScramble(scramble);
+        update();
+    }
+
+    public void applyMove(CentersFaces centersFaces){
+        Moves.move(skewb.getState(), centersFaces, true);
         update();
     }
 

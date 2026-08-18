@@ -4,6 +4,7 @@ import br.com.javaskewb.Controller.Components.CaseCard;
 import br.com.javaskewb.Controller.Components.CaseInfo;
 import br.com.javaskewb.Controller.Components.SkewbBase;
 import br.com.javaskewb.Controller.utils.Pagination;
+import br.com.javaskewb.DataManager.Manager.Manager;
 import br.com.javaskewb.core.Cube.State;
 import br.com.javaskewb.core.Patterns.Methods.Methods;
 import br.com.javaskewb.core.Patterns.base.Case;
@@ -70,6 +71,8 @@ public class CasesController {
 
     private final HashMap<Case, CaseCard> caseCaseCardCache = new HashMap<>();
 
+    private final Manager manager = Manager.getInstance();
+
     public CasesController() throws IOException {
     }
 
@@ -79,6 +82,7 @@ public class CasesController {
         for (Cases<?> method: methods.getMETHODS()){
             treeCases.insertNodes(method);
             Button button = new Button(method.getName());
+            button.getStyleClass().add("method-button");
 
             button.setOnMouseClicked(event -> {
                 try {
@@ -90,7 +94,6 @@ public class CasesController {
 
             for (Cases<?> subCases: method.getSubCases())
                 getCaseCards(subCases);
-
             methodsContainer.getChildren().add(button);
         }
 
@@ -130,6 +133,8 @@ public class CasesController {
                             throw new RuntimeException(ex);
                         }
                     });
+
+                    button.getStyleClass().add("category-button");
                     categoryContainer.getChildren().add(button);
                 }
 
@@ -147,6 +152,7 @@ public class CasesController {
                     }
                 });
 
+            button.getStyleClass().add("category-button");
             categoryContainer.getChildren().add(button);
         }
     }
@@ -209,7 +215,7 @@ public class CasesController {
                     slot.getChildren().add(caseCard);
 
                     caseCard.setOnMouseClicked(e -> {
-                        caseInfo.show(caseCard.getSkewbCase(), null);
+                        caseInfo.show(caseCard.getSkewbCase());
                     });
 
 

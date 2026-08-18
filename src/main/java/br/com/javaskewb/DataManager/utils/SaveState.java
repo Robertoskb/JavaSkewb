@@ -1,4 +1,4 @@
-package br.com.javaskewb.core.Cube.utils;
+package br.com.javaskewb.DataManager.utils;
 
 import br.com.javaskewb.core.Cube.State;
 import br.com.javaskewb.core.Mapping.Parts.Center;
@@ -114,7 +114,7 @@ public class SaveState {
     }
 
     public static void main(String[] args) {
-        State state = State.getPerspective(1);
+        State state = State.getRandomPerspective();
 
         NSCases nsCases = new NSCases();
         Case nscase = nsCases.getRandomCase();

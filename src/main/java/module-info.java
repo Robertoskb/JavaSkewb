@@ -1,6 +1,9 @@
 module JavaSkewb {
     requires javafx.controls;
     requires javafx.fxml;
+    requires com.google.gson;
+
+    opens br.com.javaskewb.DataManager.Manager to com.google.gson;
 
     opens br.com.javaskewb.Controller to javafx.fxml, javafx.graphics;
     exports br.com.javaskewb.Controller;
@@ -17,6 +20,6 @@ module JavaSkewb {
     opens br.com.javaskewb.Controller.Components.parts.base to javafx.fxml, javafx.graphics;
     exports br.com.javaskewb.Controller.Components;
     opens br.com.javaskewb.Controller.Components to javafx.fxml, javafx.graphics;
-    exports br.com.javaskewb.core.Cube.utils;
+    exports br.com.javaskewb.DataManager.utils;
     exports br.com.javaskewb.core.Patterns.base;
 }
