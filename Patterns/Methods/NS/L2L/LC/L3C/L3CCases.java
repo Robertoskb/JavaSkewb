@@ -23,7 +23,6 @@ public class L3CCases extends Cases<L3CCase> {
         cases.add(U1());
         cases.add(U2());
         cases.add(U3());
-        cases.add(U4());
         cases.add(O1());
         cases.add(O2());
 
@@ -63,27 +62,13 @@ public class L3CCases extends Cases<L3CCase> {
 
         centers = new MatrixSwap(Moves.getCenterMatrix());
 
-        centers.swap(2, 1);
-        centers.swap(1, 6);
-        centers.swap(6, 2);
-
-        CentersFaces centersFaces = new CentersFaces(centers.getMatrix(), facesMatrix);
-
-        return new L3CCase("U3", centersFaces);
-    }
-
-    public static L3CCase U4(){
-        MatrixSwap centers;
-
-        centers = new MatrixSwap(Moves.getCenterMatrix());
-
         centers.swap(1, 2);
         centers.swap(2, 6);
         centers.swap(6, 1);
 
         CentersFaces centersFaces = new CentersFaces(centers.getMatrix(), facesMatrix);
 
-        return new L3CCase("U4", centersFaces);
+        return new L3CCase("U3", centersFaces);
     }
 
     public static L3CCase O1(){
@@ -113,8 +98,6 @@ public class L3CCases extends Cases<L3CCase> {
 
         return new L3CCase("O2", centersFaces);
     }
-
-
 
     @Override
     public ArrayList<L3CCase> getCases() {

@@ -43,10 +43,8 @@ public class NSCase extends Case {
         String[] movesInverseSequence = {"y'", "y", "y2"};
         String[] names = {"₂", "₃", "₄"};
 
-        int total = "U3 U4".contains(name) ? 1 : 3;
-
         cases.add(new NSCase(name + " ₁", centersFaces));
-        for (int i = 0; i < total; i++){
+        for (int i = 0; i < 3; i++){
             String move = movesSequence[i];
             String inverseMove = movesInverseSequence[i];
 
