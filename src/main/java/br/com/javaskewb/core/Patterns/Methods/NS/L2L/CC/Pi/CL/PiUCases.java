@@ -15,7 +15,7 @@ public class PiUCases extends PiCLCases {
     }
 
     private static ArrayList<PiCase> fill(){
-        ArrayList<PiCase> piU = fill("Pi U", new LCCases(), 0);
+        ArrayList<PiCase> piU = fill(0);
         piU.addFirst(new PiCase("Pi", new CentersFaces(Moves.getCenterMatrix(), PiCase.getFaces())));
         return piU;
     }

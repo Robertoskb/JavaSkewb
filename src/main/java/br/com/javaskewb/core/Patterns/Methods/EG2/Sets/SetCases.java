@@ -2,9 +2,11 @@ package br.com.javaskewb.core.Patterns.Methods.EG2.Sets;
 
 import br.com.javaskewb.core.Patterns.Methods.EG2.EG2Case;
 import br.com.javaskewb.core.Patterns.Methods.EG2.EG2SubCases;
+import br.com.javaskewb.core.Patterns.Methods.NS.L2L.CC.CCCase;
+import br.com.javaskewb.core.Patterns.Methods.NS.L2L.CC.CCCases;
+import br.com.javaskewb.core.Patterns.Methods.NS.L2L.L2LCases;
 import br.com.javaskewb.core.Patterns.base.Cases;
 import br.com.javaskewb.core.Patterns.Methods.NS.L2L.L2LCase;
-import br.com.javaskewb.core.Patterns.Methods.NS.L2L.L2LCases;
 
 import java.util.ArrayList;
 

@@ -86,82 +86,15 @@
     "status": "Deconhecido",
     "algorithms": []
   },
-  "147334558123552": {
+  "174822348817952": {
+    "id": 174822348817952,
     "favorite": true,
     "status": "Deconhecido",
-    "algorithms": []
-  },
-  "89060441851424": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "219902325556768": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "236394999973408": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
+    "algorithms": [
+      "x r R z b r\u0027 z2 r\u0027 R r"
+    ]
   },
   "239693534856736": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "247390116251168": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "261683767412256": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "263882790667808": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "280375465084448": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "214404767417888": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "180319906956832": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "174822348817952": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "158329674401312": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "155031139517984": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "81363860456992": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "103354093012512": {
     "favorite": true,
     "status": "Deconhecido",
     "algorithms": []
@@ -181,7 +114,22 @@
     "status": "Deconhecido",
     "algorithms": []
   },
+  "103354093012512": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
   "108851651151392": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "89060441851424": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "81363860456992": {
     "favorite": true,
     "status": "Deconhecido",
     "algorithms": []
@@ -216,7 +164,107 @@
     "status": "Deconhecido",
     "algorithms": []
   },
-  "589338232489763": {
+  "147334558123552": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "158329674401312": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "155031139517984": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "236394999973408": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "247390116251168": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "261683767412256": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "263882790667808": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "280375465084448": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "219902325556768": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "214404767417888": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "180319906956832": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "637716744111907": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "683896232478499": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "531064116217376": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "367236883678752": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "352943232517664": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "345246651123232": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "313360813917728": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "305664232523296": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "285873023223328": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "291370581362208": {
     "favorite": true,
     "status": "Deconhecido",
     "algorithms": []
@@ -226,12 +274,72 @@
     "status": "Deconhecido",
     "algorithms": []
   },
+  "378231999956512": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "394724674373152": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "589338232489763": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "536561674356256": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "556352883656224": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "564049465050915": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "583840674350883": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "578343116212003": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "553054348772896": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "605830906906403": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
   "645413325506339": {
     "favorite": true,
     "status": "Deconhecido",
     "algorithms": []
   },
-  "683896232478499": {
+  "669602581317411": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "661905999922979": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "650910883645219": {
     "favorite": true,
     "status": "Deconhecido",
     "algorithms": []
@@ -281,112 +389,17 @@
     "status": "Deconhecido",
     "algorithms": []
   },
-  "650910883645219": {
+  "650910883644960": {
     "favorite": true,
     "status": "Deconhecido",
     "algorithms": []
   },
-  "661905999922979": {
+  "689393790617120": {
     "favorite": true,
     "status": "Deconhecido",
     "algorithms": []
   },
-  "669602581317411": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "536561674356256": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "564049465050915": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "556352883656224": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "553054348772896": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "583840674350883": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "578343116212003": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "637716744111907": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "605830906906403": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "531064116217376": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "394724674373152": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "378231999956512": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "367236883678752": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "352943232517664": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "345246651123232": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "313360813917728": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "305664232523296": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "285873023223328": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "291370581362208": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "589338232489504": {
+  "564049465050656": {
     "favorite": true,
     "status": "Deconhecido",
     "algorithms": []
@@ -396,12 +409,112 @@
     "status": "Deconhecido",
     "algorithms": []
   },
+  "372734441817891": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "367236883679011": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "345246651123491": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "313360813917987": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "305664232523555": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "285873023223587": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "291370581362467": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "352943232517923": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "394724674373411": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "531064116217635": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "536561674356515": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "553054348773155": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "556352883656483": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "589338232489504": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "578343116211744": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "583840674350624": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "605830906906144": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "645413325506080": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "637716744111648": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "661905999922720": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
   "683896232478240": {
     "favorite": true,
     "status": "Deconhecido",
     "algorithms": []
   },
-  "689393790617120": {
+  "669602581317152": {
     "favorite": true,
     "status": "Deconhecido",
     "algorithms": []
@@ -446,195 +559,12 @@
     "status": "Deconhecido",
     "algorithms": []
   },
-  "669602581317152": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "650910883644960": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "661905999922720": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "645413325506080": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "637716744111648": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "605830906906144": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "578343116211744": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "583840674350624": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "564049465050656": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "556352883656483": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "394724674373411": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "536561674356515": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "531064116217635": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "553054348773155": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "372734441817891": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "367236883679011": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "345246651123491": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "352943232517923": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "313360813917987": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "305664232523555": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "285873023223587": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "291370581362467": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "147334558123811": {
-    "id": 147334558123811,
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": [
-      "x R r\u0027 R\u0027 r"
-    ]
-  },
-  "89060441851683": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "219902325557027": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "236394999973667": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "239693534856995": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "247390116251427": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "261683767412515": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "263882790668067": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "280375465084707": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "214404767418147": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "180319906957091": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
   "174822348818211": {
     "favorite": true,
     "status": "Deconhecido",
     "algorithms": []
   },
-  "158329674401571": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "155031139518243": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "81363860457251": {
-    "favorite": true,
-    "status": "Deconhecido",
-    "algorithms": []
-  },
-  "103354093012771": {
+  "239693534856995": {
     "favorite": true,
     "status": "Deconhecido",
     "algorithms": []
@@ -654,7 +584,22 @@
     "status": "Deconhecido",
     "algorithms": []
   },
+  "103354093012771": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
   "108851651151651": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "89060441851683": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "81363860457251": {
     "favorite": true,
     "status": "Deconhecido",
     "algorithms": []
@@ -685,6 +630,64 @@
     "algorithms": []
   },
   "16492674418467": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "147334558123811": {
+    "id": 147334558123811,
+    "favorite": true,
+    "status": "Conheço",
+    "algorithms": [
+      "x R r\u0027 R\u0027 r"
+    ]
+  },
+  "158329674401571": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "155031139518243": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "236394999973667": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "247390116251427": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "261683767412515": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "263882790668067": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "280375465084707": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "219902325557027": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "214404767418147": {
+    "favorite": true,
+    "status": "Deconhecido",
+    "algorithms": []
+  },
+  "180319906957091": {
     "favorite": true,
     "status": "Deconhecido",
     "algorithms": []

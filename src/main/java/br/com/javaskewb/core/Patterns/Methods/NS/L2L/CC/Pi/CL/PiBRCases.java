@@ -13,7 +13,7 @@ public class PiBRCases extends PiCLCases{
     }
 
     private static ArrayList<PiCase> fill(){
-        return fill("Pi BR", new LCCases(), 4);
+        return fill(4);
     }
 
     @Override

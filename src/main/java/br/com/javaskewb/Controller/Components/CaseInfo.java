@@ -127,6 +127,8 @@ public class CaseInfo extends VBox {
         skewbBase.reset();
         algorithmsList.getChildren().clear();
         algorithms.clear();
+        txtNewAlg.clear();
+        arrayMoves.clear();
         stateInfo = null;
 
         this.setVisible(false);

@@ -117,7 +117,7 @@ public class AdvancedMoves extends Moves{
         return new CentersFaces(centers.getMatrix(), faces.getMatrix());
     }
 
-    private static CentersFaces y(){
+    public static CentersFaces y(){
         MatrixSwap centers, faces;
 
         centers = new MatrixSwap(getCenterMatrix());
