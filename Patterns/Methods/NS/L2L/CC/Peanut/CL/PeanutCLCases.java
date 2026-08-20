@@ -8,8 +8,11 @@ import br.com.javaskewb.core.Patterns.Methods.NS.L2L.LC.LCCase;
 import br.com.javaskewb.core.Patterns.Methods.NS.L2L.LC.LCCases;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class PeanutCLCases extends CLCases<PeanutCase> {
+    private static final List<ArrayList<PeanutCase>> clCases = fillCL();
+
     public PeanutCLCases(String name) {
         super(name);
     }
@@ -18,23 +21,30 @@ public abstract class PeanutCLCases extends CLCases<PeanutCase> {
         return PeanutCase.getFaces();
     }
 
-    protected static ArrayList<PeanutCase> fill(String name, LCCases centerCases, int center) {
-        ArrayList<PeanutCase> cases = new ArrayList<>();
+    protected static ArrayList<PeanutCase> fill(int center) {
+        return clCases.get(center);
+    }
 
-        for (LCCase baseCase : centerCases.getCases()){
-            for (Case subCase: baseCase.getCasesVariants()){
-                CentersFaces centersFaces;
+    public static List<ArrayList<PeanutCase>> fillCL(){
+        List<ArrayList<PeanutCase>> clCases = new ArrayList<>();
+        String[] names = {"U", "FR", "FL", "", "BR", "BL"};
 
-                if (checkCenter(subCase, center)){
-                    int[][] centersMatrix = subCase.getCentersFaces().getCentersMatrix();
+        for (int i = 0; i < 6; i++) {
+            clCases.add(new ArrayList<>());
+        }
 
-                    centersFaces = new CentersFaces(centersMatrix, getFacesMatrix());
+        for (LCCase baseCase: new LCCases().getCases()){
+            for (Case subCase: baseCase.getCasesVariants()) {
+                int centerPos = getCenterPos(subCase);
+                ArrayList<PeanutCase> cases = clCases.get(centerPos);
+                int[][] centersMatrix = subCase.getCentersFaces().getCentersMatrix();
 
-                    cases.add(new PeanutCase(name + " " + subCase.getName(), centersFaces));
-                }
+                CentersFaces centersFaces = new CentersFaces(centersMatrix, getFacesMatrix());
+
+            cases.add(new PeanutCase("Peanut " + names[centerPos] + " " + subCase.getName(), centersFaces));
             }
         }
 
-        return cases;
+        return clCases;
     }
 }

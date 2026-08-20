@@ -13,7 +13,7 @@ public class PeanutFRCases extends PeanutCLCases{
     }
 
     private static ArrayList<PeanutCase> fill(){
-        return fill("Peanut FR", new LCCases(), 1);
+        return fill(1);
     }
 
     @Override

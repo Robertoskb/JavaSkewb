@@ -15,7 +15,7 @@ public class PeanutUCases extends PeanutCLCases{
     }
 
     private static ArrayList<PeanutCase> fill(){
-        ArrayList<PeanutCase> peanutU = fill("Peanut U", new LCCases(), 0);
+        ArrayList<PeanutCase> peanutU = fill(0);
         peanutU.addFirst(new PeanutCase("Peanut", new CentersFaces(Moves.getCenterMatrix(), PeanutCase.getFaces())));
 
         return peanutU;
