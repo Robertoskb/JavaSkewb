@@ -14,7 +14,7 @@ public abstract class PiCLCases extends CLCases<PiCase> {
     private static final List<ArrayList<PiCase>> clCases = fillCL();
 
     public PiCLCases(String name) {
-        super(name);
+        super("Pi " + name);
     }
 
     public static int[][] getFacesMatrix() {

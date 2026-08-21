@@ -2,18 +2,12 @@ package br.com.javaskewb.DataManager.Manager;
 
 import br.com.javaskewb.DataManager.utils.BitState;
 import br.com.javaskewb.DataManager.utils.SaveState;
-import br.com.javaskewb.core.Cube.Skewb;
 import br.com.javaskewb.core.Cube.State;
-import br.com.javaskewb.core.Mapping.Moves.AdvancedMoves;
 import br.com.javaskewb.core.Patterns.Methods.NS.NSCase;
 import br.com.javaskewb.core.Patterns.Methods.NS.NSCases;
-import br.com.javaskewb.core.Solution.Solution;
-import br.com.javaskewb.core.Solution.utils.Scramble;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonIOException;
-import com.google.gson.JsonSyntaxException;
 
 import java.io.File;
 import java.io.FileReader;
@@ -22,11 +16,13 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Manager {
     private HashMap<Long, StateInfo> data = new HashMap<>();
     private final String path = "src/resources/br/com/javaskewb/Data/";
-    private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     private static Manager manager;
 
@@ -56,27 +52,50 @@ public class Manager {
         return manager;
     }
 
-    public void importStateInfos(ArrayList<StateInfo> stateInfos){
-        for (StateInfo stateInfo: stateInfos){
-            if (data.containsKey(stateInfo.getId()))
-                data.get(stateInfo.getId()).getAlgorithms().addAll(stateInfo.getAlgorithms());
-            else
-                data.put(stateInfo.getId(), stateInfo);
+    public HashMap<Long, HashSet<String>> getAlgorithms(File file){
+        HashMap<Long, HashSet<String>> algorithms = new HashMap<>();
+
+        try (FileReader reader = new FileReader(file)){
+            Type hashmap = new TypeToken<HashMap<Long, ArrayList<String>>>(){}.getType();
+            algorithms = gson.fromJson(reader, hashmap);
+
+            System.out.println("data carregada com sucesso!");
+        } catch (IOException e) {
+            System.out.println("Falha ao carregar data " + e.getMessage());
         }
+
+        return algorithms;
     }
 
-    public void addAlg(long id, Scramble alg){
-        if (data.containsKey(id)){
-            data.get(id).getAlgorithms().add(alg.toString());
+    public boolean importAlgorithms(File file){
+        HashMap<Long, HashSet<String>> algorithms = getAlgorithms(file);
+
+        if (file != null) {
+            for (long id : algorithms.keySet()) {
+                if (data.containsKey(id))
+                    data.get(id).getAlgorithms().addAll(algorithms.get(id));
+                else
+                    data.put(id, new StateInfo(true, "Desconhecido", new HashSet<>(algorithms.get(id))));
+            }
+
+            return save();
         }
+
+        return false;
     }
 
-    public void removeAlg(long id, int index){
-        if (data.containsKey(id)){
-            ArrayList<String> algorithms = data.get(id).getAlgorithms();
-            if (algorithms.size() > index)
-                algorithms.remove(index);
+    public boolean exportAlgorithms(Set<Long> subSet, File file){
+        HashMap<Long, HashSet<String>> export = new HashMap<>();
+
+        for (long id: subSet){
+            HashSet<String> algorithms = data.get(id).getAlgorithms();
+
+            if (!algorithms.isEmpty())
+                export.put(id, algorithms);
         }
+
+
+        return saveAlgorithm(export, file);
     }
 
     public StateInfo getStateInfo(State state){
@@ -86,7 +105,7 @@ public class Manager {
         if (data.containsKey(bitState.getId()))
             stateInfo = data.get(bitState.getId());
         else
-            stateInfo = new StateInfo(false, "Desconhecido", new ArrayList<>());
+            stateInfo = new StateInfo(false, "Desconhecido", new HashSet<>());
 
         stateInfo.setId(bitState.getId());
 
@@ -99,6 +118,17 @@ public class Manager {
             System.out.println("Salvo com sucesso");
             return true;
         } catch (IOException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean saveAlgorithm(HashMap<Long, HashSet<String>> json, File file){
+        try (FileWriter writer = new FileWriter(file)){
+            gson.toJson(json, writer);
+            return true;
+        }
+        catch (IOException e){
             System.out.println(e.getMessage());
             return false;
         }
@@ -121,7 +151,7 @@ public class Manager {
 
             BitState bitState = SaveState.getBitState(state);
 
-            StateInfo stateInfo = new StateInfo(true, "Deconhecido", new ArrayList<>());
+            StateInfo stateInfo = new StateInfo(true, "Desconhecido", new HashSet<>());
 
             data.put(bitState.getId(), stateInfo);
         }

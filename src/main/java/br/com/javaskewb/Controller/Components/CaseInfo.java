@@ -5,17 +5,17 @@ import br.com.javaskewb.DataManager.Manager.StateInfo;
 import br.com.javaskewb.core.Mapping.Moves.AdvancedMoves;
 import br.com.javaskewb.core.Mapping.Moves.Matrices.CentersFaces;
 import br.com.javaskewb.core.Patterns.base.Case;
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class CaseInfo extends VBox {
 
@@ -26,6 +26,7 @@ public class CaseInfo extends VBox {
     @FXML private TextField txtNewAlg;
     @FXML private FlowPane notationContainer;
     @FXML private Button btnAddAlg;
+    @FXML private Button btnSave;
 
     @FXML private StackPane skewbContainer;
 
@@ -40,7 +41,7 @@ public class CaseInfo extends VBox {
     private StateInfo stateInfo;
     private Case skewbCase;
 
-    private final ArrayList<String> algorithms = new ArrayList<>();
+    private final HashSet<String> algorithms = new HashSet<>();
 
     public CaseInfo() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/com/javaskewb/view/components/CaseInfo.fxml"));
@@ -58,7 +59,7 @@ public class CaseInfo extends VBox {
         this.setVisible(false);
         skewbContainer.getChildren().add(skewbBase);
 
-        cbStatus.getItems().addAll("Desconheço", "Aprendendo", "Aprimorando", "Conheço");
+        cbStatus.getItems().addAll("Desconhecido", "Aprendendo", "Aprimorando", "Conhecido");
 
         txtNewAlg.setEditable(false);
 
@@ -75,6 +76,34 @@ public class CaseInfo extends VBox {
 
             notationContainer.getChildren().add(button);
         }
+
+        Button sButon = new Button("S");
+        Button hButon = new Button("H");
+
+        List<String> s = List.of("r'",  "R", "r", "R'");
+        List<String> h = List.of("R", "r'", "R'", "r");
+
+        sButon.setOnMouseClicked(event -> {
+            s.forEach(m -> {
+                arrayMoves.add(m);
+                updateNewAlg();
+                skewbBase.applyScramble(m);
+                updateSolved();
+            });
+        });
+
+        hButon.setOnMouseClicked(event -> {
+            h.forEach(m -> {
+                arrayMoves.add(m);
+                updateNewAlg();
+                skewbBase.applyScramble(m);
+                updateSolved();
+            });
+        });
+
+        notationContainer.getChildren().add(sButon);
+        notationContainer.getChildren().add(hButon);
+
         Button button = new Button("⬅");
         button.setOnMouseClicked(event -> {
             if (!arrayMoves.isEmpty()){
@@ -84,9 +113,19 @@ public class CaseInfo extends VBox {
                 skewbBase.applyMove(centersFaces);
                 updateSolved();
             }
-                }
-        );
+        });
+
+        cbStatus.valueProperty().addListener((observable, oldValue, newValue) -> {
+            setSaveButton();
+        });
         notationContainer.getChildren().add(button);
+    }
+
+    public void setSaveButton(){
+        boolean value = algorithms.equals(stateInfo.getAlgorithms()) &&
+                        btnFav.isSelected() == stateInfo.isFavorite() &&
+                        stateInfo.getStatus().equals(cbStatus.getValue());
+        btnSave.setDisable(value);
     }
 
     private void updateNewAlg(){
@@ -116,6 +155,12 @@ public class CaseInfo extends VBox {
 
         btnAddAlg.setDisable(true);
         this.setVisible(true);
+        this.setOpacity(0);
+
+        FadeTransition fade = new FadeTransition(Duration.seconds(0.5), this);
+        fade.setFromValue(0.0);
+        fade.setToValue(1.0);
+        fade.play();
     }
 
     private void updateSolved(){
@@ -131,7 +176,12 @@ public class CaseInfo extends VBox {
         arrayMoves.clear();
         stateInfo = null;
 
-        this.setVisible(false);
+        FadeTransition fade = new FadeTransition(Duration.seconds(0.5), this);
+        fade.setFromValue(1.0);
+        fade.setToValue(0.0);
+        fade.setOnFinished(e -> this.setVisible(false));
+        fade.play();
+
     }
 
     @FXML
@@ -141,6 +191,8 @@ public class CaseInfo extends VBox {
         } else {
             btnFav.setText("☆");
         }
+
+        setSaveButton();
     }
 
     @FXML
@@ -173,11 +225,13 @@ public class CaseInfo extends VBox {
         btnDel.setOnAction(e -> {
             algorithmsList.getChildren().remove(algRow);
             algorithms.remove(alg);
+            setSaveButton();
         });
 
         algRow.getChildren().addAll(lblAlg, btnDel);
         algorithmsList.getChildren().add(algRow);
         algorithms.add(alg);
+        setSaveButton();
     }
 
     @FXML
@@ -188,6 +242,7 @@ public class CaseInfo extends VBox {
         stateInfo.getAlgorithms().addAll(algorithms);
         stateInfo.setStatus(cbStatus.getValue());
 
-        manager.save();
+        if (manager.save())
+            setSaveButton();
     }
 }

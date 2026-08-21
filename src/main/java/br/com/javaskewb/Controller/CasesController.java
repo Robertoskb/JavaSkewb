@@ -5,29 +5,30 @@ import br.com.javaskewb.Controller.Components.CaseInfo;
 import br.com.javaskewb.Controller.Components.SkewbBase;
 import br.com.javaskewb.Controller.utils.Pagination;
 import br.com.javaskewb.DataManager.Manager.Manager;
+import br.com.javaskewb.DataManager.utils.BitState;
+import br.com.javaskewb.DataManager.utils.SaveState;
 import br.com.javaskewb.core.Cube.State;
 import br.com.javaskewb.core.Patterns.Methods.Methods;
 import br.com.javaskewb.core.Patterns.base.Case;
 
 import br.com.javaskewb.core.Patterns.base.Cases;
-import br.com.javaskewb.core.Patterns.Methods.NS.NSCases;
 import br.com.javaskewb.core.Patterns.utils.TreeCases;
+import br.com.javaskewb.ui.ScreenManager;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class CasesController {
 
@@ -46,6 +47,9 @@ public class CasesController {
     private Button btnPrev;
 
     @FXML
+    private Button btnExport;
+
+    @FXML
     private GridPane gridCases;
 
     @FXML
@@ -57,9 +61,13 @@ public class CasesController {
     @FXML
     private Label lblPage;
 
+    @FXML
+    private Label casesName;
+
     private int currentPage = 1;
 
     private final Methods methods = new Methods();
+    private String currentMethod;
 
     private Cases<?> currentCases;
     private final TreeCases treeCases = new TreeCases();
@@ -72,6 +80,8 @@ public class CasesController {
     private final HashMap<Case, CaseCard> caseCaseCardCache = new HashMap<>();
 
     private final Manager manager = Manager.getInstance();
+
+    private final ScreenManager screenManager = ScreenManager.getInstance();
 
     public CasesController() throws IOException {
     }
@@ -101,6 +111,7 @@ public class CasesController {
     }
 
     private void updateMethod(Cases<?> method) throws IOException {
+        currentMethod = method.getName();
         currentCases = method;
         while (currentCases.getSubCases().size() == 1){
             currentCases = currentCases.getSubCases().getFirst();
@@ -116,8 +127,29 @@ public class CasesController {
     }
 
     private void updateButtons(){
-        if (currentSubCases.isEmpty())
+        casesName.setText(currentCases.getName());
+
+        if (currentSubCases.isEmpty()){
+            categoryContainer.getChildren().clear();
+            Cases<?> parent = treeCases.getParent(currentCases);
+            if (parent != null){
+                Cases<?> parentParent = treeCases.getParent(parent);
+                if (parentParent != null) {
+                    Button button = new Button("Voltar");
+                    button.setOnMouseClicked(e -> {
+                        try {
+                            updateCases(parent);
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    });
+
+                    button.getStyleClass().add("category-button");
+                    categoryContainer.getChildren().add(button);
+                }
+            }
             return;
+        }
 
         categoryContainer.getChildren().clear();
         Cases<?> parent = treeCases.getParent(currentSubCases.getFirst());
@@ -244,6 +276,50 @@ public class CasesController {
         if (currentPage > 1) {
             currentPage--;
             populateGrid(casePagination.getPage(currentPage));
+        }
+    }
+
+    @FXML
+    private void exportCases(){
+        Set<Long> subSet =  new HashSet<>();
+
+        for (Case subCase: currentCases.getCases()){
+            BitState bitState = SaveState.getBitState(subCase.applyCase(State.getSolvedState(), true));
+            subSet.add(bitState.getId());
+        }
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Exportar Casos");
+
+        fileChooser.setInitialFileName(currentMethod + " " + currentCases.getName() + ".json");
+
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Arquivos JSON","*.json"));
+
+        File file = fileChooser.showSaveDialog(screenManager.getStage());
+
+        if (file != null){
+            boolean exported = manager.exportAlgorithms(subSet, file);
+            if  (exported)
+                System.out.println("Exportado com sucesso");
+        }
+    }
+
+    @FXML
+    private void importCases(){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Importar Casos");
+
+        fileChooser.setInitialFileName(currentCases.getName() + ".json");
+
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Arquivos JSON","*.json"));
+
+        File file = fileChooser.showOpenDialog(screenManager.getStage());
+
+        if (file != null){
+             boolean imported = manager.importAlgorithms(file);
+
+            if  (imported)
+                System.out.println("Importado com sucesso");
         }
     }
 

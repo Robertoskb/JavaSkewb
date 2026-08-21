@@ -1,15 +1,16 @@
 package br.com.javaskewb.DataManager.Manager;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class StateInfo {
     private Long id;
     private boolean favorite;
     private String status;
-    private ArrayList<String> algorithms;
+    private HashSet<String> algorithms;
 
     public StateInfo(){}
 
-    public StateInfo(boolean favorite, String status, ArrayList<String> algorithms) {
+    public StateInfo(boolean favorite, String status, HashSet<String> algorithms) {
         this.favorite = favorite;
         this.status = status;
         this.algorithms = algorithms;
@@ -39,11 +40,11 @@ public class StateInfo {
         this.status = status;
     }
 
-    public ArrayList<String> getAlgorithms() {
+    public HashSet<String> getAlgorithms() {
         return algorithms;
     }
 
-    public void setAlgorithms(ArrayList<String> algorithms) {
+    public void setAlgorithms(HashSet<String> algorithms) {
         this.algorithms = algorithms;
     }
 }

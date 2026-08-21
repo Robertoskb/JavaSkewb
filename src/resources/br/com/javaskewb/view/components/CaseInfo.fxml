@@ -71,6 +71,6 @@
          <Insets />
       </VBox.margin>
    </FlowPane>
-   <Button mnemonicParsing="false" onAction="#save" prefHeight="38.0" prefWidth="282.0" style="-fx-background-color: green; -fx-text-fill: white;" text="Salvar" />
+   <Button fx:id="btnSave" mnemonicParsing="false" onAction="#save" prefHeight="38.0" prefWidth="282.0" style="-fx-background-color: green; -fx-text-fill: white;" text="Salvar" />
 
 </fx:root>
