@@ -14,7 +14,7 @@ public abstract class PeanutCLCases extends CLCases<PeanutCase> {
     private static final List<ArrayList<PeanutCase>> clCases = fillCL();
 
     public PeanutCLCases(String name) {
-        super(name);
+        super("Peanut " + name);
     }
 
     public static int[][] getFacesMatrix() {
