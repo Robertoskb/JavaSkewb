@@ -91,17 +91,17 @@ public class State {
         return new State(new_centers, new_corners);
     }
 
-    public void maskSide(int side){
-        if (side < 0 || side > 5)
+    public void maskLayer(int layer){
+        if (layer < 0 || layer > 5)
             return;
 
         for (Center center: centers)
-            if (center.getValue() != side)
+            if (center.getValue() != layer)
                 center.setValue(-1);
 
         for (Corner corner: corners){
             boolean find = false;
-            for (int id: sides[side]){
+            for (int id: sides[layer]){
                 for (int face: faces[id]){
                     if (corner.getFaces().contains(face)){
                         find = true;
@@ -120,7 +120,7 @@ public class State {
         if (side < 0 || side > 5)
             return;
 
-        maskSide(side);
+        maskLayer(side);
 
         for (Corner corner: corners){
             for (int id: sides[side]){
@@ -134,6 +134,7 @@ public class State {
                 }
             }
         }
+
     }
 
     public LinkedHashMap<State, State> getMaskSides(){
@@ -144,8 +145,8 @@ public class State {
             State state = this.cloneState();
             State newSolved = solved.cloneState();
 
-            state.maskSide(i);
-            newSolved.maskSide(i);
+            state.maskLayer(i);
+            newSolved.maskLayer(i);
 
             states.put(state, newSolved);
         }

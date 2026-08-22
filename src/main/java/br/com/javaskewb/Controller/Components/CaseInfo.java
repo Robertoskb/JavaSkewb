@@ -2,6 +2,8 @@ package br.com.javaskewb.Controller.Components;
 
 import br.com.javaskewb.DataManager.Manager.Manager;
 import br.com.javaskewb.DataManager.Manager.StateInfo;
+import br.com.javaskewb.core.Cube.Skewb;
+import br.com.javaskewb.core.Cube.State;
 import br.com.javaskewb.core.Mapping.Moves.AdvancedMoves;
 import br.com.javaskewb.core.Mapping.Moves.Matrices.CentersFaces;
 import br.com.javaskewb.core.Patterns.base.Case;
@@ -137,10 +139,10 @@ public class CaseInfo extends VBox {
             return;
 
         this.skewbCase = skewbCase;
-        skewbCase.applyCase(skewbBase.getSkewb().getState());
-        skewbBase.update();
+        Skewb caseSkewb = skewbCase.getCaseSkewb();
+        skewbBase.setSkewb(caseSkewb);
 
-        stateInfo = manager.getStateInfo(skewbBase.getSkewb().getState());
+        stateInfo = manager.getStateInfo(skewbCase.applyCase(State.getSolvedState(), true));
 
         lblName.setText(skewbCase.getName());
 
@@ -198,9 +200,6 @@ public class CaseInfo extends VBox {
     @FXML
     private void addNewAlgorithm() {
         skewbBase.reset();
-
-        skewbCase.applyCase(skewbBase.getSkewb().getState());
-        skewbBase.update();
         updateSolved();
 
         String newAlg = txtNewAlg.getText().trim();

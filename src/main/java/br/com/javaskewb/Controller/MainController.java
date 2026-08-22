@@ -10,8 +10,8 @@ import br.com.javaskewb.core.Cube.Skewb;
 import br.com.javaskewb.core.Mapping.Moves.AdvancedMoves;
 import br.com.javaskewb.core.Mapping.Moves.WCAMoves;
 import br.com.javaskewb.core.Cube.State;
-import br.com.javaskewb.core.Patterns.Methods.NS.FL.FLCase;
-import br.com.javaskewb.core.Patterns.Methods.NS.FL.FLCases;
+import br.com.javaskewb.core.Patterns.Methods.FS.FL.FLCase;
+import br.com.javaskewb.core.Patterns.Methods.FS.FL.FLCases;
 import br.com.javaskewb.core.Solution.Solution;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -69,7 +69,7 @@ public class MainController {
 
         for (FLCase LLCase : cases) {
             State miniState = State.getSolvedState();
-            miniState.maskSide(3);
+            miniState.maskLayer(3);
 
             LLCase.applyCase(miniState);
 

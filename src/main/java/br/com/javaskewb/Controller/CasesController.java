@@ -7,7 +7,9 @@ import br.com.javaskewb.Controller.utils.Pagination;
 import br.com.javaskewb.DataManager.Manager.Manager;
 import br.com.javaskewb.DataManager.utils.BitState;
 import br.com.javaskewb.DataManager.utils.SaveState;
+import br.com.javaskewb.core.Cube.Skewb;
 import br.com.javaskewb.core.Cube.State;
+import br.com.javaskewb.core.Patterns.Methods.FS.FSCase;
 import br.com.javaskewb.core.Patterns.Methods.Methods;
 import br.com.javaskewb.core.Patterns.base.Case;
 
@@ -77,7 +79,7 @@ public class CasesController {
 
     private final CaseInfo caseInfo = new CaseInfo();
 
-    private final HashMap<Case, CaseCard> caseCaseCardCache = new HashMap<>();
+    private final HashMap<Integer, CaseCard> caseCaseCardCache = new HashMap<>();
 
     private final Manager manager = Manager.getInstance();
 
@@ -134,19 +136,18 @@ public class CasesController {
             Cases<?> parent = treeCases.getParent(currentCases);
             if (parent != null){
                 Cases<?> parentParent = treeCases.getParent(parent);
-                if (parentParent != null) {
-                    Button button = new Button("Voltar");
-                    button.setOnMouseClicked(e -> {
-                        try {
-                            updateCases(parent);
-                        } catch (IOException ex) {
-                            throw new RuntimeException(ex);
-                        }
-                    });
+                Button button = new Button("Voltar");
+                button.setOnMouseClicked(e -> {
+                    try {
+                        updateCases(parent);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                });
 
-                    button.getStyleClass().add("category-button");
-                    categoryContainer.getChildren().add(button);
-                }
+                button.getStyleClass().add("category-button");
+                categoryContainer.getChildren().add(button);
+
             }
             return;
         }
@@ -203,24 +204,20 @@ public class CasesController {
     private ArrayList<CaseCard> getCaseCards(Cases<?> cases) throws IOException {
         ArrayList<CaseCard> nodes = new ArrayList<>();
         for (Case _case: cases.getCases()){
-            State state;
-
-            if (caseCaseCardCache.containsKey(_case)){
-                nodes.add(caseCaseCardCache.get(_case));
+            if (caseCaseCardCache.containsKey(_case.getId())){
+                nodes.add(caseCaseCardCache.get(_case.getId()));
             }
             else {
-                state = State.getSolvedState();
-                _case.applyCase(state);
-
-                SkewbBase skewbBase = new SkewbBase(state);
-                skewbBase.changeBottomDisabled();
+                SkewbBase skewbBase = new SkewbBase(_case.getCaseSkewb());
+                if (! (_case instanceof FSCase))
+                    skewbBase.changeBottomDisabled();
 
                 CaseCard caseCard = new CaseCard();
                 caseCard.setSkewbComponent(skewbBase);
                 caseCard.setCaseName(_case.getName());
                 caseCard.setSkewbCase(_case);
 
-                caseCaseCardCache.put(_case, caseCard);
+                caseCaseCardCache.put(_case.getId(), caseCard);
 
                 nodes.add(caseCard);
             }

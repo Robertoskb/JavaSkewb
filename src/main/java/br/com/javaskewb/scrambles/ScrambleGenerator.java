@@ -2,8 +2,8 @@ package br.com.javaskewb.scrambles;
 
 import br.com.javaskewb.core.Cube.State;
 import br.com.javaskewb.core.Patterns.base.Case;
-import br.com.javaskewb.core.Patterns.Methods.NS.FL.FLCase;
-import br.com.javaskewb.core.Patterns.Methods.NS.FL.FLCases;
+import br.com.javaskewb.core.Patterns.Methods.FS.FL.FLCase;
+import br.com.javaskewb.core.Patterns.Methods.FS.FL.FLCases;
 import br.com.javaskewb.core.Patterns.Methods.NS.NSCase;
 import br.com.javaskewb.core.Patterns.Methods.NS.NSCases;
 import br.com.javaskewb.core.Solution.Solution;

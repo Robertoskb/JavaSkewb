@@ -154,7 +154,7 @@ public class TimerController {
         skewbBase.applyScramble(scramble);
 
         skewbFL.getSkewb().setState(State.getPerspective(perspective));
-        skewbFL.getSkewb().getState().maskSide(side);
+        skewbFL.getSkewb().getState().maskLayer(side);
         flCase.applyCase(skewbFL.getSkewb().getState());
         skewbFL.update();
 

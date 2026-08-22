@@ -63,7 +63,7 @@ public class BFSSkewb {
 
         State state = State.getSolvedState();
 
-        state.maskSide(3);
+        state.maskLayer(3);
 
         HashMap<State, Scramble> bfs = BFS(8, state, moves);
 
@@ -73,7 +73,7 @@ public class BFSSkewb {
         return scrambles;
     }
 
-    public static ArrayList<ArrayList<Scramble>> getFLEG2Scrambles(Moves moves){
+    public static ArrayList<ArrayList<Scramble>> getFFScrambles(Moves moves){
         ArrayList<ArrayList<Scramble>> scrambles = new ArrayList<>();
 
         for (int i = 0; i < 8; i++) {
@@ -96,7 +96,7 @@ public class BFSSkewb {
         State state = State.getSolvedState();
 
         ArrayList<ArrayList<Scramble>> bfs1 = getFLScrambles(new FLMoves());
-        ArrayList<ArrayList<Scramble>> bfs2 = getFLEG2Scrambles(new FLMoves());
+        ArrayList<ArrayList<Scramble>> bfs2 = getFFScrambles(new FLMoves());
 
         for (int i = 0; i < 8; i++) {
             System.out.println(i + " Moves: " + bfs1.get(i).size() + " -> " + bfs2.get(i).size());

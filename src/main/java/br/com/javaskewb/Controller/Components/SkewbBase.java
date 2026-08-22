@@ -71,7 +71,7 @@ public class SkewbBase extends StackPane{
     private static final double BASE_WIDTH = 805;
     private static final double BASE_HEIGHT = 606;
 
-    private final Skewb skewb;
+    private Skewb skewb;
 
     private final State solvedState = State.getSolvedState();
 
@@ -81,6 +81,15 @@ public class SkewbBase extends StackPane{
 
     public SkewbBase() throws IOException {
         skewb = new Skewb();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/javaskewb/view/components/SkewbBase.fxml"));
+        loader.setRoot(this);
+        loader.setController(this);
+
+        loader.load();
+    }
+
+    public SkewbBase(Skewb skewb) throws IOException {
+        this.skewb = skewb;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/javaskewb/view/components/SkewbBase.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -155,7 +164,8 @@ public class SkewbBase extends StackPane{
     }
 
     public void reset(){
-        skewb.setState(solvedState.cloneState());
+        skewb.reset();
+        update();
     }
 
     public void changeVisibility(){
@@ -298,5 +308,10 @@ public class SkewbBase extends StackPane{
 
     public Skewb getSkewb() {
         return skewb;
+    }
+
+    public void setSkewb(Skewb skewb) {
+        this.skewb = skewb;
+        update();
     }
 }
