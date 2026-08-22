@@ -1,8 +1,10 @@
-package br.com.javaskewb.core.Patterns.Methods.NS.FL;
+package br.com.javaskewb.core.Patterns.Methods.FS.FL;
 
 import br.com.javaskewb.core.Mapping.Moves.FLMoves;
 import br.com.javaskewb.core.Mapping.Moves.Matrices.CentersFaces;
 import br.com.javaskewb.core.Mapping.Moves.Moves;
+import br.com.javaskewb.core.Patterns.Methods.FS.FSCase;
+import br.com.javaskewb.core.Patterns.Methods.FS.FSSubCases;
 import br.com.javaskewb.core.Patterns.base.Case;
 import br.com.javaskewb.core.Patterns.base.Cases;
 import br.com.javaskewb.core.Patterns.Methods.NS.NSCases;
@@ -12,6 +14,7 @@ import br.com.javaskewb.core.Solution.utils.Scramble;
 import java.util.*;
 
 public class FLCases extends Cases<FLCase> {
+
     private static final ArrayList<FLCase> ZeroMoveCases = new ArrayList<>();
     private static final ArrayList<FLCase> OneMoveCases = new ArrayList<>();
     private static final ArrayList<FLCase> TwoMoveCases = new ArrayList<>();
@@ -26,6 +29,8 @@ public class FLCases extends Cases<FLCase> {
             FourMoveCases, FiveMoveCases, SixMoveCases, SevenMoveCases
     ));
 
+    private static final ArrayList<Cases<?>> subCases = new ArrayList<>();
+
     private static final ArrayList<FLCase> cases = fill();
 
     public FLCases() {
@@ -37,12 +42,14 @@ public class FLCases extends Cases<FLCase> {
         FLMoves flMoves = new FLMoves();
         ArrayList<ArrayList<Scramble>> ArrayScramble = BFSSkewb.getFLScrambles(flMoves);
 
-        FLCase zeroMove = new FLCase("0 move case", new CentersFaces(Moves.getCenterMatrix(), Moves.getFacesMatrix()));
+        FLCase zeroMove = new FLCase("0 Move ", new CentersFaces(Moves.getCenterMatrix(), Moves.getFacesMatrix()));
         cases.add(zeroMove);
         ZeroMoveCases.add(zeroMove);
         for (int i = 1; i < 8; i++) {
             Set<Case> variants = new HashSet<>();
             ArrayList<Scramble> scrambles = ArrayScramble.get(i);
+
+            int count = 0;
             for (Scramble scramble: scrambles){
                 CentersFaces centersFaces = new CentersFaces(Moves.getCenterMatrix(), Moves.getFacesMatrix());
 
@@ -50,7 +57,7 @@ public class FLCases extends Cases<FLCase> {
                     centersFaces = Moves.mulCenterFaces(flMoves.getMove(move), centersFaces);
                 }
 
-                FLCase flCase = new FLCase(i + " Move Case " + scramble, centersFaces);
+                FLCase flCase = new FLCase(i + " Move Case " + count++, centersFaces);
                 if (!variants.contains(flCase)) {
                     CaseByMoves.get(i).add(flCase);
                     cases.add(flCase);
@@ -61,6 +68,13 @@ public class FLCases extends Cases<FLCase> {
                 variants.addAll(flCase.getCasesVariants());
             }
         }
+
+        int cont = 0;
+        for (ArrayList<FLCase> flCases: CaseByMoves){
+            subCases.add(new FSSubCases<>(cont++ + " Moves", flCases));
+        }
+
+        subCases.removeFirst();
 
         return cases;
     }
@@ -77,6 +91,11 @@ public class FLCases extends Cases<FLCase> {
     @Override
     public ArrayList<FLCase> getCases() {
         return cases;
+    }
+
+    @Override
+    public ArrayList<Cases<?>> getSubCases() {
+        return subCases;
     }
 
     public FLCase getRandomFLByMoves(int moves){

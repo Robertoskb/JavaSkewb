@@ -30,8 +30,7 @@ public class EG2Case extends NSCase {
     }
 
     public static CentersFaces getEG2CenterFaces(Case case_){
-        List<String> names = Arrays.asList("U2", "U3");
-        if (names.contains(case_.getName()))
+        if (case_.getName().equals("U2"))
             return getEG2CenterFaces2();
 
         return getEG2CenterFaces1();

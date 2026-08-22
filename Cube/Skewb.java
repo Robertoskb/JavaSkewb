@@ -10,6 +10,7 @@ import java.util.List;
 
 public class Skewb {
     private State state;
+    private final State initialState;
     private Moves moves;
     private WCAMoves wcaMoves;
     private AdvancedMoves advancedMoves;
@@ -17,6 +18,7 @@ public class Skewb {
 
     public Skewb(){
         setState(State.getSolvedState());
+        initialState = state.cloneState();
         setWcaMoves(new WCAMoves(state, true));
         setAdvancedMoves(new AdvancedMoves(state, true));
         setMoves(wcaMoves);
@@ -26,6 +28,7 @@ public class Skewb {
 
     public Skewb(State baseState){
         setState(baseState);
+        initialState = baseState.cloneState();
         setWcaMoves(new WCAMoves(baseState, true));
         setAdvancedMoves(new AdvancedMoves(baseState, true));
         setMoves(wcaMoves);
@@ -33,15 +36,25 @@ public class Skewb {
         setSolvedStates(generatePerspectiveStates(baseState));
     }
 
+    public Skewb(State initialState, State solvedState){
+        setState(initialState);
+        this.initialState = initialState.cloneState();
+        setWcaMoves(new WCAMoves(initialState, true));
+        setAdvancedMoves(new AdvancedMoves(initialState, true));
+        setMoves(wcaMoves);
+
+        setSolvedStates(generatePerspectiveStates(solvedState));
+    }
+
     public ArrayList<State> generatePerspectiveStates(State baseState){
         return State.generatePerspectivesStates(baseState);
     }
 
     public void maskSide(int side){
-        state.maskSide(side);
+        state.maskLayer(side);
 
         State base = State.getSolvedState();
-        base.maskSide(side);
+        base.maskLayer(side);
 
         setSolvedStates(generatePerspectiveStates(base));
     }
@@ -93,7 +106,17 @@ public class Skewb {
     public void setState(State state) {
         this.state = state;
         if (wcaMoves != null || advancedMoves != null){
-            setSolvedStates(generatePerspectiveStates(state));
+            setSolvedStates(generatePerspectiveStates());
+            if (wcaMoves != null)
+                wcaMoves.setState(state);
+            if (advancedMoves != null)
+                advancedMoves.setState(state);
+        }
+    }
+
+    public void reset(){
+        state = initialState.cloneState();
+        if (wcaMoves != null || advancedMoves != null){
             if (wcaMoves != null)
                 wcaMoves.setState(state);
             if (advancedMoves != null)
@@ -128,5 +151,9 @@ public class Skewb {
 
     public void setSolvedStates(ArrayList<State> solvedStates) {
         this.solvedStates = solvedStates;
+    }
+
+    public State getInitialState() {
+        return initialState;
     }
 }

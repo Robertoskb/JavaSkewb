@@ -1,7 +1,7 @@
 package br.com.javaskewb.core.Patterns.Methods.NS;
 
 import br.com.javaskewb.core.Patterns.base.Cases;
-import br.com.javaskewb.core.Patterns.Methods.NS.FL.FLCases;
+import br.com.javaskewb.core.Patterns.Methods.FS.FL.FLCases;
 import br.com.javaskewb.core.Patterns.Methods.NS.L2L.L2LCases;
 
 import java.util.ArrayList;
