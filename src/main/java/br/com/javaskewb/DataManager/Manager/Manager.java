@@ -37,6 +37,9 @@ public class Manager {
                 Type hashmap = new TypeToken<HashMap<Long, StateInfo>>(){}.getType();
                 data = gson.fromJson(reader, hashmap);
 
+                if (data == null)
+                    data = new HashMap<>();
+
                 System.out.println("data carregada com sucesso!");
             } catch (IOException e) {
                 System.out.println("Falha ao carregar data " + e.getMessage());
@@ -102,12 +105,16 @@ public class Manager {
         BitState bitState = SaveState.getBitState(state);
 
         StateInfo stateInfo;
-        if (data.containsKey(bitState.getId()))
+        if (data.containsKey(bitState.getId())){
             stateInfo = data.get(bitState.getId());
-        else
+            stateInfo.setId(bitState.getId());
+        }
+        else{
             stateInfo = new StateInfo(false, "Desconhecido", new HashSet<>());
+            stateInfo.setId(bitState.getId());
+            data.put(stateInfo.getId(), stateInfo);
+        }
 
-        stateInfo.setId(bitState.getId());
 
         return stateInfo;
     }
