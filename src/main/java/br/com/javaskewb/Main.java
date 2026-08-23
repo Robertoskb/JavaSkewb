@@ -1,5 +1,6 @@
 package br.com.javaskewb;
 
+import br.com.javaskewb.core.Patterns.Methods.Methods;
 import br.com.javaskewb.ui.ScreenManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -9,10 +10,9 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         ScreenManager screenManager = ScreenManager.getInstance();
-        stage.setMaximized(true);
         screenManager.setStage(stage);
 
-        screenManager.setScene("cases.fxml");
+        screenManager.setScene("Main.fxml");
 
         screenManager.show();
 

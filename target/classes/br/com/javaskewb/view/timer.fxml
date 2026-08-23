@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Spinner?>
@@ -12,12 +13,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="rootPane" focusTraversable="true" onKeyPressed="#handleKeyPressed" onKeyReleased="#handleKeyReleased" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #1e1e1e;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.javaskewb.Controller.TimerController">
+<BorderPane fx:id="rootPane" focusTraversable="true" onKeyPressed="#handleKeyPressed" onKeyReleased="#handleKeyReleased" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #1e1e1e;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.javaskewb.Controller.TimerController">
     <top>
         <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: #252526; -fx-padding: 20px;" BorderPane.alignment="CENTER">
             <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
                <children>
+                  <Button mnemonicParsing="false" onAction="#toMenu" prefHeight="26.0" prefWidth="54.0" text="Sair" />
                       <Label fx:id="scrambleLabel" alignment="CENTER" contentDisplay="CENTER" text="R2 U' B2 R2 F2 U L2 U2 B2 U' R' B F D U2 L B' F2 R'" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                           <font>
                               <Font name="Monospaced Bold" size="22.0" />

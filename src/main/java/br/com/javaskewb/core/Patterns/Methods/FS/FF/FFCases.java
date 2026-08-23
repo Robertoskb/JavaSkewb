@@ -41,7 +41,7 @@ public class FFCases extends Cases<FFCase> {
         FLMoves flMoves = new FLMoves();
         ArrayList<ArrayList<Scramble>> ArrayScramble = BFSSkewb.getFFScrambles(flMoves);
 
-        FFCase zeroMove = new FFCase("0 Move", new CentersFaces(Moves.getCenterMatrix(), Moves.getFacesMatrix()));
+        FFCase zeroMove = new FFCase("0 M Case", new CentersFaces(Moves.getCenterMatrix(), Moves.getFacesMatrix()));
         cases.add(zeroMove);
         ZeroMoveCases.add(zeroMove);
         for (int i = 1; i < 7; i++) {
@@ -56,7 +56,7 @@ public class FFCases extends Cases<FFCase> {
                     centersFaces = Moves.mulCenterFaces(flMoves.getMove(move), centersFaces);
                 }
 
-                FFCase flCase = new FFCase(i + " Move Case " + count++, centersFaces);
+                FFCase flCase = new FFCase(i + " M Case " + count++, centersFaces);
                 if (!variants.contains(flCase)) {
                     CaseByMoves.get(i).add(flCase);
                     cases.add(flCase);
@@ -70,7 +70,7 @@ public class FFCases extends Cases<FFCase> {
 
         int cont = 0;
         for (ArrayList<FFCase> flCases: CaseByMoves){
-            subCases.add(new FSSubCases<>(cont++ + " Moves", flCases));
+            subCases.add(new FSSubCases<>(cont++ + " M", flCases));
         }
 
         subCases.removeFirst();

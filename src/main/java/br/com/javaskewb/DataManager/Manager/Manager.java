@@ -78,7 +78,7 @@ public class Manager {
                 if (data.containsKey(id))
                     data.get(id).getAlgorithms().addAll(algorithms.get(id));
                 else
-                    data.put(id, new StateInfo(true, "Desconhecido", new HashSet<>(algorithms.get(id))));
+                    data.put(id, new StateInfo(false, "Desconhecido", new HashSet<>(algorithms.get(id))));
             }
 
             return save();
@@ -91,14 +91,21 @@ public class Manager {
         HashMap<Long, HashSet<String>> export = new HashMap<>();
 
         for (long id: subSet){
-            HashSet<String> algorithms = data.get(id).getAlgorithms();
+            StateInfo stateInfo = getStateInfo(id);
+            if (stateInfo != null) {
+                HashSet<String> algorithms = stateInfo.getAlgorithms();
 
-            if (!algorithms.isEmpty())
-                export.put(id, algorithms);
+                if (!algorithms.isEmpty())
+                    export.put(id, algorithms);
+            }
         }
 
 
         return saveAlgorithm(export, file);
+    }
+
+    private StateInfo getStateInfo(long id) {
+        return data.get(id);
     }
 
     public StateInfo getStateInfo(State state){

@@ -8,6 +8,7 @@ import br.com.javaskewb.core.Solution.Solution;
 import br.com.javaskewb.core.Solution.utils.Scramble;
 import br.com.javaskewb.scrambles.ScrambleGenerator;
 import br.com.javaskewb.scrambles.StateConfig;
+import br.com.javaskewb.ui.ScreenManager;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -83,6 +84,7 @@ public class TimerController {
     private Case currentFlcase;
 
     private final ScrambleGenerator scrambleGenerator = new ScrambleGenerator();
+    private final ScreenManager screenManager = ScreenManager.getInstance();
 
     private final Solution solution = new Solution();
 
@@ -96,6 +98,8 @@ public class TimerController {
         Platform.runLater(() -> rootPane.requestFocus());
 
         moveSelector.setEditable(false);
+        pin.setOnMouseClicked(e -> rootPane.requestFocus());
+        moveSelector.setOnMouseClicked(e -> rootPane.requestFocus());
 
         labels.addAll(List.of(color0, color1, color2, color3, color4, color5));
 
@@ -234,5 +238,10 @@ public class TimerController {
             return String.format("%d:%02d.%02d", minutes, seconds, hundredths);
         }
         return String.format("%d.%02d", seconds, hundredths);
+    }
+
+    @FXML
+    public void toMenu() throws IOException {
+        screenManager.setScene("Main.fxml");
     }
 }

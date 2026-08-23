@@ -31,6 +31,7 @@ import javafx.stage.FileChooser;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class CasesController {
 
@@ -68,14 +69,14 @@ public class CasesController {
 
     private int currentPage = 1;
 
-    private final Methods methods = new Methods();
+    private final Methods methods = Methods.getInstance();
     private String currentMethod;
 
     private Cases<?> currentCases;
     private final TreeCases treeCases = new TreeCases();
     private ArrayList<Cases<?>> currentSubCases;
 
-    private final Pagination<CaseCard> casePagination = new Pagination<>(16);
+    private final Pagination<Integer> intPagination = new Pagination<>(16);
 
     private final CaseInfo caseInfo = new CaseInfo();
 
@@ -104,12 +105,23 @@ public class CasesController {
                 }
             });
 
-            for (Cases<?> subCases: method.getSubCases())
-                getCaseCards(subCases);
             methodsContainer.getChildren().add(button);
         }
 
         updateMethod(methods.getMETHODS().getFirst());
+
+        Button button = new Button("Sair");
+        button.getStyleClass().add("method-button");
+
+        button.setOnMouseClicked(event -> {
+            try {
+                toMenu();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        methodsContainer.getChildren().add(button);
     }
 
     private void updateMethod(Cases<?> method) throws IOException {
@@ -120,12 +132,13 @@ public class CasesController {
         }
         currentSubCases = currentCases.getSubCases();
 
+        intPagination.setArrayList(new ArrayList<>(IntStream.range(0, currentCases.getCases().size()).boxed().toList()));
+
         categoryContainer.getChildren().clear();
         updateButtons();
-        ArrayList<CaseCard> nodes = getCaseCards(currentCases);
-        casePagination.setArrayList(nodes);
         currentPage = 1;
-        populateGrid(nodes);
+
+        populateGrid(getCaseCards(currentCases, currentPage));
     }
 
     private void updateButtons(){
@@ -135,7 +148,6 @@ public class CasesController {
             categoryContainer.getChildren().clear();
             Cases<?> parent = treeCases.getParent(currentCases);
             if (parent != null){
-                Cases<?> parentParent = treeCases.getParent(parent);
                 Button button = new Button("Voltar");
                 button.setOnMouseClicked(e -> {
                     try {
@@ -194,16 +206,19 @@ public class CasesController {
         currentCases = cases;
         currentSubCases = currentCases.getSubCases();
 
-        casePagination.setArrayList(getCaseCards(currentCases));
+        intPagination.setArrayList(new ArrayList<>(IntStream.range(0, currentCases.getCases().size()).boxed().toList()));
         currentPage = 1;
-        populateGrid(casePagination.getPage(currentPage));
+        populateGrid(getCaseCards(currentCases, currentPage));
 
         updateButtons();
     }
 
-    private ArrayList<CaseCard> getCaseCards(Cases<?> cases) throws IOException {
+    private ArrayList<CaseCard> getCaseCards(Cases<?> cases, int page) throws IOException {
         ArrayList<CaseCard> nodes = new ArrayList<>();
-        for (Case _case: cases.getCases()){
+
+        ArrayList<Integer> sub = intPagination.getPage(page);
+
+        for (Case _case: cases.getCases().subList(sub.getFirst(), sub.getLast()+1)){
             if (caseCaseCardCache.containsKey(_case.getId())){
                 nodes.add(caseCaseCardCache.get(_case.getId()));
             }
@@ -223,14 +238,12 @@ public class CasesController {
             }
         }
 
-
-
         return nodes;
     }
 
     public void populateGrid(List<CaseCard> components) {
-        int division = casePagination.getArrayList().size() / casePagination.getPageSize();
-        if (division * casePagination.getPageSize() < casePagination.getArrayList().size())
+        int division = intPagination.getArrayList().size() / intPagination.getPageSize();
+        if (division * intPagination.getPageSize() < intPagination.getArrayList().size())
             division++;
         lblPage.setText("Página " + currentPage + " de " + division);
         int index = 0;
@@ -261,18 +274,18 @@ public class CasesController {
     }
 
     @FXML
-    private void nextPage(){
-        if (casePagination.getPageSize()*(currentPage) < casePagination.getArrayList().size()) {
+    private void nextPage() throws IOException {
+        if (intPagination.getPageSize()*(currentPage) < intPagination.getArrayList().size()) {
             currentPage++;
-            populateGrid(casePagination.getPage(currentPage));
+            populateGrid(getCaseCards(currentCases, currentPage));
         }
     }
 
     @FXML
-    private void prevPage(){
+    private void prevPage() throws IOException {
         if (currentPage > 1) {
             currentPage--;
-            populateGrid(casePagination.getPage(currentPage));
+            populateGrid(getCaseCards(currentCases, currentPage));
         }
     }
 
@@ -318,6 +331,11 @@ public class CasesController {
             if  (imported)
                 System.out.println("Importado com sucesso");
         }
+    }
+
+    @FXML
+    public void toMenu() throws IOException {
+        screenManager.setScene("Main.fxml");
     }
 
 }

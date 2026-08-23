@@ -41,7 +41,6 @@ public class CaseInfo extends VBox {
     private final Manager manager = Manager.getInstance();
 
     private StateInfo stateInfo;
-    private Case skewbCase;
 
     private final HashSet<String> algorithms = new HashSet<>();
 
@@ -69,12 +68,7 @@ public class CaseInfo extends VBox {
         for (String move: notation){
             Button button = new Button(move);
 
-            button.setOnMouseClicked(event -> {
-                arrayMoves.add(move);
-                updateNewAlg();
-                skewbBase.applyScramble(move);
-                updateSolved();
-            });
+            button.setOnMouseClicked(event -> applyMove(move));
 
             notationContainer.getChildren().add(button);
         }
@@ -85,23 +79,9 @@ public class CaseInfo extends VBox {
         List<String> s = List.of("r'",  "R", "r", "R'");
         List<String> h = List.of("R", "r'", "R'", "r");
 
-        sButon.setOnMouseClicked(event -> {
-            s.forEach(m -> {
-                arrayMoves.add(m);
-                updateNewAlg();
-                skewbBase.applyScramble(m);
-                updateSolved();
-            });
-        });
+        sButon.setOnMouseClicked(event -> s.forEach(this::applyMove));
 
-        hButon.setOnMouseClicked(event -> {
-            h.forEach(m -> {
-                arrayMoves.add(m);
-                updateNewAlg();
-                skewbBase.applyScramble(m);
-                updateSolved();
-            });
-        });
+        hButon.setOnMouseClicked(event -> h.forEach(this::applyMove));
 
         notationContainer.getChildren().add(sButon);
         notationContainer.getChildren().add(hButon);
@@ -123,6 +103,15 @@ public class CaseInfo extends VBox {
         notationContainer.getChildren().add(button);
     }
 
+    private void applyMove(String move) {
+        if (!skewbBase.getSkewb().isSolved()){
+            arrayMoves.add(move);
+            updateNewAlg();
+            skewbBase.applyScramble(move);
+            updateSolved();
+        }
+    }
+
     public void setSaveButton(){
         boolean value = algorithms.equals(stateInfo.getAlgorithms()) &&
                         btnFav.isSelected() == stateInfo.isFavorite() &&
@@ -138,7 +127,6 @@ public class CaseInfo extends VBox {
         if (this.isVisible())
             return;
 
-        this.skewbCase = skewbCase;
         Skewb caseSkewb = skewbCase.getCaseSkewb();
         skewbBase.setSkewb(caseSkewb);
 
@@ -166,12 +154,13 @@ public class CaseInfo extends VBox {
     }
 
     private void updateSolved(){
+        if (algorithms.contains(txtNewAlg.getText().trim()))
+            return;
         btnAddAlg.setDisable(!skewbBase.getSkewb().isSolved());
     }
 
     @FXML
     private void close(){
-        skewbBase.reset();
         algorithmsList.getChildren().clear();
         algorithms.clear();
         txtNewAlg.clear();
@@ -183,7 +172,6 @@ public class CaseInfo extends VBox {
         fade.setToValue(0.0);
         fade.setOnFinished(e -> this.setVisible(false));
         fade.play();
-
     }
 
     @FXML

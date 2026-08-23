@@ -15,6 +15,18 @@ public class Methods {
     private final FLCases FL = new FLCases();
     private final FFCases FF = new FFCases();
 
+    private static Methods methods;
+
+    private Methods(){
+
+    }
+
+    public static Methods getInstance(){
+        if (methods == null)
+            methods = new Methods();
+        return methods;
+    }
+
     private final ArrayList<Cases<?>> METHODS = new ArrayList<>(List.of(NS, EG2, FL, FF));
 
     public ArrayList<Cases<?>> getMETHODS() {
