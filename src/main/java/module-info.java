@@ -4,9 +4,11 @@ module JavaSkewb {
     requires com.google.gson;
 
     opens br.com.javaskewb.DataManager.Manager to com.google.gson;
-
+    opens br.com.javaskewb.ui to javafx.fxml, javafx.graphics;
     opens br.com.javaskewb.Controller to javafx.fxml, javafx.graphics;
+
     exports br.com.javaskewb.Controller;
+    exports br.com.javaskewb.ui;
     exports br.com.javaskewb;
     exports br.com.javaskewb.core.Cube;
     exports br.com.javaskewb.core.Solution;

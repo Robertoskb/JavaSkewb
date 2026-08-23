@@ -45,7 +45,7 @@ public class CaseInfo extends VBox {
     private final HashSet<String> algorithms = new HashSet<>();
 
     public CaseInfo() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/com/javaskewb/view/components/CaseInfo.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/com/javaskewb/ui/components/CaseInfo.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 

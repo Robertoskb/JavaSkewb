@@ -14,6 +14,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -21,18 +24,23 @@ import java.util.Set;
 
 public class Manager {
     private HashMap<Long, StateInfo> data = new HashMap<>();
-    private final String path = "src/resources/br/com/javaskewb/Data/";
-    private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
+    private final Path folderPath = Paths.get(System.getProperty("user.home"), ".javaskewb");
+    private final File file = folderPath.resolve("data.json").toFile();
+
+    private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
     private static Manager manager;
 
     private Manager(){
-        File file = new File(path + "data.json");
-        System.out.println(file.getAbsoluteFile());
         try {
+            if (!Files.exists(folderPath)) {
+                Files.createDirectories(folderPath);
+            }
+
             if (!file.exists()){
                 boolean result = file.createNewFile();
             }
+
             try (FileReader reader = new FileReader(file)){
                 Type hashmap = new TypeToken<HashMap<Long, StateInfo>>(){}.getType();
                 data = gson.fromJson(reader, hashmap);
@@ -40,12 +48,12 @@ public class Manager {
                 if (data == null)
                     data = new HashMap<>();
 
-                System.out.println("data carregada com sucesso!");
+                System.out.println("Data carregada com sucesso de: " + file.getAbsolutePath());
             } catch (IOException e) {
                 System.out.println("Falha ao carregar data " + e.getMessage());
             }
         } catch (IOException e) {
-            System.out.println("Erro de criação: " + e.getMessage());
+            System.out.println("Erro de criação de diretórios/arquivos: " + e.getMessage());
         }
     }
 
@@ -127,7 +135,7 @@ public class Manager {
     }
 
     public boolean save(){
-        try (FileWriter writer = new FileWriter(path + "data.json")){
+        try (FileWriter writer = new FileWriter(file)){
             gson.toJson(data, writer);
             System.out.println("Salvo com sucesso");
             return true;

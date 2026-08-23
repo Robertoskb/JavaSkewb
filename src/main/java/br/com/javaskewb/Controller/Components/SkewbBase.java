@@ -81,7 +81,7 @@ public class SkewbBase extends StackPane{
 
     public SkewbBase() throws IOException {
         skewb = new Skewb();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/javaskewb/view/components/SkewbBase.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/javaskewb/ui/components/SkewbBase.fxml"));
         loader.setRoot(this);
         loader.setController(this);
 
@@ -90,7 +90,7 @@ public class SkewbBase extends StackPane{
 
     public SkewbBase(Skewb skewb) throws IOException {
         this.skewb = skewb;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/javaskewb/view/components/SkewbBase.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/javaskewb/ui/components/SkewbBase.fxml"));
         loader.setRoot(this);
         loader.setController(this);
 
@@ -99,7 +99,7 @@ public class SkewbBase extends StackPane{
 
     public SkewbBase(State state) throws IOException {
         skewb = new Skewb(state);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/javaskewb/view/components/SkewbBase.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/javaskewb/ui/components/SkewbBase.fxml"));
         loader.setRoot(this);
         loader.setController(this);
 

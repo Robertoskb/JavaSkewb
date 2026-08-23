@@ -21,7 +21,7 @@ public class CaseCard extends VBox {
     private Case skewbCase;
 
     public CaseCard() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/javaskewb/view/components/CaseCard.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/javaskewb/ui/components/CaseCard.fxml"));
         loader.setRoot(this);
         loader.setController(this);
 
