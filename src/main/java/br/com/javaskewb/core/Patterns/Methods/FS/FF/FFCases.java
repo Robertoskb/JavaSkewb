@@ -1,18 +1,17 @@
 package br.com.javaskewb.core.Patterns.Methods.FS.FF;
 
+import br.com.javaskewb.core.Cube.State;
 import br.com.javaskewb.core.Mapping.Moves.FLMoves;
 import br.com.javaskewb.core.Mapping.Moves.Matrices.CentersFaces;
 import br.com.javaskewb.core.Mapping.Moves.Moves;
+import br.com.javaskewb.core.Patterns.Methods.FS.FL.FLCase;
 import br.com.javaskewb.core.Patterns.Methods.FS.FSSubCases;
 import br.com.javaskewb.core.Patterns.base.Case;
 import br.com.javaskewb.core.Patterns.base.Cases;
 import br.com.javaskewb.core.Solution.BFSSkewb;
 import br.com.javaskewb.core.Solution.utils.Scramble;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class FFCases extends Cases<FFCase> {
     private static final ArrayList<FFCase> ZeroMoveCases = new ArrayList<>();
@@ -39,37 +38,34 @@ public class FFCases extends Cases<FFCase> {
     public static ArrayList<FFCase> fill(){
         ArrayList<FFCase> cases = new ArrayList<>();
         FLMoves flMoves = new FLMoves();
-        ArrayList<ArrayList<Scramble>> ArrayScramble = BFSSkewb.getFFScrambles(flMoves);
+        HashMap<State, Scramble> bfs = BFSSkewb.getFFScrambles(flMoves);
 
-        FFCase zeroMove = new FFCase("0 M Case", new CentersFaces(Moves.getCenterMatrix(), Moves.getFacesMatrix()));
-        cases.add(zeroMove);
-        ZeroMoveCases.add(zeroMove);
-        for (int i = 1; i < 7; i++) {
-            Set<Case> variants = new HashSet<>();
-            ArrayList<Scramble> scrambles = ArrayScramble.get(i);
+        Set<Case> variants = new HashSet<>();
 
-            int count = 0;
-            for (Scramble scramble: scrambles){
-                CentersFaces centersFaces = new CentersFaces(Moves.getCenterMatrix(), Moves.getFacesMatrix());
+        int[] count = new int[8];
 
-                for (String move: scramble){
-                    centersFaces = Moves.mulCenterFaces(flMoves.getMove(move), centersFaces);
-                }
+        for (Scramble scramble: bfs.values()) {
+            int size = scramble.size();
 
-                FFCase flCase = new FFCase(i + " M Case " + count++, centersFaces);
-                if (!variants.contains(flCase)) {
-                    CaseByMoves.get(i).add(flCase);
-                    cases.add(flCase);
-                }
+            CentersFaces centersFaces = new CentersFaces(Moves.getCenterMatrix(), Moves.getFacesMatrix());
 
-                else
-                    continue;
-                variants.addAll(flCase.getCasesVariants());
+            for (String move: scramble){
+                centersFaces = Moves.mulCenterFaces(flMoves.getMove(move), centersFaces);
             }
+
+            FFCase ffCase = new FFCase(size + " M Case " + count[size], centersFaces);
+            if (!variants.contains(ffCase)) {
+                count[size]++;
+                CaseByMoves.get(size).add(ffCase);
+            }
+            else
+                continue;
+            variants.addAll(ffCase.getCasesVariants());
         }
 
         int cont = 0;
         for (ArrayList<FFCase> flCases: CaseByMoves){
+            cases.addAll(flCases);
             subCases.add(new FSSubCases<>(cont++ + " M", flCases));
         }
 
