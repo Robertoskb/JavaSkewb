@@ -7,6 +7,7 @@ import br.com.javaskewb.core.Mapping.Parts.Corner;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 abstract public class Moves {
     protected State state;
@@ -88,7 +89,7 @@ abstract public class Moves {
         return newState;
     }
 
-    public static ArrayList<Integer> moveCenters(int[][] matrix, ArrayList<Integer> centers){
+    public static ArrayList<Integer> moveCenters(int[][] matrix, List<Integer> centers){
         ArrayList<Integer> arrayCenters = new ArrayList<>();
 
         for (int[] ints : matrix) {
@@ -104,7 +105,7 @@ abstract public class Moves {
         return arrayCenters;
     }
 
-    public static ArrayList<Integer> moveFaces(int[][] matrix, ArrayList<Integer> faces){
+    public static ArrayList<Integer> moveFaces(int[][] matrix, List<Integer> faces){
         ArrayList<Integer> arrayFaces = new ArrayList<>();
 
         for (int[] ints : matrix) {

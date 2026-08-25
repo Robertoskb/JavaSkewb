@@ -51,17 +51,17 @@ public class SaveState {
     }
 
     public static BitState getBitState(State state){
-        ArrayList<Integer> intCenters = state.getIntCenters();
+        List<Integer> intCenters = state.getIntCenters();
         int centersRank = calcRank(intCenters);
 
         int[] cornersRankings = new int[8];
 
-        ArrayList<Corner> corners = state.getCorners();
+        List<Corner> corners = state.getCorners();
 
         ArrayList<Integer> cornersId = new ArrayList<>();
         for (int i = 0; i < 8; i++) {
             Corner corner = corners.get(i);
-            ArrayList<Integer> faces = corner.getFaces();
+            List<Integer> faces = corner.getFaces();
 
             int min = 24;
             for (int face: faces)
@@ -78,7 +78,7 @@ public class SaveState {
         return new BitState(centersRank, cornersIdRank, cornersRankings);
     }
 
-    public static int calcRank(ArrayList<Integer> array){
+    public static int calcRank(List<Integer> array){
         int length = array.size();
         int rank = 0;
 
