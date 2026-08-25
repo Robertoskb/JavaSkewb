@@ -123,6 +123,10 @@ public class Solution {
         return findSolution(State.getSolvedState(), State.generatePerspectivesStates(targetState));
     }
 
+    public Scramble findScramble(State solvedState, State targetState){
+        return findSolution(solvedState, targetState);
+    }
+
     public ArrayList<Integer> FLInfos(State state){
         ArrayList<Integer> infos = new ArrayList<>(6);
         LinkedHashMap<State, State> states = state.getMaskSides();
