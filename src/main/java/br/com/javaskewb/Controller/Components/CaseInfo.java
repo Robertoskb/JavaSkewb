@@ -7,6 +7,8 @@ import br.com.javaskewb.core.Cube.State;
 import br.com.javaskewb.core.Mapping.Moves.AdvancedMoves;
 import br.com.javaskewb.core.Mapping.Moves.Matrices.CentersFaces;
 import br.com.javaskewb.core.Patterns.base.Case;
+import br.com.javaskewb.core.Solution.Solution;
+import br.com.javaskewb.core.Solution.utils.Scramble;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +24,7 @@ import java.util.*;
 public class CaseInfo extends VBox {
 
     @FXML private Label lblName;
+    @FXML private Label lblScramble;
     @FXML private ToggleButton btnFav;
     @FXML private ComboBox<String> cbStatus;
     @FXML private VBox algorithmsList;
@@ -43,6 +46,7 @@ public class CaseInfo extends VBox {
     private StateInfo stateInfo;
 
     private final HashSet<String> algorithms = new HashSet<>();
+    private final Solution solution = new Solution();
 
     public CaseInfo() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/com/javaskewb/ui/components/CaseInfo.fxml"));
@@ -129,6 +133,9 @@ public class CaseInfo extends VBox {
 
         Skewb caseSkewb = skewbCase.getCaseSkewb();
         skewbBase.setSkewb(caseSkewb);
+
+        Scramble scramble = solution.findScramble(caseSkewb.getSolvedState(), caseSkewb.getState());
+        lblScramble.setText("Scramble: " + scramble);
 
         stateInfo = manager.getStateInfo(skewbCase.applyCase(State.getSolvedState(), true));
 

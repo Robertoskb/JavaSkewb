@@ -40,6 +40,7 @@
     <StackPane fx:id="skewbContainer" prefHeight="178.0" prefWidth="422.0" style="-fx-background-color: #27272a; -fx-background-radius: 8;">
         <Label text="Skewb" textFill="#71717a" />
     </StackPane>
+   <Label fx:id="lblScramble" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="159.0" text="Scramble" textAlignment="CENTER" textFill="WHITE" />
 
     <ComboBox fx:id="cbStatus" maxWidth="Infinity" style="-fx-border-color: #3f3f46; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-inner-color: white;" />
 

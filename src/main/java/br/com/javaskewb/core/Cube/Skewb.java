@@ -15,10 +15,12 @@ public class Skewb {
     private WCAMoves wcaMoves;
     private AdvancedMoves advancedMoves;
     private ArrayList<State> solvedStates;
+    private final State solvedState;
 
     public Skewb(){
         setState(State.getSolvedState());
         initialState = state.cloneState();
+        this.solvedState = state.cloneState();
         setWcaMoves(new WCAMoves(state, true));
         setAdvancedMoves(new AdvancedMoves(state, true));
         setMoves(wcaMoves);
@@ -29,6 +31,7 @@ public class Skewb {
     public Skewb(State baseState){
         setState(baseState);
         initialState = baseState.cloneState();
+        this.solvedState = state.cloneState();
         setWcaMoves(new WCAMoves(baseState, true));
         setAdvancedMoves(new AdvancedMoves(baseState, true));
         setMoves(wcaMoves);
@@ -39,6 +42,7 @@ public class Skewb {
     public Skewb(State initialState, State solvedState){
         setState(initialState);
         this.initialState = initialState.cloneState();
+        this.solvedState = solvedState.cloneState();
         setWcaMoves(new WCAMoves(initialState, true));
         setAdvancedMoves(new AdvancedMoves(initialState, true));
         setMoves(wcaMoves);
@@ -155,5 +159,9 @@ public class Skewb {
 
     public State getInitialState() {
         return initialState;
+    }
+
+    public State getSolvedState() {
+        return solvedState;
     }
 }
