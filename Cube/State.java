@@ -8,12 +8,12 @@ import java.util.*;
 
 public class State {
     private static final Random random = new Random();
-    private ArrayList<Center> centers;
-    private ArrayList<Corner> corners;
+    private List<Center> centers;
+    private List<Corner> corners;
     int perspective;
 
-    private int[][] sides = {{0, 1, 2, 3}, {0, 3, 6, 7}, {0, 1, 5, 6}, {4, 5, 6, 7}, {4, 3, 2, 7}, {4, 1, 2, 5}};
-    private int[][] faces = {
+    private final int[][] sides = {{0, 1, 2, 3}, {0, 3, 6, 7}, {0, 1, 5, 6}, {4, 5, 6, 7}, {4, 3, 2, 7}, {4, 1, 2, 5}};
+    private final int[][] faces = {
             {0, 1, 2}, {3, 4, 5}, {6, 7, 8}, {9, 10, 11},
             {12, 13, 14}, {15, 16, 17}, {18, 19, 20}, {21, 23, 23}
     };
@@ -162,16 +162,16 @@ public class State {
         return centers.equals(other.getCenters()) && corners.equals(other.getCorners());
     }
 
-    public ArrayList<Integer> getFaces(){
-        ArrayList<Integer> faces = new ArrayList<>();
+    public List<Integer> getFaces(){
+        List<Integer> faces = new ArrayList<>();
         for (Corner corner: corners)
             faces.addAll(corner.getFaces());
 
         return faces;
     }
 
-    public ArrayList<Integer> getIntCenters(){
-        ArrayList<Integer> centers = new ArrayList<>();
+    public List<Integer> getIntCenters(){
+        List<Integer> centers = new ArrayList<>();
 
         for (Center center: this.centers)
             centers.add(center.getValue());
@@ -196,7 +196,7 @@ public class State {
         this.perspective = perspective;
     }
 
-    public ArrayList<Center> getCenters() {
+    public List<Center> getCenters() {
         return centers;
     }
 
@@ -204,24 +204,12 @@ public class State {
         this.centers = centers;
     }
 
-    public ArrayList<Corner> getCorners() {
+    public List<Corner> getCorners() {
         return corners;
     }
 
     public void setCorners(ArrayList<Corner> corners) {
         this.corners = corners;
-    }
-
-    public int[][] getSides() {
-        return sides;
-    }
-
-    public void setSides(int[][] sides) {
-        this.sides = sides;
-    }
-
-    public void setFaces(int[][] faces) {
-        this.faces = faces;
     }
 
     @Override

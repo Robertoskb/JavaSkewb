@@ -1,18 +1,19 @@
 package br.com.javaskewb.core.Mapping.Parts;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Corner {
     private int id;
-    private ArrayList<Integer> faces;
+    private List<Integer> faces;
 
     public Corner(int id, int[] faces){
         setId(id);
         setFaces(faces);
     }
 
-    public Corner(int id, ArrayList<Integer> faces){
+    public Corner(int id, List<Integer> faces){
         setId(id);
         setFaces(faces);
     }
@@ -26,7 +27,7 @@ public class Corner {
         boolean idb = other.getId() == id;
 
         if (idb) {
-            ArrayList<Integer> otherFaces = other.getFaces();
+            List<Integer> otherFaces = other.getFaces();
             for (int i = 0; i < 3; i++)
                 if ((!Objects.equals(otherFaces.get(i), faces.get(i))))
                     return false;
@@ -59,11 +60,11 @@ public class Corner {
             this.faces.add(face);
     }
 
-    public void setFaces(ArrayList<Integer> faces) {
+    public void setFaces(List<Integer> faces) {
         this.faces = faces;
     }
 
-    public ArrayList<Integer> getFaces() {
+    public List<Integer> getFaces() {
         return faces;
     }
 
