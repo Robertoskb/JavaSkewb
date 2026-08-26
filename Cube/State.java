@@ -1,5 +1,7 @@
 package br.com.javaskewb.core.Cube;
 
+import br.com.javaskewb.core.Mapping.Moves.Matrices.CentersFaces;
+import br.com.javaskewb.core.Mapping.Moves.Moves;
 import br.com.javaskewb.core.Mapping.Parts.Center;
 import br.com.javaskewb.core.Mapping.Parts.Corner;
 import br.com.javaskewb.core.Mapping.Moves.AdvancedMoves;
@@ -8,6 +10,8 @@ import java.util.*;
 
 public class State {
     private static final Random random = new Random();
+    private static final List<CentersFaces> perspectives = perspectivesCenterFaces();
+
     private List<Center> centers;
     private List<Corner> corners;
     int perspective;
@@ -43,29 +47,40 @@ public class State {
     public static List<State> generatePerspectivesStates(State baseState){
         List<State> states = new ArrayList<>(24);
 
+        int cont = 0;
+        for (CentersFaces centersFaces: perspectives) {
+            State newState = Moves.move(baseState, centersFaces, false);
+            newState.setPerspective(cont++);
+            states.add(newState);
+        }
+
+        return states;
+    }
+
+    private static List<CentersFaces> perspectivesCenterFaces(){
+        List<CentersFaces> centersFacesList = new Stack<>();
+
         String[] moves = "x y z x' y' z'".split(" ");
 
-        Stack<State> queue = new Stack<>();
-        queue.add(baseState);
+        Stack<CentersFaces> queue = new Stack<>();
+        queue.add(new CentersFaces(Moves.getCenterMatrix(), Moves.getFacesMatrix()));
 
         AdvancedMoves advancedMoves = new AdvancedMoves();
 
-        int cont = 0;
         while (!queue.isEmpty()){
-            advancedMoves.setState(queue.removeLast());
+            CentersFaces centersFaces = queue.removeLast();
             for (String move: moves){
-                State state = advancedMoves.applyMove(move);
+                CentersFaces newCentersFaces = Moves.mulCenterFaces(advancedMoves.getMove(move), centersFaces);
 
-                if (!states.contains(state)){
-                    state.setPerspective(cont++);
-                    queue.add(state);
-                    states.add(state);
+                if (!centersFacesList.contains(newCentersFaces)){
+                    centersFacesList.add(newCentersFaces);
+                    queue.add(newCentersFaces);
                 }
 
             }
         }
 
-        return states;
+        return centersFacesList;
     }
 
     public static State getRandomPerspective(){

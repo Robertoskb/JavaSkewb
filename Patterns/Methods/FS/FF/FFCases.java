@@ -37,7 +37,7 @@ public class FFCases extends Cases<FFCase> {
     public static ArrayList<FFCase> fill(){
         ArrayList<FFCase> cases = new ArrayList<>();
         FLMoves flMoves = new FLMoves();
-        HashMap<State, Scramble> bfs = BFSSkewb.getFFScrambles(flMoves);
+        HashMap<State, Scramble> bfs = BFSSkewb.getFFScrambles();
 
         Set<Case> variants = new HashSet<>();
 
