@@ -4,12 +4,21 @@ import br.com.javaskewb.core.Cube.State;
 
 public class StateNode {
     private State state;
+    private StateNode parent;
+    private String move;
     private int distance;
     private Scramble scramble = new Scramble();
 
     public StateNode(State state, int distance){
         setState(state);
         setDistance(distance);
+    }
+
+    public StateNode(State state, int distance, String move, StateNode parent){
+        setState(state);
+        setDistance(distance);
+        setMove(move);
+        setParent(parent);
     }
 
     public StateNode(State state, int distance, Scramble scramble){
@@ -34,6 +43,22 @@ public class StateNode {
         this.distance = distance;
     }
 
+    public StateNode getParent() {
+        return parent;
+    }
+
+    public void setParent(StateNode parent) {
+        this.parent = parent;
+    }
+
+    public String getMove() {
+        return move;
+    }
+
+    public void setMove(String move) {
+        this.move = move;
+    }
+
     public Scramble getScramble() {
         return scramble;
     }
@@ -41,5 +66,4 @@ public class StateNode {
     public void setScramble(Scramble scramble) {
         this.scramble = scramble;
     }
-
 }

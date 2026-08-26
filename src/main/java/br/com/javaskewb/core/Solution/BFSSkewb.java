@@ -54,23 +54,23 @@ public class BFSSkewb {
         return BFS(max, State.getSolvedState(), new WCAMoves());
     }
 
-    public static HashMap<State, Scramble> getFLScrambles(Moves moves){
+    public static HashMap<State, Scramble> getFLScrambles(){
         State state = State.getSolvedState();
 
         state.maskLayer(3);
 
-        return BFS(8, state, moves);
+        return BFS(8, state, new FLMoves());
     }
 
-    public static HashMap<State, Scramble> getFFScrambles(Moves moves){
+    public static HashMap<State, Scramble> getFFScrambles(){
         State state = State.getSolvedState();
 
         state.maskFace(3);
 
-        return BFS(7, state, moves);
+        return BFS(7, state, new FLMoves());
     }
 
     public static void main(String[] args) {
-
+        getFLScrambles();
     }
 }

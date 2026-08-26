@@ -40,7 +40,7 @@ public class FLCases extends Cases<FLCase> {
     public static ArrayList<FLCase> fill(){
         ArrayList<FLCase> cases = new ArrayList<>();
         FLMoves flMoves = new FLMoves();
-        HashMap<State, Scramble> bfs = BFSSkewb.getFLScrambles(flMoves);
+        HashMap<State, Scramble> bfs = BFSSkewb.getFLScrambles();
 
         Set<Case> variants = new HashSet<>();
 
