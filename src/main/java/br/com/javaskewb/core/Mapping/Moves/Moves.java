@@ -20,14 +20,6 @@ abstract public class Moves {
         setUpdateState(updateState);
     }
 
-
-    private ArrayList<CentersFaces> getAllMatrices(ArrayList<String> scramble){
-        ArrayList<CentersFaces> allMatrices = new ArrayList<>();
-        for (String s: scramble)
-            allMatrices.add(getNotation().get(s));
-
-        return allMatrices;
-    }
     public CentersFaces getMove(String move){
         return getNotation().get(move);
     }
@@ -127,7 +119,7 @@ abstract public class Moves {
     }
 
     public static State move(State state, CentersFaces centersFaces, boolean updateState){
-        ArrayList<Integer> centers, faces;
+        List<Integer> centers, faces;
         int[][] centersMatrix, facesMatrix;
 
         centersMatrix = centersFaces.getCentersMatrix();
@@ -136,8 +128,8 @@ abstract public class Moves {
         centers = moveCenters(centersMatrix, state.getIntCenters());
         faces = moveFaces(facesMatrix, state.getFaces());
 
-        ArrayList<Center> arrayCenters = new ArrayList<>();
-        ArrayList<Corner> arrayCorners = new ArrayList<>();
+        List<Center> arrayCenters = new ArrayList<>();
+        List<Corner> arrayCorners = new ArrayList<>();
 
         int cont;
 

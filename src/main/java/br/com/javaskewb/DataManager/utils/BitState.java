@@ -2,7 +2,7 @@ package br.com.javaskewb.DataManager.utils;
 
 public class BitState {
     private final int cornersRankings; // 24 bits (3! < 2^3)
-    private final int cornersIdRank; // 16 bits (8! < 2^16)
+    private final int cornersSlotRank; // 16 bits (8! < 2^16)
     private final int centersRank; // 10 bits (6! < 2^10)
 
     private long id; // 50 bits
@@ -13,25 +13,25 @@ public class BitState {
         cornersRankings = getFirstBits(id, 24);
         id >>= 24;
 
-        cornersIdRank = getFirstBits(id, 16);
+        cornersSlotRank = getFirstBits(id, 16);
         id >>= 16;
 
         centersRank = getFirstBits(id, 10);
     }
 
-    public BitState(int centersRank, int cornersIdRank, int[] cornersRankings){
+    public BitState(int centersRank, int cornersSlotRank, int[] cornersRankings){
         int baseCornersRankings = 0;
         for (int i = 0; i < 8; i++) {
             int rank = cornersRankings[i];
             baseCornersRankings |= ( rank << (3*i));
         }
         this.cornersRankings = baseCornersRankings;
-        this.cornersIdRank = cornersIdRank;
+        this.cornersSlotRank = cornersSlotRank;
         this.centersRank = centersRank;
 
         id = 0;
         id |= this.cornersRankings;
-        id |= ((long) this.cornersIdRank << 24);
+        id |= ((long) this.cornersSlotRank << 24);
         id |= ((long) this.centersRank << 40);
     }
 
@@ -51,8 +51,8 @@ public class BitState {
         return cornersRankings;
     }
 
-    public int getCornersIdRank() {
-        return cornersIdRank;
+    public int getCornersSlotRank() {
+        return cornersSlotRank;
     }
 
     public int getCentersRank() {
@@ -65,6 +65,6 @@ public class BitState {
 
     @Override
     public String toString() {
-        return String.format("%s: %s %s %s", id, cornersRankings, cornersIdRank, centersRank);
+        return String.format("%s: %s %s %s", id, cornersRankings, cornersSlotRank, centersRank);
     }
 }

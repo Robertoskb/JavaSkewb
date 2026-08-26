@@ -1,6 +1,7 @@
 package br.com.javaskewb.core.Patterns.base;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public abstract class Cases<C extends Case> {
@@ -12,7 +13,7 @@ public abstract class Cases<C extends Case> {
     }
 
     public abstract ArrayList<C> getCases();
-    public ArrayList<Cases<?>> getSubCases() {
+    public List<Cases<?>> getSubCases() {
         return new ArrayList<>();
     }
 

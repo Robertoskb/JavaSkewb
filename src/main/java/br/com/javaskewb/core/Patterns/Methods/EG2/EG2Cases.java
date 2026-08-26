@@ -1,10 +1,10 @@
 package br.com.javaskewb.core.Patterns.Methods.EG2;
 
-import br.com.javaskewb.core.Patterns.Methods.NS.L2L.L2LCase;
 import br.com.javaskewb.core.Patterns.base.Cases;
 import br.com.javaskewb.core.Patterns.Methods.EG2.Sets.SetCases;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class EG2Cases extends Cases<EG2Case> {
     private static final SetCases setCases = new SetCases();
@@ -29,7 +29,7 @@ public class EG2Cases extends Cases<EG2Case> {
     }
 
     @Override
-    public ArrayList<Cases<?>> getSubCases() {
+    public List<Cases<?>> getSubCases() {
         return subCases;
     }
 }

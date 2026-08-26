@@ -1,10 +1,10 @@
 package br.com.javaskewb.core.Patterns.Methods.NS;
 
 import br.com.javaskewb.core.Patterns.base.Cases;
-import br.com.javaskewb.core.Patterns.Methods.FS.FL.FLCases;
 import br.com.javaskewb.core.Patterns.Methods.NS.L2L.L2LCases;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class NSCases extends Cases<NSCase> {
     private static final L2LCases L2LCases = new L2LCases();
@@ -29,7 +29,7 @@ public class NSCases extends Cases<NSCase> {
     }
 
     @Override
-    public ArrayList<Cases<?>> getSubCases() {
+    public List<Cases<?>> getSubCases() {
         return subCases;
     }
 }

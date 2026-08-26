@@ -12,7 +12,7 @@ public class Main extends Application {
         ScreenManager screenManager = ScreenManager.getInstance();
         screenManager.setStage(stage);
 
-        screenManager.setScene("Main.fxml");
+        screenManager.setScene("menu.fxml");
 
         screenManager.show();
 

@@ -9,7 +9,7 @@ import br.com.javaskewb.core.Patterns.Methods.NS.NSCases;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SaveState {
+public class StateRank {
     private static final int [] FACTORIAL = {1, 1, 2, 6, 24, 120, 720, 5040, 40320};
 
     private static final int[][] CORNER_BASES = new int[][]{
@@ -18,7 +18,7 @@ public class SaveState {
     };
 
     private static final int[] CENTER_BASE = {0, 1, 2, 3, 4, 5};
-    public static final int[] CONERS_ID_BASE = {0, 1, 2, 3, 4, 5, 6, 7};
+    public static final int[] CONERS_SLOT_BASE = {0, 1, 2, 3, 4, 5, 6, 7};
 
     public static State createState(long stateId){
         BitState bitState = new BitState(stateId);
@@ -33,8 +33,8 @@ public class SaveState {
 
 
         int[] cornerIds = arrayReconstruct(
-                bitState.getCornersIdRank(),
-                CONERS_ID_BASE
+                bitState.getCornersSlotRank(),
+                CONERS_SLOT_BASE
         );
 
         for (int i = 0; i < 8; i++) {
@@ -121,11 +121,11 @@ public class SaveState {
 
         nscase.applyCase(state);
 
-        BitState bitState1 = SaveState.getBitState(state);
+        BitState bitState1 = StateRank.getBitState(state);
 
-        State reconstructed = SaveState.createState(bitState1.getId());
+        State reconstructed = StateRank.createState(bitState1.getId());
 
-        BitState bitState2 = SaveState.getBitState(reconstructed);
+        BitState bitState2 = StateRank.getBitState(reconstructed);
 
         System.out.println("IDs iguais: " +
                 (bitState1.getId() == bitState2.getId()));

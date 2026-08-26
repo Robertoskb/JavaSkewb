@@ -6,8 +6,7 @@ import br.com.javaskewb.Controller.Components.SkewbBase;
 import br.com.javaskewb.Controller.utils.Pagination;
 import br.com.javaskewb.DataManager.Manager.Manager;
 import br.com.javaskewb.DataManager.utils.BitState;
-import br.com.javaskewb.DataManager.utils.SaveState;
-import br.com.javaskewb.core.Cube.Skewb;
+import br.com.javaskewb.DataManager.utils.StateRank;
 import br.com.javaskewb.core.Cube.State;
 import br.com.javaskewb.core.Patterns.Methods.FS.FSCase;
 import br.com.javaskewb.core.Patterns.Methods.Methods;
@@ -74,7 +73,7 @@ public class CasesController {
 
     private Cases<?> currentCases;
     private final TreeCases treeCases = new TreeCases();
-    private ArrayList<Cases<?>> currentSubCases;
+    private List<Cases<?>> currentSubCases;
 
     private final Pagination<Integer> intPagination = new Pagination<>(16);
 
@@ -294,7 +293,7 @@ public class CasesController {
         Set<Long> subSet =  new HashSet<>();
 
         for (Case subCase: currentCases.getCases()){
-            BitState bitState = SaveState.getBitState(subCase.applyCase(State.getSolvedState(), true));
+            BitState bitState = StateRank.getBitState(subCase.applyCase(State.getSolvedState(), true));
             subSet.add(bitState.getId());
         }
 
@@ -335,7 +334,7 @@ public class CasesController {
 
     @FXML
     public void toMenu() throws IOException {
-        screenManager.setScene("Main.fxml");
+        screenManager.setScene("menu.fxml");
     }
 
 }

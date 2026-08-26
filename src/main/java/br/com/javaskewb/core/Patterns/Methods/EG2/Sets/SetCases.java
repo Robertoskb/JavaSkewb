@@ -2,13 +2,12 @@ package br.com.javaskewb.core.Patterns.Methods.EG2.Sets;
 
 import br.com.javaskewb.core.Patterns.Methods.EG2.EG2Case;
 import br.com.javaskewb.core.Patterns.Methods.EG2.EG2SubCases;
-import br.com.javaskewb.core.Patterns.Methods.NS.L2L.CC.CCCase;
-import br.com.javaskewb.core.Patterns.Methods.NS.L2L.CC.CCCases;
 import br.com.javaskewb.core.Patterns.Methods.NS.L2L.L2LCases;
 import br.com.javaskewb.core.Patterns.base.Cases;
 import br.com.javaskewb.core.Patterns.Methods.NS.L2L.L2LCase;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SetCases extends Cases<EG2Case> {
     private static final L2LCases l2LCases = new L2LCases();
@@ -34,7 +33,7 @@ public class SetCases extends Cases<EG2Case> {
     }
 
     @Override
-    public ArrayList<Cases<?>> getSubCases() {
+    public List<Cases<?>> getSubCases() {
         return subCases.getSubCases();
     }
 }

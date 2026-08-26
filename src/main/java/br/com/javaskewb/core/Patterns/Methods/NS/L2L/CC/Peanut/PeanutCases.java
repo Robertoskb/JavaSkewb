@@ -1,6 +1,7 @@
 package br.com.javaskewb.core.Patterns.Methods.NS.L2L.CC.Peanut;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import br.com.javaskewb.core.Patterns.base.Cases;
 import br.com.javaskewb.core.Patterns.Methods.NS.L2L.CC.Peanut.CL.PeanutBLCases;
@@ -49,7 +50,7 @@ public class PeanutCases extends Cases<PeanutCase> {
     }
 
     @Override
-    public ArrayList<Cases<?>> getSubCases() {
+    public List<Cases<?>> getSubCases() {
         return subCases;
     }
 

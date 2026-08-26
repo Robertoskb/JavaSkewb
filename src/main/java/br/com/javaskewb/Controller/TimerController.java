@@ -242,6 +242,6 @@ public class TimerController {
 
     @FXML
     public void toMenu() throws IOException {
-        screenManager.setScene("Main.fxml");
+        screenManager.setScene("menu.fxml");
     }
 }

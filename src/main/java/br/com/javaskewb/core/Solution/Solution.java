@@ -11,9 +11,9 @@ import java.util.*;
 
 public class Solution {
     private Moves moves;
-    private ArrayList<State> targetStates;
+    private List<State> targetStates;
 
-    public Solution(Moves moves, ArrayList<State> targetStates){
+    public Solution(Moves moves, List<State> targetStates){
         setMoves(moves);
         setTargetStates(targetStates);
     }
@@ -26,7 +26,7 @@ public class Solution {
         setMoves(new WCAMoves());
     }
 
-    public Scramble findSolution(State initialState, ArrayList<State> targetStates){
+    public Scramble findSolution(State initialState, List<State> targetStates){
         if (targetStates.contains(initialState))
             return new Scramble();
 
@@ -171,11 +171,11 @@ public class Solution {
         this.moves = moves;
     }
 
-    public ArrayList<State> getTargetStates() {
+    public List<State> getTargetStates() {
         return targetStates;
     }
 
-    public void setTargetStates(ArrayList<State> targetStates) {
+    public void setTargetStates(List<State> targetStates) {
         this.targetStates = targetStates;
     }
 }

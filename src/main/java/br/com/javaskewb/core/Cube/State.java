@@ -12,13 +12,16 @@ public class State {
     private List<Corner> corners;
     int perspective;
 
-    private final int[][] sides = {{0, 1, 2, 3}, {0, 3, 6, 7}, {0, 1, 5, 6}, {4, 5, 6, 7}, {4, 3, 2, 7}, {4, 1, 2, 5}};
+    private final int[][] sides = {
+            {0, 1, 2, 3}, {0, 3, 6, 7}, {0, 1, 5, 6},
+            {4, 5, 6, 7}, {4, 3, 2, 7}, {4, 1, 2, 5}
+    };
     private final int[][] faces = {
             {0, 1, 2}, {3, 4, 5}, {6, 7, 8}, {9, 10, 11},
             {12, 13, 14}, {15, 16, 17}, {18, 19, 20}, {21, 23, 23}
     };
 
-    public State(ArrayList<Center> centers, ArrayList<Corner> corners){
+    public State(List<Center> centers, List<Corner> corners){
         setCenters(centers);
         setCorners(corners);
     }
@@ -37,12 +40,12 @@ public class State {
         return new State(new_centers, new_corners);
     }
 
-    public static ArrayList<State> generatePerspectivesStates(State baseState){
-        ArrayList<State> states = new ArrayList<>(24);
+    public static List<State> generatePerspectivesStates(State baseState){
+        List<State> states = new ArrayList<>(24);
 
         String[] moves = "x y z x' y' z'".split(" ");
 
-        ArrayList<State> queue = new ArrayList<>();
+        Stack<State> queue = new Stack<>();
         queue.add(baseState);
 
         AdvancedMoves advancedMoves = new AdvancedMoves();
@@ -69,7 +72,7 @@ public class State {
         return generatePerspectivesStates(getSolvedState()).get(random.nextInt(0, 24));
     }
 
-    public static ArrayList<State> getSolvedPerspectives(){
+    public static List<State> getSolvedPerspectives(){
         return generatePerspectivesStates(State.getSolvedState());
     }
 
@@ -200,7 +203,7 @@ public class State {
         return centers;
     }
 
-    public void setCenters(ArrayList<Center> centers) {
+    public void setCenters(List<Center> centers) {
         this.centers = centers;
     }
 
@@ -208,7 +211,7 @@ public class State {
         return corners;
     }
 
-    public void setCorners(ArrayList<Corner> corners) {
+    public void setCorners(List<Corner> corners) {
         this.corners = corners;
     }
 

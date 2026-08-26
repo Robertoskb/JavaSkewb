@@ -4,7 +4,6 @@ import br.com.javaskewb.core.Cube.State;
 import br.com.javaskewb.core.Mapping.Moves.FLMoves;
 import br.com.javaskewb.core.Mapping.Moves.Matrices.CentersFaces;
 import br.com.javaskewb.core.Mapping.Moves.Moves;
-import br.com.javaskewb.core.Patterns.Methods.FS.FL.FLCase;
 import br.com.javaskewb.core.Patterns.Methods.FS.FSSubCases;
 import br.com.javaskewb.core.Patterns.base.Case;
 import br.com.javaskewb.core.Patterns.base.Cases;
@@ -80,7 +79,7 @@ public class FFCases extends Cases<FFCase> {
     }
 
     @Override
-    public ArrayList<Cases<?>> getSubCases() {
+    public List<Cases<?>> getSubCases() {
         return subCases;
     }
 

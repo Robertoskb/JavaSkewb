@@ -1,7 +1,7 @@
 package br.com.javaskewb.DataManager.Manager;
 
 import br.com.javaskewb.DataManager.utils.BitState;
-import br.com.javaskewb.DataManager.utils.SaveState;
+import br.com.javaskewb.DataManager.utils.StateRank;
 import br.com.javaskewb.core.Cube.State;
 import br.com.javaskewb.core.Patterns.Methods.NS.NSCase;
 import br.com.javaskewb.core.Patterns.Methods.NS.NSCases;
@@ -117,7 +117,7 @@ public class Manager {
     }
 
     public StateInfo getStateInfo(State state){
-        BitState bitState = SaveState.getBitState(state);
+        BitState bitState = StateRank.getBitState(state);
 
         StateInfo stateInfo;
         if (data.containsKey(bitState.getId())){
@@ -171,7 +171,7 @@ public class Manager {
             State state = State.getSolvedState();
             nsCase.applyCase(state);
 
-            BitState bitState = SaveState.getBitState(state);
+            BitState bitState = StateRank.getBitState(state);
 
             StateInfo stateInfo = new StateInfo(true, "Desconhecido", new HashSet<>());
 

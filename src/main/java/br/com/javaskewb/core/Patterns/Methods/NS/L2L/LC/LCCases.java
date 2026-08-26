@@ -6,6 +6,7 @@ import br.com.javaskewb.core.Patterns.Methods.NS.L2L.LC.L4C.L4CCases;
 import br.com.javaskewb.core.Patterns.Methods.NS.L2L.LC.L5C.L5CCases;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LCCases extends Cases<LCCase> {
     private static final L3CCases L3CCases = new L3CCases();
@@ -40,7 +41,7 @@ public class LCCases extends Cases<LCCase> {
     }
 
     @Override
-    public ArrayList<Cases<?>> getSubCases() {
+    public List<Cases<?>> getSubCases() {
         return subCases;
     }
 
