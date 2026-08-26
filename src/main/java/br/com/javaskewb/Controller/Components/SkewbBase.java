@@ -5,6 +5,8 @@ import br.com.javaskewb.Controller.Components.parts.CenterSlot;
 import br.com.javaskewb.Controller.Components.parts.FacePart;
 import br.com.javaskewb.Controller.Components.parts.FaceSlot;
 import br.com.javaskewb.core.Cube.Skewb;
+import br.com.javaskewb.core.Mapping.Moves.Matrices.CentersFaces;
+import br.com.javaskewb.core.Mapping.Moves.Moves;
 import br.com.javaskewb.core.Mapping.Parts.Center;
 import br.com.javaskewb.core.Mapping.Parts.Corner;
 import br.com.javaskewb.core.Cube.State;
@@ -69,7 +71,9 @@ public class SkewbBase extends StackPane{
     private static final double BASE_WIDTH = 805;
     private static final double BASE_HEIGHT = 606;
 
-    private final Skewb skewb;
+    private Skewb skewb;
+
+    private final State solvedState = State.getSolvedState();
 
     private boolean invisiblePolygons = false;
     private boolean disablePolygons = false;
@@ -77,7 +81,16 @@ public class SkewbBase extends StackPane{
 
     public SkewbBase() throws IOException {
         skewb = new Skewb();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/javaskewb/view/components/SkewbBase.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/javaskewb/ui/components/SkewbBase.fxml"));
+        loader.setRoot(this);
+        loader.setController(this);
+
+        loader.load();
+    }
+
+    public SkewbBase(Skewb skewb) throws IOException {
+        this.skewb = skewb;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/javaskewb/ui/components/SkewbBase.fxml"));
         loader.setRoot(this);
         loader.setController(this);
 
@@ -86,7 +99,7 @@ public class SkewbBase extends StackPane{
 
     public SkewbBase(State state) throws IOException {
         skewb = new Skewb(state);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/javaskewb/view/components/SkewbBase.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/javaskewb/ui/components/SkewbBase.fxml"));
         loader.setRoot(this);
         loader.setController(this);
 
@@ -150,6 +163,11 @@ public class SkewbBase extends StackPane{
         }
     }
 
+    public void reset(){
+        skewb.reset();
+        update();
+    }
+
     public void changeVisibility(){
         int[] centers = {3, 4, 5};
         int[] faces = {5, 7, 14, 16, 13, 23, 8, 10, 12, 15, 18, 21};
@@ -201,6 +219,11 @@ public class SkewbBase extends StackPane{
 
     public void applyScramble(ArrayList<String> scramble){
         skewb.applyScramble(scramble);
+        update();
+    }
+
+    public void applyMove(CentersFaces centersFaces){
+        Moves.move(skewb.getState(), centersFaces, true);
         update();
     }
 
@@ -285,5 +308,10 @@ public class SkewbBase extends StackPane{
 
     public Skewb getSkewb() {
         return skewb;
+    }
+
+    public void setSkewb(Skewb skewb) {
+        this.skewb = skewb;
+        update();
     }
 }

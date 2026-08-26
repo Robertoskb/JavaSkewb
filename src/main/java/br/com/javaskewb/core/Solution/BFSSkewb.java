@@ -12,10 +12,13 @@ import java.util.*;
 public class BFSSkewb {
     public static HashMap<State, Scramble> BFS(int max, State initialState, Moves moves){
         PriorityQueue<StateNode> queue = new PriorityQueue<>(Comparator.comparingInt(StateNode::getDistance));
-        HashMap<State, Scramble> visited = new HashMap<>();
+        HashMap<State, Scramble> bfs = new HashMap<>();
 
+        bfs.put(initialState, new Scramble());
         queue.add(new StateNode(initialState, 0));
-        visited.put(initialState, new Scramble());
+        HashSet<State> visited = new HashSet<>(State.generatePerspectivesStates(initialState));
+
+        Set<String> notation = moves.getNotation().keySet();
 
         while (!queue.isEmpty()){
             StateNode node = queue.poll();
@@ -29,52 +32,45 @@ public class BFSSkewb {
 
             moves.setState(state);
 
-            for (String move: moves.getNotation().keySet()){
+            for (String move: notation){
                 State newState = moves.applyMove(move);
                 Scramble newScramble = new Scramble(scramble);
                 newScramble.add(move);
 
-                if (!visited.containsKey(newState)){
-                    visited.put(newState, newScramble);
+                if (!visited.contains(newState)){
+                    bfs.put(newState, newScramble);
+                    visited.addAll(State.generatePerspectivesStates(newState));
 
                     queue.add(new StateNode(newState, distance+1, newScramble));
+
                 }
             }
         }
 
-        return visited;
+        return bfs;
     }
 
     public static HashMap<State, Scramble> BFS(int max){
         return BFS(max, State.getSolvedState(), new WCAMoves());
     }
 
-    public static ArrayList<ArrayList<Scramble>> getFLScrambles(Moves moves){
-        ArrayList<ArrayList<Scramble>> scrambles = new ArrayList<>();
-
-        for (int i = 0; i < 8; i++) {
-            scrambles.add(new ArrayList<>());
-        }
-
+    public static HashMap<State, Scramble> getFLScrambles(Moves moves){
         State state = State.getSolvedState();
 
-        state.maskSide(3);
+        state.maskLayer(3);
 
-        HashMap<State, Scramble> bfs = BFS(7, state, moves);
+        return BFS(8, state, moves);
+    }
 
-        for (Scramble scramble: bfs.values())
-            scrambles.get(scramble.size()).add(scramble);
+    public static HashMap<State, Scramble> getFFScrambles(Moves moves){
+        State state = State.getSolvedState();
 
-        return scrambles;
+        state.maskFace(3);
+
+        return BFS(7, state, moves);
     }
 
     public static void main(String[] args) {
-        ArrayList<ArrayList<Scramble>> scrambles = getFLScrambles(new FLMoves());
-
-        int cont = 0;
-        for (ArrayList<Scramble> fl: scrambles){
-            System.out.println(cont++ + " " + fl.size());
-        }
 
     }
 }

@@ -27,10 +27,9 @@ public class ScreenManager {
 
         Scene scene = new Scene(root);
 
-        stage.centerOnScreen();
-
         stage.setScene(scene);
-
+        stage.setMaximized(false);
+        stage.setMaximized(true);
     }
 
     public void show(){

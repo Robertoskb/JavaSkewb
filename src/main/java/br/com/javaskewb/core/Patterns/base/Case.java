@@ -1,0 +1,84 @@
+package br.com.javaskewb.core.Patterns.base;
+
+import br.com.javaskewb.core.Cube.Skewb;
+import br.com.javaskewb.core.Mapping.Moves.AdvancedMoves;
+import br.com.javaskewb.core.Mapping.Moves.Matrices.CentersFaces;
+import br.com.javaskewb.core.Mapping.Moves.Moves;
+import br.com.javaskewb.core.Cube.State;
+
+import java.util.ArrayList;
+import java.util.Objects;
+
+public abstract class Case {
+    protected String name;
+    protected CentersFaces centersFaces;
+    protected int id;
+
+    private static int count = 0;
+
+    protected final AdvancedMoves moves = new AdvancedMoves();
+
+    public Case(String name, CentersFaces centersFaces){
+        setName(name);
+        setCentersFaces(centersFaces);
+        id = count++;
+    }
+
+    public abstract ArrayList<State> getStatesVariants(State initialState);
+    public abstract ArrayList<Case> getCasesVariants();
+
+    public State getCaseState(State solvedState){
+        return applyCase(solvedState, false);
+    }
+
+    public Skewb getCaseSkewb(){
+        State solvedState = State.getSolvedState();
+        State state = getCaseState(solvedState);
+
+        Skewb skewb = new Skewb(state, solvedState);
+        skewb.toAdvanced();
+
+        return skewb;
+    }
+
+    public void applyCase(State initialState){
+        Moves.move(initialState, centersFaces, true);
+    }
+
+    public State applyCase(State initialState, boolean updateState){
+        return Moves.move(initialState, centersFaces, updateState);
+    }
+
+    public CentersFaces getCentersFaces() {
+        return centersFaces;
+    }
+
+    public void setCentersFaces(CentersFaces centersFaces) {
+        this.centersFaces = centersFaces;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public boolean equals(Object object){
+        if (!(object instanceof Case other))
+            return false;
+
+        return other.getCentersFaces().equals(centersFaces);
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(centersFaces);
+    }
+}

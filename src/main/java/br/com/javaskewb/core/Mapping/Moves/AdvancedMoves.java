@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AdvancedMoves extends Moves{
-    private static final HashMap<String, CentersFaces> notation = new HashMap<>();
+    private static final HashMap<String, CentersFaces> notation = fill();
     private static final HashMap<String, Integer> costs = new HashMap<>();
 
     public AdvancedMoves(){
@@ -19,8 +19,8 @@ public class AdvancedMoves extends Moves{
         super(state, updateState);
     }
 
-    @Override
-    protected void fill() {
+    private static HashMap<String, CentersFaces> fill() {
+        HashMap<String, CentersFaces> notation = new HashMap<>();
         notation.put("r", r());
         notation.put("r'", invertMove(notation.get("r")));
 
@@ -57,6 +57,8 @@ public class AdvancedMoves extends Moves{
         notation.put("x2", x2());
         notation.put("y2", y2());
         notation.put("z2", z2());
+
+        return notation;
     }
 
     @Override
@@ -64,7 +66,7 @@ public class AdvancedMoves extends Moves{
         return costs.getOrDefault(move, 1);
     }
 
-    private CentersFaces x(){
+    private static CentersFaces x(){
         MatrixSwap centers, faces;
 
         centers = new MatrixSwap(getCenterMatrix());
@@ -115,7 +117,7 @@ public class AdvancedMoves extends Moves{
         return new CentersFaces(centers.getMatrix(), faces.getMatrix());
     }
 
-    private CentersFaces y(){
+    public static CentersFaces y(){
         MatrixSwap centers, faces;
 
         centers = new MatrixSwap(getCenterMatrix());
@@ -162,7 +164,7 @@ public class AdvancedMoves extends Moves{
         return new CentersFaces(centers.getMatrix(), faces.getMatrix());
     }
 
-    private CentersFaces z(){
+    private static CentersFaces z(){
         // x y x'
 
         ArrayList<CentersFaces> sequence = new ArrayList<>();
@@ -173,7 +175,7 @@ public class AdvancedMoves extends Moves{
         return applySequence(sequence);
     }
 
-    private CentersFaces x2(){
+    private static CentersFaces x2(){
         ArrayList<CentersFaces> sequence = new ArrayList<>();
         sequence.add(x());
         sequence.add(x());
@@ -181,7 +183,7 @@ public class AdvancedMoves extends Moves{
         return applySequence(sequence);
     }
 
-    private CentersFaces y2(){
+    private static CentersFaces y2(){
         ArrayList<CentersFaces> sequence = new ArrayList<>();
         sequence.add(y());
         sequence.add(y());
@@ -189,7 +191,7 @@ public class AdvancedMoves extends Moves{
         return applySequence(sequence);
     }
 
-    private CentersFaces z2(){
+    private static CentersFaces z2(){
         ArrayList<CentersFaces> sequence = new ArrayList<>();
         sequence.add(z());
         sequence.add(z());
@@ -197,7 +199,7 @@ public class AdvancedMoves extends Moves{
         return applySequence(sequence);
     }
 
-    private CentersFaces applySequence(ArrayList<CentersFaces> sequence){
+    private static CentersFaces applySequence(ArrayList<CentersFaces> sequence){
         int[][] centers, faces;
 
         centers = getCenterMatrix();
@@ -211,7 +213,7 @@ public class AdvancedMoves extends Moves{
         return new CentersFaces(centers, faces);
     }
 
-    private CentersFaces R(){
+    private static CentersFaces R(){
         ArrayList<CentersFaces> sequence = new ArrayList<>();
 
         sequence.add(l());
@@ -221,7 +223,7 @@ public class AdvancedMoves extends Moves{
         return applySequence(sequence);
     }
 
-    private CentersFaces r() {
+    private static CentersFaces r() {
         MatrixSwap centers, faces;
 
         centers = new MatrixSwap(getCenterMatrix());
@@ -254,7 +256,7 @@ public class AdvancedMoves extends Moves{
         return new CentersFaces(centers.getMatrix(), faces.getMatrix());
     }
 
-    private CentersFaces L(){
+    private static CentersFaces L(){
         ArrayList<CentersFaces> sequence = new ArrayList<>();
 
         sequence.add(r());
@@ -264,7 +266,7 @@ public class AdvancedMoves extends Moves{
         return applySequence(sequence);
     }
 
-    private CentersFaces l() {
+    private static CentersFaces l() {
         MatrixSwap centers, faces;
 
         centers = new MatrixSwap(getCenterMatrix());
@@ -298,7 +300,7 @@ public class AdvancedMoves extends Moves{
     }
 
 
-    private CentersFaces b() {
+    private static CentersFaces b() {
         MatrixSwap centers, faces;
 
         centers = new MatrixSwap(getCenterMatrix());
@@ -331,7 +333,7 @@ public class AdvancedMoves extends Moves{
         return new CentersFaces(centers.getMatrix(), faces.getMatrix());
     }
 
-    private CentersFaces B() {
+    private static CentersFaces B() {
         MatrixSwap centers, faces;
 
         centers = new MatrixSwap(getCenterMatrix());
@@ -364,7 +366,7 @@ public class AdvancedMoves extends Moves{
         return new CentersFaces(centers.getMatrix(), faces.getMatrix());
     }
 
-    private CentersFaces F(){
+    private static CentersFaces F(){
         ArrayList<CentersFaces> sequence = new ArrayList<>();
 
         sequence.add(b());
@@ -374,7 +376,7 @@ public class AdvancedMoves extends Moves{
         return applySequence(sequence);
     }
 
-    private CentersFaces f(){
+    private static CentersFaces f(){
         ArrayList<CentersFaces> sequence = new ArrayList<>();
 
         sequence.add(B());

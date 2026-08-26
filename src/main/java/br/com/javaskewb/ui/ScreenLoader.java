@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class ScreenLoader {
     public FXMLLoader loader(String fxml){
-        String basePath = "/br/com/javaskewb/view/";
+        String basePath = "/br/com/javaskewb/ui/";
 
         return new FXMLLoader(getClass().getResource(basePath + fxml));
     }

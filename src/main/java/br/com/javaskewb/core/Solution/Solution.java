@@ -11,19 +11,25 @@ import java.util.*;
 
 public class Solution {
     private Moves moves;
-    private ArrayList<State> targetStates;
+    private List<State> targetStates;
 
-    public Solution(Moves moves, ArrayList<State> targetStates){
+    public Solution(Moves moves, List<State> targetStates){
         setMoves(moves);
         setTargetStates(targetStates);
     }
 
-    public Solution(){
-        setMoves(new WCAMoves());
-        setTargetStates(new ArrayList<>(List.of(State.getSolvedState())));
+    public Solution(Moves moves){
+        setMoves(moves);
     }
 
-    public Scramble findSolution(State initialState, ArrayList<State> targetStates){
+    public Solution(){
+        setMoves(new WCAMoves());
+    }
+
+    public Scramble findSolution(State initialState, List<State> targetStates){
+        if (targetStates.contains(initialState))
+            return new Scramble();
+
         HashMap<State, Scramble> visitedInitial, visitedTarget;
         PriorityQueue<StateNode> queueInitial, queueTarget;
 
@@ -52,7 +58,7 @@ public class Solution {
 
 
         while (!queueInitial.isEmpty() || !queueTarget.isEmpty()){
-            if (!queueInitial.isEmpty()){
+            if (queueInitial.peek().getDistance() <= queueTarget.peek().getDistance()){
                 StateNode stateNodeInitial = queueInitial.poll();
 
                 moves.setState(stateNodeInitial.getState());
@@ -69,19 +75,19 @@ public class Solution {
                             return scrambleConstructor(newScramble, visitedTarget.get(state));
 
                         visitedInitial.put(state, newScramble);
-                        queueInitial.add(new StateNode(state, distance+ moves.getCost(move), newScramble));
+                        queueInitial.add(new StateNode(state, distance + moves.getCost(move), newScramble));
                     }
 
                 }
 
             }
 
-            if (!queueTarget.isEmpty()){
+            else {
                 StateNode stateNodeTarget = queueTarget.poll();
 
                 moves.setState(stateNodeTarget.getState());
                 int distance = stateNodeTarget.getDistance();
-                ArrayList<String> scramble = stateNodeTarget.getScramble();
+                Scramble scramble = stateNodeTarget.getScramble();
 
                 for (String move: notation){
                     State state = moves.applyMove(move);
@@ -94,7 +100,7 @@ public class Solution {
                             return scrambleConstructor(visitedInitial.get(state), newScramble);
 
                         visitedTarget.put(state, newScramble);
-                        queueTarget.add(new StateNode(state, distance+ moves.getCost(move), newScramble));
+                        queueTarget.add(new StateNode(state, distance + moves.getCost(move), newScramble));
                     }
                 }
 
@@ -109,8 +115,27 @@ public class Solution {
         return findSolution(initialState, targetStates);
     }
 
+    public Scramble findSolution(State initialState, State target){
+        return findSolution(initialState, State.generatePerspectivesStates(target));
+    }
+
     public Scramble findScramble(State targetState){
         return findSolution(State.getSolvedState(), State.generatePerspectivesStates(targetState));
+    }
+
+    public Scramble findScramble(State solvedState, State targetState){
+        return findSolution(solvedState, targetState);
+    }
+
+    public ArrayList<Integer> FLInfos(State state){
+        ArrayList<Integer> infos = new ArrayList<>(6);
+        LinkedHashMap<State, State> states = state.getMaskSides();
+
+        states.forEach((initial, solved) ->
+           infos.add(findSolution(initial, solved).size())
+        );
+
+        return infos;
     }
 
     public static Scramble invertScramble(ArrayList<String> scramble){
@@ -146,11 +171,11 @@ public class Solution {
         this.moves = moves;
     }
 
-    public ArrayList<State> getTargetStates() {
+    public List<State> getTargetStates() {
         return targetStates;
     }
 
-    public void setTargetStates(ArrayList<State> targetStates) {
+    public void setTargetStates(List<State> targetStates) {
         this.targetStates = targetStates;
     }
 }

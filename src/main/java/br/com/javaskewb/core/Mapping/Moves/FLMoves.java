@@ -5,18 +5,18 @@ import br.com.javaskewb.core.Mapping.Moves.Matrices.CentersFaces;
 import java.util.HashMap;
 
 public class FLMoves extends Moves{
-    private static final HashMap<String, CentersFaces> notation = new HashMap<>();
+    private static final HashMap<String, CentersFaces> notation = fill();
 
-    @Override
-    protected void fill() {
-        if (notation.isEmpty()){
-            AdvancedMoves advancedMoves = new AdvancedMoves();
+    private static HashMap<String, CentersFaces> fill() {
+        HashMap<String, CentersFaces> notation = new HashMap<>();
+        AdvancedMoves advancedMoves = new AdvancedMoves();
 
-            String[] moves = {"F", "F'", "B", "B'", "R", "R'", "L", "L'"};
+        String[] moves = {"R", "R'", "F", "F'", "L", "L'", "B", "B'"};
 
-            for (String move: moves)
-                notation.put(move, advancedMoves.getMove(move));
-        }
+        for (String move: moves)
+            notation.put(move, advancedMoves.getMove(move));
+
+        return notation;
     }
 
     @Override

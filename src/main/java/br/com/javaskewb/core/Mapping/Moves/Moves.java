@@ -7,33 +7,19 @@ import br.com.javaskewb.core.Mapping.Parts.Corner;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 abstract public class Moves {
     protected State state;
     protected boolean updateState;
 
-    public Moves(){
-        if (getNotation().isEmpty())
-            fill();
-    }
+    public Moves(){}
 
     public Moves(State state, boolean updateState){
         setState(state);
         setUpdateState(updateState);
-
-        if (getNotation().isEmpty())
-            fill();
     }
 
-    protected abstract void fill();
-
-    private ArrayList<CentersFaces> getAllMatrices(ArrayList<String> scramble){
-        ArrayList<CentersFaces> allMatrices = new ArrayList<>();
-        for (String s: scramble)
-            allMatrices.add(getNotation().get(s));
-
-        return allMatrices;
-    }
     public CentersFaces getMove(String move){
         return getNotation().get(move);
     }
@@ -82,6 +68,10 @@ abstract public class Moves {
         return new CentersFaces(invertMatrix(centers), invertMatrix(faces));
     }
 
+    public CentersFaces invertMove(String move){
+        return invertMove(getNotation().get(move));
+    }
+
     public State applyMove(String move){
         CentersFaces matrices = getMove(move);
         State newState;
@@ -91,37 +81,34 @@ abstract public class Moves {
         return newState;
     }
 
-    public static ArrayList<Integer> moveCenters(int[][] matrix, ArrayList<Integer> centers){
+    public static ArrayList<Integer> moveCenters(int[][] matrix, List<Integer> centers){
         ArrayList<Integer> arrayCenters = new ArrayList<>();
 
         for (int[] ints : matrix) {
-            for (int j = 0; j < 1; j++) {
-                int sum = 0;
+            int sum = 0;
 
-                for (int k = 0; k < ints.length; k++) {
-                    sum += ints[k] * centers.get(k);
-                }
-
-                arrayCenters.add(sum);
+            for (int k = 0; k < ints.length; k++) {
+                sum += ints[k] * centers.get(k);
             }
+
+            arrayCenters.add(sum);
         }
 
         return arrayCenters;
     }
 
-    public static ArrayList<Integer> moveFaces(int[][] matrix, ArrayList<Integer> faces){
+    public static ArrayList<Integer> moveFaces(int[][] matrix, List<Integer> faces){
         ArrayList<Integer> arrayFaces = new ArrayList<>();
 
         for (int[] ints : matrix) {
-            for (int j = 0; j < 1; j++) {
-                int sum = 0;
+            int sum = 0;
 
-                for (int k = 0; k < ints.length; k++) {
-                    sum += ints[k] * faces.get(k);
-                }
-
-                arrayFaces.add(sum);
+            for (int k = 0; k < ints.length; k++) {
+                sum += ints[k] * faces.get(k);
             }
+
+            arrayFaces.add(sum);
+
         }
 
         return arrayFaces;
@@ -132,7 +119,7 @@ abstract public class Moves {
     }
 
     public static State move(State state, CentersFaces centersFaces, boolean updateState){
-        ArrayList<Integer> centers, faces;
+        List<Integer> centers, faces;
         int[][] centersMatrix, facesMatrix;
 
         centersMatrix = centersFaces.getCentersMatrix();
@@ -141,8 +128,8 @@ abstract public class Moves {
         centers = moveCenters(centersMatrix, state.getIntCenters());
         faces = moveFaces(facesMatrix, state.getFaces());
 
-        ArrayList<Center> arrayCenters = new ArrayList<>();
-        ArrayList<Corner> arrayCorners = new ArrayList<>();
+        List<Center> arrayCenters = new ArrayList<>();
+        List<Corner> arrayCorners = new ArrayList<>();
 
         int cont;
 

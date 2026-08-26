@@ -4,19 +4,22 @@ import br.com.javaskewb.core.Mapping.Moves.AdvancedMoves;
 import br.com.javaskewb.core.Mapping.Moves.Moves;
 import br.com.javaskewb.core.Mapping.Moves.WCAMoves;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class Skewb {
     private State state;
+    private final State initialState;
     private Moves moves;
     private WCAMoves wcaMoves;
     private AdvancedMoves advancedMoves;
-    private ArrayList<State> solvedStates;
+    private List<State> solvedStates;
+    private final State solvedState;
 
     public Skewb(){
         setState(State.getSolvedState());
+        initialState = state.cloneState();
+        this.solvedState = state.cloneState();
         setWcaMoves(new WCAMoves(state, true));
         setAdvancedMoves(new AdvancedMoves(state, true));
         setMoves(wcaMoves);
@@ -26,6 +29,8 @@ public class Skewb {
 
     public Skewb(State baseState){
         setState(baseState);
+        initialState = baseState.cloneState();
+        this.solvedState = state.cloneState();
         setWcaMoves(new WCAMoves(baseState, true));
         setAdvancedMoves(new AdvancedMoves(baseState, true));
         setMoves(wcaMoves);
@@ -33,20 +38,31 @@ public class Skewb {
         setSolvedStates(generatePerspectiveStates(baseState));
     }
 
-    public ArrayList<State> generatePerspectiveStates(State baseState){
+    public Skewb(State initialState, State solvedState){
+        setState(initialState);
+        this.initialState = initialState.cloneState();
+        this.solvedState = solvedState.cloneState();
+        setWcaMoves(new WCAMoves(initialState, true));
+        setAdvancedMoves(new AdvancedMoves(initialState, true));
+        setMoves(wcaMoves);
+
+        setSolvedStates(generatePerspectiveStates(solvedState));
+    }
+
+    public List<State> generatePerspectiveStates(State baseState){
         return State.generatePerspectivesStates(baseState);
     }
 
     public void maskSide(int side){
-        state.maskSide(side);
+        state.maskLayer(side);
 
         State base = State.getSolvedState();
-        base.maskSide(side);
+        base.maskLayer(side);
 
         setSolvedStates(generatePerspectiveStates(base));
     }
 
-    public ArrayList<State> generatePerspectiveStates(){
+    public List<State> generatePerspectiveStates(){
         return generatePerspectiveStates(State.getSolvedState());
     }
 
@@ -93,7 +109,17 @@ public class Skewb {
     public void setState(State state) {
         this.state = state;
         if (wcaMoves != null || advancedMoves != null){
-            setSolvedStates(generatePerspectiveStates(state));
+            setSolvedStates(generatePerspectiveStates());
+            if (wcaMoves != null)
+                wcaMoves.setState(state);
+            if (advancedMoves != null)
+                advancedMoves.setState(state);
+        }
+    }
+
+    public void reset(){
+        state = initialState.cloneState();
+        if (wcaMoves != null || advancedMoves != null){
             if (wcaMoves != null)
                 wcaMoves.setState(state);
             if (advancedMoves != null)
@@ -122,11 +148,19 @@ public class Skewb {
         return state.toString();
     }
 
-    public ArrayList<State> getSolvedStates() {
+    public List<State> getSolvedStates() {
         return solvedStates;
     }
 
-    public void setSolvedStates(ArrayList<State> solvedStates) {
+    public void setSolvedStates(List<State> solvedStates) {
         this.solvedStates = solvedStates;
+    }
+
+    public State getInitialState() {
+        return initialState;
+    }
+
+    public State getSolvedState() {
+        return solvedState;
     }
 }

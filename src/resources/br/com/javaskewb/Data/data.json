@@ -1,0 +1,45 @@
+{
+  "114349209288704": {
+    "id": 114349209288704,
+    "favorite": false,
+    "status": "Desconhecido",
+    "algorithms": [
+      "r\u0027 R r R\u0027 z2 r\u0027 R r R\u0027"
+    ]
+  },
+  "89060441849856": {
+    "id": 89060441849856,
+    "favorite": false,
+    "status": "Desconhecido",
+    "algorithms": [
+      "z2 r\u0027 R r R\u0027 z2 r\u0027 R r R\u0027"
+    ]
+  },
+  "130841883705344": {
+    "id": 130841883705344,
+    "favorite": true,
+    "status": "Desconhecido",
+    "algorithms": [
+      "r R\u0027 r R\u0027 z\u0027 r\u0027 R z y\u0027 r\u0027 R"
+    ]
+  },
+  "536561674354688": {
+    "id": 536561674354688,
+    "favorite": false,
+    "status": "Desconhecido",
+    "algorithms": []
+  },
+  "683896232476672": {
+    "favorite": false,
+    "status": "Desconhecido",
+    "algorithms": [
+      "x R r\u0027 R\u0027 r B r\u0027 R r\u0027 R\u0027 r B r\u0027"
+    ]
+  },
+  "712013017789956": {
+    "id": 712013017789956,
+    "favorite": true,
+    "status": "Desconhecido",
+    "algorithms": []
+  }
+}
