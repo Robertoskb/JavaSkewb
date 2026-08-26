@@ -4,7 +4,6 @@ import br.com.javaskewb.core.Mapping.Moves.AdvancedMoves;
 import br.com.javaskewb.core.Mapping.Moves.Moves;
 import br.com.javaskewb.core.Mapping.Moves.WCAMoves;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,7 +13,7 @@ public class Skewb {
     private Moves moves;
     private WCAMoves wcaMoves;
     private AdvancedMoves advancedMoves;
-    private ArrayList<State> solvedStates;
+    private List<State> solvedStates;
     private final State solvedState;
 
     public Skewb(){
@@ -50,7 +49,7 @@ public class Skewb {
         setSolvedStates(generatePerspectiveStates(solvedState));
     }
 
-    public ArrayList<State> generatePerspectiveStates(State baseState){
+    public List<State> generatePerspectiveStates(State baseState){
         return State.generatePerspectivesStates(baseState);
     }
 
@@ -63,7 +62,7 @@ public class Skewb {
         setSolvedStates(generatePerspectiveStates(base));
     }
 
-    public ArrayList<State> generatePerspectiveStates(){
+    public List<State> generatePerspectiveStates(){
         return generatePerspectiveStates(State.getSolvedState());
     }
 
@@ -149,11 +148,11 @@ public class Skewb {
         return state.toString();
     }
 
-    public ArrayList<State> getSolvedStates() {
+    public List<State> getSolvedStates() {
         return solvedStates;
     }
 
-    public void setSolvedStates(ArrayList<State> solvedStates) {
+    public void setSolvedStates(List<State> solvedStates) {
         this.solvedStates = solvedStates;
     }
 

@@ -5,6 +5,7 @@ import br.com.javaskewb.core.Patterns.Methods.NS.L2L.CC.Peanut.PeanutCases;
 import br.com.javaskewb.core.Patterns.Methods.NS.L2L.CC.Pi.PiCases;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CCCases extends Cases<CCCase> {
     private static final PiCases PiCases = new PiCases();
@@ -34,7 +35,7 @@ public class CCCases extends Cases<CCCase> {
     }
 
     @Override
-    public ArrayList<Cases<?>> getSubCases() {
+    public List<Cases<?>> getSubCases() {
         return subCases;
     }
 }

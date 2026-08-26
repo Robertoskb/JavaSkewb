@@ -3,6 +3,7 @@ package br.com.javaskewb.core.Patterns.Methods.EG2;
 import br.com.javaskewb.core.Patterns.base.Cases;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class EG2SubCases extends Cases<EG2Case>{
     private final ArrayList<Cases<?>> subCases = new ArrayList<>();
@@ -25,7 +26,7 @@ public class EG2SubCases extends Cases<EG2Case>{
     }
 
     @Override
-    public ArrayList<Cases<?>> getSubCases() {
+    public List<Cases<?>> getSubCases() {
         return subCases;
     }
 }
