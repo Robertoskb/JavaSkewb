@@ -155,7 +155,7 @@ public class State {
 
     }
 
-    public LinkedHashMap<State, State> getMaskSides(){
+    public LinkedHashMap<State, State> getMaskLayers(){
         LinkedHashMap<State, State> states = new LinkedHashMap<>();
 
         State solved = State.getSolvedState();

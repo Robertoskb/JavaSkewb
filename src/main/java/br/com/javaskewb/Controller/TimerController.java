@@ -2,20 +2,24 @@ package br.com.javaskewb.Controller;
 
 import br.com.javaskewb.Controller.Components.SkewbBase;
 import br.com.javaskewb.Controller.Components.parts.base.SkewbColor;
+import br.com.javaskewb.core.Cube.Skewb;
 import br.com.javaskewb.core.Cube.State;
+import br.com.javaskewb.core.Mapping.Moves.Moves;
+import br.com.javaskewb.core.Patterns.Methods.EG2.EG2Case;
+import br.com.javaskewb.core.Patterns.Methods.FS.FL.FLCase;
 import br.com.javaskewb.core.Patterns.base.Case;
 import br.com.javaskewb.core.Solution.Solution;
 import br.com.javaskewb.core.Solution.utils.Scramble;
+import br.com.javaskewb.scrambles.FLEG2Config;
+import br.com.javaskewb.scrambles.FLNSConfig;
 import br.com.javaskewb.scrambles.ScrambleGenerator;
 import br.com.javaskewb.scrambles.StateConfig;
+import br.com.javaskewb.scrambles.base.FLMethodConfig;
 import br.com.javaskewb.ui.ScreenManager;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
@@ -44,6 +48,9 @@ public class TimerController {
     private Label scrambleLabel;
 
     @FXML
+    private ComboBox<FLMethodConfig> cbMethod;
+
+    @FXML
     private Label timerLabel;
 
     @FXML
@@ -63,6 +70,24 @@ public class TimerController {
 
     @FXML
     private Label color5;
+
+    @FXML
+    private Label color6;
+
+    @FXML
+    private Label color7;
+
+    @FXML
+    private Label color8;
+
+    @FXML
+    private Label color9;
+
+    @FXML
+    private Label color10;
+
+    @FXML
+    private Label color11;
 
     @FXML
     private CheckBox pin;
@@ -88,7 +113,8 @@ public class TimerController {
 
     private final Solution solution = new Solution();
 
-    private final ArrayList<Label> labels = new ArrayList<>();
+    private final List<Label> labelsNS = new ArrayList<>();
+    private final List<Label> labelsEG2 = new ArrayList<>();
 
     public TimerController() throws IOException {
     }
@@ -101,7 +127,20 @@ public class TimerController {
         pin.setOnMouseClicked(e -> rootPane.requestFocus());
         moveSelector.setOnMouseClicked(e -> rootPane.requestFocus());
 
-        labels.addAll(List.of(color0, color1, color2, color3, color4, color5));
+        cbMethod.getItems().add(FLNSConfig.getInstance());
+        cbMethod.getItems().add(FLEG2Config.getInstance());
+        cbMethod.setValue(cbMethod.getItems().getFirst());
+
+        cbMethod.setOnAction(e -> {
+            rootPane.requestFocus();
+
+            scrambleGenerator.setFlMethodConfig(cbMethod.getValue());
+            updateScramble();
+        });
+
+
+        labelsNS.addAll(List.of(color0, color1, color2, color3, color4, color5));
+        labelsEG2.addAll(List.of(color6, color7, color8, color9, color10, color11));
 
         timer = new AnimationTimer() {
             @Override
@@ -157,23 +196,36 @@ public class TimerController {
 
         skewbBase.applyScramble(scramble);
 
-        skewbFL.getSkewb().setState(State.getPerspective(perspective));
-        skewbFL.getSkewb().getState().maskLayer(side);
-        flCase.applyCase(skewbFL.getSkewb().getState());
+        Skewb skewb = skewbFL.getSkewb();
+        skewb.setState(State.getPerspective(perspective));
+        skewb.getState().maskLayer(side);
+
+        if (cbMethod.getValue() instanceof FLEG2Config)
+            Moves.move(skewb.getState(), EG2Case.getEG2CenterFaces1(), true);
+
+        flCase.applyCase(skewb.getState());
         skewbFL.update();
 
-        ArrayList<Integer> infos = solution.FLInfos(skewbBase.getSkewb().getState());
+        List<Integer> infos = solution.FLInfos(skewbBase.getSkewb().getState());
+        List<Integer> EG2Infos = solution.FLEG2Infos(skewbBase.getSkewb().getState());
         for (int i = 0; i < 6; i++) {
-            Label label = labels.get(i);
+            Label label = labelsNS.get(i);
+            Label EG2Label = labelsEG2.get(i);
+
             SkewbColor skewbColor = SkewbColor.getColoById(i);
             String colorName = skewbColor.toString();
 
             label.setText(colorName + ": " + infos.get(i));
             label.setStyle("-fx-font-weight: normal;");
             label.setTextFill(Color.web(skewbColor.getHex()));
+
+            EG2Label.setText(colorName + ": " + EG2Infos.get(i));
+            EG2Label.setStyle("-fx-font-weight: normal;");
+            EG2Label.setTextFill(Color.web(skewbColor.getHex()));
         }
 
-        labels.get(side).setStyle("-fx-font-weight: bold;");
+        labelsNS.get(side).setStyle("-fx-font-weight: bold;");
+        labelsEG2.get(side).setStyle("-fx-font-weight: bold;");
     }
 
     @FXML

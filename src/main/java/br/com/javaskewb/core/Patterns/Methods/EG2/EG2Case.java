@@ -36,7 +36,7 @@ public class EG2Case extends NSCase {
         return getEG2CenterFaces1();
     }
 
-    private static CentersFaces getEG2CenterFaces1(){
+    public static CentersFaces getEG2CenterFaces1(){
         MatrixSwap faces;
 
         faces = new MatrixSwap(Moves.getFacesMatrix());

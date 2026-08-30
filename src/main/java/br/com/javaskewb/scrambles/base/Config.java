@@ -5,11 +5,6 @@ import br.com.javaskewb.core.Patterns.base.Case;
 
 import java.util.ArrayList;
 
-public abstract class Config {
-    protected ArrayList<Case> cases = new ArrayList<>();
-
-    public void applyCases(State state){
-        for (Case c: cases)
-            c.applyCase(state);
-    }
+public interface Config {
+    void applyCases(State state);
 }

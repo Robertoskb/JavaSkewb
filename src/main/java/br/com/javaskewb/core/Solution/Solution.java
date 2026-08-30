@@ -1,13 +1,16 @@
 package br.com.javaskewb.core.Solution;
 
 import br.com.javaskewb.core.Mapping.Moves.AdvancedMoves;
+import br.com.javaskewb.core.Mapping.Moves.Matrices.CentersFaces;
 import br.com.javaskewb.core.Mapping.Moves.Moves;
 import br.com.javaskewb.core.Mapping.Moves.WCAMoves;
 import br.com.javaskewb.core.Cube.State;
+import br.com.javaskewb.core.Patterns.Methods.EG2.EG2Case;
 import br.com.javaskewb.core.Solution.utils.Scramble;
 import br.com.javaskewb.core.Solution.utils.StateNode;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Solution {
     private Moves moves;
@@ -127,12 +130,34 @@ public class Solution {
         return findSolution(solvedState, targetState);
     }
 
-    public ArrayList<Integer> FLInfos(State state){
-        ArrayList<Integer> infos = new ArrayList<>(6);
-        LinkedHashMap<State, State> states = state.getMaskSides();
+    public List<Integer> FLInfos(State state){
+        List<Integer> infos = new ArrayList<>(6);
+        LinkedHashMap<State, State> states = state.getMaskLayers();
 
         states.forEach((initial, solved) ->
            infos.add(findSolution(initial, solved).size())
+        );
+
+        return infos;
+    }
+
+    public List<Integer> FLEG2Infos(State state){
+        List<Integer> infos = new ArrayList<>(6);
+        LinkedHashMap<State, State> states = state.getMaskLayers();
+
+        AtomicInteger cont = new AtomicInteger();
+        states.forEach((initial, solved) ->
+                {
+                    CentersFaces eg2CenterFaces1 = EG2Case.getEG2CenterFaces1();
+                    int i = cont.getAndIncrement();
+                    if (i == 1 || i == 5)
+                        eg2CenterFaces1 = Moves.mulCenterFaces(eg2CenterFaces1, AdvancedMoves.z());
+                    if (i == 2 || i == 4)
+                        eg2CenterFaces1 = Moves.mulCenterFaces(eg2CenterFaces1, AdvancedMoves.x());
+
+                    int size1 = findSolution(initial, Moves.move(solved, eg2CenterFaces1)).size();
+                    infos.add(size1);
+                }
         );
 
         return infos;

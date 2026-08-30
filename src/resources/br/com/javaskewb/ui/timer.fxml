@@ -4,6 +4,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,7 +16,7 @@
 
 <BorderPane fx:id="rootPane" focusTraversable="true" onKeyPressed="#handleKeyPressed" onKeyReleased="#handleKeyReleased" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #1e1e1e;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.javaskewb.Controller.TimerController">
     <top>
-        <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: #252526; -fx-padding: 20px;" BorderPane.alignment="CENTER">
+        <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: #252526; -fx-padding: 15px;" BorderPane.alignment="CENTER">
             <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
                <children>
@@ -25,14 +26,16 @@
                               <Font name="Monospaced Bold" size="22.0" />
                           </font>
                       </Label>
-                  <Spinner fx:id="moveSelector" editable="true" prefHeight="26.0" prefWidth="55.0" style="-fx-background-color: #252526;">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <cursor>
-                        <Cursor fx:constant="DEFAULT" />
-                     </cursor>
-                  </Spinner>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <Spinner fx:id="moveSelector" editable="true" prefHeight="26.0" prefWidth="48.0" style="-fx-background-color: #252526;">
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                        </Spinner>
+                        <ComboBox fx:id="cbMethod" prefHeight="26.0" prefWidth="72.0" />
+                     </children>
+                  </HBox>
                </children>
                <VBox.margin>
                   <Insets />
@@ -84,6 +87,11 @@
    <right>
       <VBox alignment="CENTER" prefHeight="251.0" prefWidth="200.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
+            <Label text="FL NS" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Label>
             <Label fx:id="color0" text="color" textFill="#666666" />
             <Label fx:id="color1" text="color" textFill="#666666" />
             <Label fx:id="color2" text="color" textFill="#666666" />
@@ -94,7 +102,20 @@
       </VBox>
    </right>
    <left>
-      <VBox prefHeight="259.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <VBox alignment="CENTER" prefHeight="259.0" prefWidth="200.0" spacing="5.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="FL EG2" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="color6" layoutX="96.0" layoutY="187.0" text="color" textFill="#666666" />
+            <Label fx:id="color7" text="color" textFill="#666666" />
+            <Label fx:id="color8" text="color" textFill="#666666" />
+            <Label fx:id="color9" text="color" textFill="#666666" />
+            <Label fx:id="color10" text="color" textFill="#666666" />
+            <Label fx:id="color11" text="color" textFill="#666666" />
+         </children></VBox>
    </left>
 
 </BorderPane>
