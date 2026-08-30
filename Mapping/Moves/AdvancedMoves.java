@@ -66,7 +66,7 @@ public class AdvancedMoves extends Moves{
         return costs.getOrDefault(move, 1);
     }
 
-    private static CentersFaces x(){
+    public static CentersFaces x(){
         MatrixSwap centers, faces;
 
         centers = new MatrixSwap(getCenterMatrix());
@@ -164,7 +164,7 @@ public class AdvancedMoves extends Moves{
         return new CentersFaces(centers.getMatrix(), faces.getMatrix());
     }
 
-    private static CentersFaces z(){
+    public static CentersFaces z(){
         // x y x'
 
         ArrayList<CentersFaces> sequence = new ArrayList<>();
