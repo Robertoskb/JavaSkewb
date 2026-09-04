@@ -18,7 +18,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>br.com.javaskewb.Main</mainClass>
+                  <mainClass>br.com.javaskewb.ui.Main</mainClass>
                 </transformer>
               </transformers>
             </configuration>

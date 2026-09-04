@@ -24,7 +24,7 @@
                     </children>
                 </VBox>
 
-                <Label styleClass="footer-label" text="Versão 0.1">
+                <Label styleClass="footer-label" text="Versão 1.1">
                     <VBox.margin>
                         <Insets top="30.0" />
                     </VBox.margin>

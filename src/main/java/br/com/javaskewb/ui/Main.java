@@ -1,7 +1,5 @@
-package br.com.javaskewb;
+package br.com.javaskewb.ui;
 
-import br.com.javaskewb.core.Patterns.Methods.Methods;
-import br.com.javaskewb.ui.ScreenManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -20,10 +18,6 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
-//        SkewbTranslation translation = new SkewbTranslation();
-//        // "U' B L B' L R' L B'"
-//        for (String scramble: translation.translate("R B"))
-//            System.out.println(scramble + "\n");
     }
 
 }
