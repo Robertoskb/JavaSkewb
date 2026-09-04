@@ -163,7 +163,7 @@ public class Solution {
         return infos;
     }
 
-    public static Scramble invertScramble(ArrayList<String> scramble){
+    public static Scramble invertScramble(List<String> scramble){
         Scramble newScramble = new Scramble();
 
         List<String> noInvert = Arrays.stream("x2 y2 z2".split(" ")).toList();
