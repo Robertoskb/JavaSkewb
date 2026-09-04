@@ -16,15 +16,6 @@ public class State {
     private List<Corner> corners;
     int perspective;
 
-    private final int[][] sides = {
-            {0, 1, 2, 3}, {0, 3, 6, 7}, {0, 1, 5, 6},
-            {4, 5, 6, 7}, {4, 3, 2, 7}, {4, 1, 2, 5}
-    };
-    private final int[][] faces = {
-            {0, 1, 2}, {3, 4, 5}, {6, 7, 8}, {9, 10, 11},
-            {12, 13, 14}, {15, 16, 17}, {18, 19, 20}, {21, 23, 23}
-    };
-
     public State(List<Center> centers, List<Corner> corners){
         setCenters(centers);
         setCorners(corners);
@@ -37,9 +28,13 @@ public class State {
         for (int i=0; i<6; i++)
             new_centers.add(new Center(i));
 
-        int cont = 0;
-        for (int i=0; i<24; i+=3)
-            new_corners.add(new Corner(cont++, new int[] {i, i+1, i+2}));
+        int[][] faces = {
+                {0, 1, 2}, {0, 2, 5}, {0, 5, 4}, {0, 4, 1},
+                {3, 4, 5}, {3, 5, 2}, {3, 2, 1}, {3, 1, 4},
+        };
+        for (int i = 0; i < 8; i++) {
+            new_corners.add(new Corner(i, faces[i]));
+        }
 
         return new State(new_centers, new_corners);
     }
@@ -119,14 +114,11 @@ public class State {
 
         for (Corner corner: corners){
             boolean find = false;
-            for (int id: sides[layer]){
-                for (int face: faces[id]){
-                    if (corner.getFaces().contains(face)){
-                        find = true;
-                        break;
-                    }
+            for (int value: corner.getFaces())
+                if (value == layer){
+                    find = true;
+                    break;
                 }
-            }
             if (!find)
                 corner.setFaces(new int[] {-1, -1, -1});
 
@@ -141,14 +133,10 @@ public class State {
         maskLayer(side);
 
         for (Corner corner: corners){
-            for (int id: sides[side]){
-                for (int face: faces[id]){
-                    int index = corner.getFaces().indexOf(face);
-                    if (index != -1){
-                        corner.setFace(index, faces[sides[side][0]][side%3]);
-                        corner.setFace(index+1, -1);
-                        corner.setFace(index+2, -1);
-                    }
+            for (int i = 0; i < 3; i++) {
+                int value = corner.getFaces().get(i);
+                if (value != side) {
+                    corner.getFaces().set(i, -1);
                 }
             }
         }

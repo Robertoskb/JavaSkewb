@@ -12,9 +12,25 @@ import java.util.List;
 public class StateRank {
     private static final int [] FACTORIAL = {1, 1, 2, 6, 24, 120, 720, 5040, 40320};
 
-    private static final int[][] CORNER_BASES = new int[][]{
-            {0, 1, 2}, {3, 4, 5}, {6, 7, 8}, {9, 10, 11},
-            {12, 13, 14}, {15, 16, 17}, {18, 19, 20}, {21, 22, 23}
+    private static final int[][] CORNER_BASES = {
+            {0, 1, 2}, {0, 2, 5}, {0, 5, 4}, {0, 4, 1},
+            {3, 4, 5}, {3, 5, 2}, {3, 2, 1}, {3, 1, 4},
+    };
+
+    private static final int[] CORNER_BASES_INDEX = {
+            -1, // 0
+            -1, // 1
+            -1, // 2
+            0, // 3 -> {0,1,2}
+            -1, // 4
+            3, // 5 -> {0,4,1}
+            6, // 6 -> {3,2,1}
+            1, // 7 -> {0,2,5}
+            7, // 8 -> {3,1,4}
+            2, // 9 -> {0,5,4}
+            5, // 10 -> {3,5,2}
+            -1, // 11
+            4  // 12 -> {3,4,5}
     };
 
     private static final int[] CENTER_BASE = {0, 1, 2, 3, 4, 5};
@@ -63,13 +79,14 @@ public class StateRank {
             Corner corner = corners.get(i);
             List<Integer> faces = corner.getFaces();
 
-            int min = 24;
-            for (int face: faces)
-                if (face < min)
-                    min = face;
-            cornersId.add(min/3);
+            int sum = faces.get(0) + faces.get(1) +  faces.get(2);
+            int cornerBasesIndex = CORNER_BASES_INDEX[sum];
 
-            cornersRankings[i] = calcRank(faces);
+            assert cornerBasesIndex != -1;
+
+            cornersId.add(cornerBasesIndex);
+
+            cornersRankings[i] = calcCornerRank(faces, cornerBasesIndex);
         }
 
         int cornersIdRank = calcRank(cornersId);
@@ -92,6 +109,34 @@ public class StateRank {
         }
 
         return rank;
+    }
+
+    public static int calcCornerRank(List<Integer> faces, int cornerId) {
+        int[] base = CORNER_BASES[cornerId];
+
+        int rank = 0;
+
+        for (int i = 0; i < 3; i++) {
+            int position = indexOf(base, faces.get(i));
+
+            for (int j = i + 1; j < 3; j++) {
+                int otherPosition = indexOf(base, faces.get(j));
+
+                if (otherPosition < position)
+                    rank += FACTORIAL[2 - i];
+            }
+        }
+
+        return rank;
+    }
+
+    private static int indexOf(int[] array, int value) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == value)
+                return i;
+        }
+
+        return -1;
     }
 
     public static int[] arrayReconstruct(int rank, int[] base){

@@ -4,6 +4,7 @@ import br.com.javaskewb.Controller.Components.parts.CenterPart;
 import br.com.javaskewb.Controller.Components.parts.CenterSlot;
 import br.com.javaskewb.Controller.Components.parts.FacePart;
 import br.com.javaskewb.Controller.Components.parts.FaceSlot;
+import br.com.javaskewb.Controller.Components.parts.base.SkewbColor;
 import br.com.javaskewb.core.Cube.Skewb;
 import br.com.javaskewb.core.Mapping.Moves.Matrices.CentersFaces;
 import br.com.javaskewb.core.Mapping.Moves.Moves;
@@ -150,16 +151,16 @@ public class SkewbBase extends StackPane{
     public void update(){
         for (int i=0; i < centers.size(); i++){
             CenterSlot slot = centerSlots.get(i);
-            int value = skewb.getState().getCenters().get(i).getValue()+1;
+            int value = skewb.getState().getCenters().get(i).getValue();
 
-            slot.getPart().setColor(CenterPart.getSkewbColors().get(value));
+            slot.getPart().setColor(SkewbColor.getColoById(value));
         }
 
         for (int i=0; i < faces.size(); i++){
             FaceSlot slot = faceSlots.get(i);
-            int value = skewb.getState().getFaces().get(i)+1;
+            int value = skewb.getState().getFaces().get(i);
 
-            slot.getPart().setColor(FacePart.getSkewbColors().get(value));
+            slot.getPart().setColor(SkewbColor.getColoById(value));
         }
     }
 

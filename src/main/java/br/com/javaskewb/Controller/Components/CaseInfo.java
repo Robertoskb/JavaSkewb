@@ -140,6 +140,7 @@ public class CaseInfo extends VBox {
         stateInfo = manager.getStateInfo(skewbCase.applyCase(State.getSolvedState(), true));
 
         lblName.setText(skewbCase.getName());
+        System.out.println(stateInfo.getId());
 
         cbStatus.setValue(stateInfo.getStatus());
 
