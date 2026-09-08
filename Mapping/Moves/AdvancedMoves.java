@@ -23,9 +23,13 @@ public class AdvancedMoves extends Moves{
         HashMap<String, CentersFaces> notation = new HashMap<>();
         notation.put("r", r());
         notation.put("r'", invertMove(notation.get("r")));
+        notation.put("r2",  notation.get("r'"));
+        notation.put("r2'", notation.get("r"));
 
         notation.put("R", R());
         notation.put("R'", invertMove(notation.get("R")));
+        notation.put("R2", notation.get("R'"));
+        notation.put("R2'", notation.get("R"));
 
         notation.put("l", l());
         notation.put("l'", invertMove(notation.get("l")));
