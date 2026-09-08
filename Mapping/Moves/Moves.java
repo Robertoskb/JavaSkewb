@@ -81,37 +81,21 @@ abstract public class Moves {
         return newState;
     }
 
-    public static ArrayList<Integer> moveCenters(int[][] matrix, List<Integer> centers){
-        ArrayList<Integer> arrayCenters = new ArrayList<>();
+    private static ArrayList<Integer> moveList(int[][] matrix, List<Integer> list){
+        ArrayList<Integer> newList = new ArrayList<>();
 
         for (int[] ints : matrix) {
             int sum = 0;
 
             for (int k = 0; k < ints.length; k++) {
-                sum += ints[k] * centers.get(k);
+                sum += ints[k] * list.get(k);
             }
 
-            arrayCenters.add(sum);
-        }
-
-        return arrayCenters;
-    }
-
-    public static ArrayList<Integer> moveFaces(int[][] matrix, List<Integer> faces){
-        ArrayList<Integer> arrayFaces = new ArrayList<>();
-
-        for (int[] ints : matrix) {
-            int sum = 0;
-
-            for (int k = 0; k < ints.length; k++) {
-                sum += ints[k] * faces.get(k);
-            }
-
-            arrayFaces.add(sum);
+            newList.add(sum);
 
         }
 
-        return arrayFaces;
+        return newList;
     }
 
     public State move(CentersFaces centersFaces){
@@ -125,11 +109,11 @@ abstract public class Moves {
         centersMatrix = centersFaces.getCentersMatrix();
         facesMatrix = centersFaces.getFacesMatrix();
 
-        centers = moveCenters(centersMatrix, state.getIntCenters());
-        faces = moveFaces(facesMatrix, state.getFaces());
+        centers = moveList(centersMatrix, state.getIntCenters());
+        faces = moveList(facesMatrix, state.getFaces());
 
-        List<Center> arrayCenters = new ArrayList<>();
-        List<Corner> arrayCorners = new ArrayList<>();
+        List<Center> arrayCenters = new ArrayList<>(6);
+        List<Corner> arrayCorners = new ArrayList<>(24);
 
         int cont;
 
