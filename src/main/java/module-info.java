@@ -22,7 +22,7 @@ module JavaSkewb {
     opens br.com.javaskewb.Controller.Components.parts.base to javafx.fxml, javafx.graphics;
     exports br.com.javaskewb.Controller.Components;
     opens br.com.javaskewb.Controller.Components to javafx.fxml, javafx.graphics;
-    exports br.com.javaskewb.DataManager.utils;
+    exports br.com.javaskewb.core.utils;
     exports br.com.javaskewb.core.Patterns.base;
     opens br.com.javaskewb to javafx.fxml, javafx.graphics;
 }

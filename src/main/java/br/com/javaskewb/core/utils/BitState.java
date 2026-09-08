@@ -1,4 +1,4 @@
-package br.com.javaskewb.DataManager.utils;
+package br.com.javaskewb.core.utils;
 
 public class BitState {
     private final int cornersRankings; // 24 bits (3! < 2^3)

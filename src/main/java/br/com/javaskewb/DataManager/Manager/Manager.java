@@ -1,7 +1,7 @@
 package br.com.javaskewb.DataManager.Manager;
 
-import br.com.javaskewb.DataManager.utils.BitState;
-import br.com.javaskewb.DataManager.utils.StateRank;
+import br.com.javaskewb.core.utils.BitState;
+import br.com.javaskewb.core.utils.StateRank;
 import br.com.javaskewb.core.Cube.State;
 import br.com.javaskewb.core.Patterns.Methods.NS.NSCase;
 import br.com.javaskewb.core.Patterns.Methods.NS.NSCases;

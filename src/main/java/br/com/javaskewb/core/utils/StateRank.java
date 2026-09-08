@@ -1,4 +1,4 @@
-package br.com.javaskewb.DataManager.utils;
+package br.com.javaskewb.core.utils;
 
 import br.com.javaskewb.core.Cube.State;
 import br.com.javaskewb.core.Mapping.Parts.Center;
