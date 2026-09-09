@@ -1,0 +1,12 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="796e0e5f-f811-3b13-b2e2-3cde9d3c6904" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="SSBasedInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <replaceConfiguration name="variants" text="$myCase$.getCasesVariants();" recursive="false" caseInsensitive="false" type="JAVA" pattern_context="default" reformatAccordingToStyle="false" shortenFQN="false" replacement="Variant.getVariants($myCase$);">
+        <constraint name="__context__" within="" contains="" />
+        <constraint name="myCase" within="" contains="" />
+      </replaceConfiguration>
+    </inspection_tool>
+  </profile>
+</component>
