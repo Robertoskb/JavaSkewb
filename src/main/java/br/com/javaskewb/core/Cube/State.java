@@ -5,8 +5,13 @@ import br.com.javaskewb.core.Mapping.Moves.Moves;
 import br.com.javaskewb.core.Mapping.Parts.Center;
 import br.com.javaskewb.core.Mapping.Parts.Corner;
 import br.com.javaskewb.core.Mapping.Moves.AdvancedMoves;
+import br.com.javaskewb.core.Solution.Solution;
 
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class State {
     private static final Random random = new Random();
@@ -14,11 +19,34 @@ public class State {
 
     private List<Center> centers;
     private List<Corner> corners;
+
+    private List<Integer> intCenters;
+    private List<Integer> intCorners;
+
     int perspective;
 
     public State(List<Center> centers, List<Corner> corners){
         setCenters(centers);
         setCorners(corners);
+    }
+
+    public State(List<Integer> centerCorners){
+        intCenters = new ArrayList<>(8);
+        intCorners = new ArrayList<>(24);
+
+        centers = new ArrayList<>(6);
+        for (int i = 0; i < 6; i++) {
+            centers.add(new Center(centerCorners.get(i)));
+            intCenters.add(centerCorners.get(i));
+        }
+
+        corners = new ArrayList<>(8);
+        int cont = 0;
+        for (int i=6; i<30; i+=3) {
+            List<Integer> faces = centerCorners.subList(i, i + 3);
+            corners.add(new Corner(cont++, faces));
+            intCorners.addAll(faces);
+        }
     }
 
     public static State getSolvedState(){
@@ -226,5 +254,43 @@ public class State {
     @Override
     public int hashCode(){
         return Objects.hash(centers, corners);
+    }
+
+    public static void main(String[] args) {
+        String txt = "";
+        String txtOut = "";
+        Scanner sc = new Scanner(System.in);
+        Solution solution = new Solution();
+
+        Deque<State> states = new ArrayDeque<>(3200000);
+        List<String> scrambles = new ArrayList<>(3200000);
+
+        State solved = State.getSolvedState();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(txt))){
+            String line;
+            while ((line = reader.readLine()) != null) {
+                states.add(new State(Arrays.stream(line.split(",")).map(Integer::parseInt).toList()));
+            }
+        } catch (IOException ex){}
+
+        System.out.println("All states");
+
+        int cont = 1;
+        while (!states.isEmpty()) {
+            scrambles.add(solution.findScramble(solved, states.poll()).toString());
+            System.err.println(cont++);
+        }
+
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(txtOut)) ) {
+            for (String line : scrambles) {
+                writer.write(line);
+                writer.newLine();
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

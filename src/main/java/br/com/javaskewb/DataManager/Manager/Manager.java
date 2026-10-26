@@ -17,13 +17,10 @@ import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Manager {
-    private HashMap<Long, StateInfo> data = new HashMap<>();
+    private Map<Long, StateInfo> data;
 
     private final Path folderPath = Paths.get(System.getProperty("user.home"), ".javaskewb");
     private final File file = folderPath.resolve("data.json").toFile();
@@ -42,11 +39,11 @@ public class Manager {
             }
 
             try (FileReader reader = new FileReader(file)){
-                Type hashmap = new TypeToken<HashMap<Long, StateInfo>>(){}.getType();
+                Type hashmap = new TypeToken<LinkedHashMap<Long, StateInfo>>(){}.getType();
                 data = gson.fromJson(reader, hashmap);
 
                 if (data == null)
-                    data = new HashMap<>();
+                    data = new LinkedHashMap<>();
 
                 System.out.println("Data carregada com sucesso de: " + file.getAbsolutePath());
             } catch (IOException e) {
@@ -156,7 +153,7 @@ public class Manager {
         }
     }
 
-    public HashMap<Long, StateInfo> getData() {
+    public Map<Long, StateInfo> getData() {
         return data;
     }
 
@@ -165,7 +162,7 @@ public class Manager {
 
         NSCases nsCases = new NSCases();
 
-        HashMap<Long, StateInfo> data = manager.getData();
+        Map<Long, StateInfo> data = manager.getData();
 
         for (NSCase nsCase: nsCases.getCases()){
             State state = State.getSolvedState();

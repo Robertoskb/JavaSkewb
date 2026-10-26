@@ -21,6 +21,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SkewbBase extends StackPane{
@@ -214,7 +215,13 @@ public class SkewbBase extends StackPane{
     }
 
     public void applyScramble(String scramble){
-        skewb.applyScramble(scramble);
+        List<String> scrambleList = Arrays.stream(scramble.split(" ")).toList();
+
+        for (String move: scrambleList)
+            if (!skewb.getMoves().getNotation().containsKey(move))
+                return;
+
+        skewb.applyScramble(scrambleList);
         update();
     }
 

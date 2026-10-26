@@ -32,6 +32,7 @@ public class CaseInfo extends VBox {
     @FXML private FlowPane notationContainer;
     @FXML private Button btnAddAlg;
     @FXML private Button btnSave;
+    @FXML private CheckBox typingManual;
 
     @FXML private StackPane skewbContainer;
 
@@ -65,8 +66,6 @@ public class CaseInfo extends VBox {
         skewbContainer.getChildren().add(skewbBase);
 
         cbStatus.getItems().addAll("Desconhecido", "Aprendendo", "Aprimorando", "Conhecido");
-
-        txtNewAlg.setEditable(false);
 
         Set<String> notation = new TreeSet<>(moves.getNotation().keySet());
         for (String move: notation){
@@ -138,9 +137,9 @@ public class CaseInfo extends VBox {
         lblScramble.setText("Scramble: " + scramble);
 
         stateInfo = manager.getStateInfo(skewbCase.applyCase(State.getSolvedState(), true));
+        System.out.println(stateInfo.getId());
 
         lblName.setText(skewbCase.getName());
-        System.out.println(stateInfo.getId());
 
         cbStatus.setValue(stateInfo.getStatus());
 
@@ -151,7 +150,16 @@ public class CaseInfo extends VBox {
         btnFav.setSelected(stateInfo.isFavorite());
         toggleFavorite();
 
+        typingManual.setSelected(false);
         btnAddAlg.setDisable(true);
+        txtNewAlg.setEditable(typingManual.isSelected());
+
+        typingManual.setOnMouseClicked(e -> {
+                txtNewAlg.setEditable(typingManual.isSelected());
+                skewbBase.reset();
+                txtNewAlg.clear();
+                btnAddAlg.setDisable(!typingManual.isSelected());
+        });
         this.setVisible(true);
         this.setOpacity(0);
 
@@ -162,7 +170,7 @@ public class CaseInfo extends VBox {
     }
 
     private void updateSolved(){
-        if (algorithms.contains(txtNewAlg.getText().trim()))
+        if (algorithms.contains(txtNewAlg.getText().trim()) || typingManual.isSelected())
             return;
         btnAddAlg.setDisable(!skewbBase.getSkewb().isSolved());
     }
@@ -195,18 +203,27 @@ public class CaseInfo extends VBox {
 
     @FXML
     private void addNewAlgorithm() {
-        skewbBase.reset();
-        updateSolved();
+        System.out.println(txtNewAlg.getText());
 
         String newAlg = txtNewAlg.getText().trim();
         if (!newAlg.isEmpty()) {
-            addAlgorithm(newAlg);
-            txtNewAlg.clear();
-            arrayMoves.clear();
+            if (!skewbBase.getSkewb().isSolved() && typingManual.isSelected()){
+                skewbBase.applyScramble(txtNewAlg.getText().trim());
+            }
+
+            if (skewbBase.getSkewb().isSolved()){
+                updateSolved();
+                addAlgorithm(newAlg);
+                txtNewAlg.clear();
+            }
+            skewbBase.reset();
+
         }
+
     }
 
     public void addAlgorithm(String alg) {
+
         HBox algRow = new HBox(5);
         algRow.setAlignment(Pos.CENTER_LEFT);
 

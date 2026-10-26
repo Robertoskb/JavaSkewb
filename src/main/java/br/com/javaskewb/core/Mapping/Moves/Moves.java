@@ -123,7 +123,7 @@ abstract public class Moves {
 
         cont = 0;
         for (int i=0; i<24; i+=3)
-            arrayCorners.add(new Corner(cont++, new int[]{faces.get(i), faces.get(i + 1), faces.get(i + 2)}));
+            arrayCorners.add(new Corner(cont++, faces.subList(i, i+3)));
 
         if (updateState){
             state.setCenters(arrayCenters);

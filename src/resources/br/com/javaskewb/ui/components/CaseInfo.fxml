@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -56,13 +57,14 @@
         </content>
     </ScrollPane>
 
-    <HBox spacing="8.0">
+    <HBox alignment="CENTER" spacing="8.0">
+      <CheckBox fx:id="typingManual" mnemonicParsing="false" prefHeight="18.0" prefWidth="18.0" />
         <TextField fx:id="txtNewAlg" onAction="#addNewAlgorithm" promptText="Novo alg..." style="-fx-background-color: #27272a; -fx-text-fill: white; -fx-prompt-text-fill: #71717a; -fx-border-color: #3f3f46; -fx-border-radius: 6; -fx-background-radius: 6;" HBox.hgrow="ALWAYS" />
-        <Button fx:id="btnAddAlg" onAction="#addNewAlgorithm" style="-fx-background-color: #3b82f6; -fx-text-fill: white; -fx-background-radius: 6; -fx-cursor: hand;" text="+">
-            <font>
-                <Font name="System Bold" size="12.0" />
-            </font>
-        </Button>
+      <Button fx:id="btnAddAlg" layoutX="408.0" layoutY="10.0" onAction="#addNewAlgorithm" style="-fx-background-color: #3b82f6; -fx-text-fill: white; -fx-background-radius: 6; -fx-cursor: hand;" text="+">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
     </HBox>
    <FlowPane fx:id="notationContainer" columnHalignment="CENTER" hgap="5.0" prefHeight="59.0" prefWidth="422.0" vgap="5.0">
       <padding>
