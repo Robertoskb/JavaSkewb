@@ -60,10 +60,9 @@ public class EG2Case extends NSCase {
 
     public static CentersFaces getEG2CenterFaces2(){
         CentersFaces y = AdvancedMoves.y();
-        CentersFaces yi = Moves.invertMove(y);
         CentersFaces centersFaces = Moves.mulCenterFaces(getEG2CenterFaces1(), y);
 
-        return Moves.mulCenterFaces(yi, centersFaces);
+        return Moves.mulCenterFaces(y, centersFaces);
     }
 
     public Case getNsCase() {

@@ -6,6 +6,7 @@ import br.com.javaskewb.core.Mapping.Parts.Center;
 import br.com.javaskewb.core.Mapping.Parts.Corner;
 import br.com.javaskewb.core.Mapping.Moves.AdvancedMoves;
 import br.com.javaskewb.core.Solution.Solution;
+import br.com.javaskewb.core.utils.LinkedQueue;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -81,23 +82,23 @@ public class State {
     }
 
     private static List<CentersFaces> perspectivesCenterFaces(){
-        List<CentersFaces> centersFacesList = new Stack<>();
+        List<CentersFaces> centersFacesList = new ArrayList<>();
 
         String[] moves = "x y z x' y' z'".split(" ");
 
-        Stack<CentersFaces> queue = new Stack<>();
-        queue.add(new CentersFaces(Moves.getCenterMatrix(), Moves.getFacesMatrix()));
+        LinkedQueue<CentersFaces> queue = new LinkedQueue<>();
+        queue.enqueue(new CentersFaces(Moves.getCenterMatrix(), Moves.getFacesMatrix()));
 
         AdvancedMoves advancedMoves = new AdvancedMoves();
 
         while (!queue.isEmpty()){
-            CentersFaces centersFaces = queue.removeLast();
+            CentersFaces centersFaces = queue.dequeue();
             for (String move: moves){
                 CentersFaces newCentersFaces = Moves.mulCenterFaces(advancedMoves.getMove(move), centersFaces);
 
                 if (!centersFacesList.contains(newCentersFaces)){
                     centersFacesList.add(newCentersFaces);
-                    queue.add(newCentersFaces);
+                    queue.enqueue(newCentersFaces);
                 }
 
             }

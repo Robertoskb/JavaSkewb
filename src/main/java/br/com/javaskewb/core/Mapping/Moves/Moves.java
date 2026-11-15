@@ -81,21 +81,13 @@ abstract public class Moves {
         return newState;
     }
 
-    private static ArrayList<Integer> moveList(int[][] matrix, List<Integer> list){
-        ArrayList<Integer> newList = new ArrayList<>();
-
-        for (int[] ints : matrix) {
-            int sum = 0;
-
-            for (int k = 0; k < ints.length; k++) {
-                sum += ints[k] * list.get(k);
-            }
-
-            newList.add(sum);
-
+    private static int findSource(int[] row){
+        for (int i = 0; i < row.length; i++) {
+            if (row[i] != 0)
+                return i;
         }
 
-        return newList;
+        throw new IllegalArgumentException("A linha da matriz não contém uma origem");
     }
 
     public State move(CentersFaces centersFaces){
@@ -103,27 +95,35 @@ abstract public class Moves {
     }
 
     public static State move(State state, CentersFaces centersFaces, boolean updateState){
-        List<Integer> centers, faces;
-        int[][] centersMatrix, facesMatrix;
+        int[][] centersMatrix = centersFaces.getCentersMatrix();
+        int[][] facesMatrix = centersFaces.getFacesMatrix();
 
-        centersMatrix = centersFaces.getCentersMatrix();
-        facesMatrix = centersFaces.getFacesMatrix();
+        List<Center> oldCenters = state.getCenters();
+        List<Corner> oldCorners = state.getCorners();
 
-        centers = moveList(centersMatrix, state.getIntCenters());
-        faces = moveList(facesMatrix, state.getFaces());
+        List<Center> arrayCenters = new ArrayList<>(centersMatrix.length);
+        for (int i = 0; i < centersMatrix.length; i++) {
+            int source = findSource(centersMatrix[i]);
+            arrayCenters.add(new Center(i, oldCenters.get(source).getValue()));
+        }
 
-        List<Center> arrayCenters = new ArrayList<>(6);
-        List<Corner> arrayCorners = new ArrayList<>(24);
+        int[] oldFaces = new int[facesMatrix[0].length];
+        for (int i = 0; i < oldCorners.size(); i++) {
+            List<Integer> cornerFaces = oldCorners.get(i).getFaces();
+            for (int j = 0; j < 3; j++)
+                oldFaces[i * 3 + j] = cornerFaces.get(j);
+        }
 
-        int cont;
-
-        cont = 0;
-        for (int c: centers)
-            arrayCenters.add(new Center(cont++, c));
-
-        cont = 0;
-        for (int i=0; i<24; i+=3)
-            arrayCorners.add(new Corner(cont++, faces.subList(i, i+3)));
+        List<Corner> arrayCorners = new ArrayList<>(facesMatrix.length / 3);
+        for (int i = 0; i < facesMatrix.length; i += 3) {
+            int[] cornerFaces = new int[3];
+            for (int j = 0; j < 3; j++) {
+                int destination = i + j;
+                int source = findSource(facesMatrix[destination]);
+                cornerFaces[j] = oldFaces[source];
+            }
+            arrayCorners.add(new Corner(i / 3, cornerFaces));
+        }
 
         if (updateState){
             state.setCenters(arrayCenters);
