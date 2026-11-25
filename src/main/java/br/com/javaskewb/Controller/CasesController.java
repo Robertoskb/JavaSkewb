@@ -212,10 +212,10 @@ public class CasesController {
         updateButtons();
     }
 
-    private ArrayList<CaseCard> getCaseCards(Cases<?> cases, int page) throws IOException {
-        ArrayList<CaseCard> nodes = new ArrayList<>();
+    private List<CaseCard> getCaseCards(Cases<?> cases, int page) throws IOException {
+        List<CaseCard> nodes = new ArrayList<>();
 
-        ArrayList<Integer> sub = intPagination.getPage(page);
+        List<Integer> sub = intPagination.getPage(page);
 
         for (Case _case: cases.getCases().subList(sub.getFirst(), sub.getLast()+1)){
             if (caseCaseCardCache.containsKey(_case.getId())){
@@ -229,8 +229,8 @@ public class CasesController {
                 CaseCard caseCard = new CaseCard();
                 caseCard.setSkewbComponent(skewbBase);
                 caseCard.setCaseName(_case.getName());
+                caseCard.setCaseId(_case.getId());
                 caseCard.setSkewbCase(_case);
-
                 caseCaseCardCache.put(_case.getId(), caseCard);
 
                 nodes.add(caseCard);

@@ -13,6 +13,9 @@ public class MenuController {
     private Button btnAbout;
 
     @FXML
+    private Button btnId;
+
+    @FXML
     private Button btnLearn;
 
     @FXML
@@ -27,6 +30,11 @@ public class MenuController {
     @FXML
     void toCases(ActionEvent event) throws IOException {
         screenManager.setScene("cases.fxml");
+    }
+
+    @FXML
+    void toId(ActionEvent event) throws IOException {
+        screenManager.setScene("id.fxml");
     }
 
     @FXML

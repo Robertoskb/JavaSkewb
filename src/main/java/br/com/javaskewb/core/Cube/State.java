@@ -7,14 +7,17 @@ import br.com.javaskewb.core.Mapping.Parts.Corner;
 import br.com.javaskewb.core.Mapping.Moves.AdvancedMoves;
 import br.com.javaskewb.core.Solution.Solution;
 import br.com.javaskewb.core.utils.LinkedQueue;
+import br.com.javaskewb.core.utils.StateRank;
 
 import java.io.*;
-import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.ForkJoinPool;
+import java.util.stream.IntStream;
 
 public class State {
+    private static final int SCRAMBLE_BATCH_SIZE = 4_096;
     private static final Random random = new Random();
     private static final List<CentersFaces> perspectives = perspectivesCenterFaces();
 
@@ -259,13 +262,17 @@ public class State {
 
     public static void main(String[] args) {
         String txt = "";
-        String txtOut = "";
-        Scanner sc = new Scanner(System.in);
-        Solution solution = new Solution();
+
+        Path folderPath = Paths.get(System.getProperty("user.home"), ".javaskewb");
+        File file = folderPath.resolve("idsWCA.bin").toFile();
+        try {
+            java.nio.file.Files.createDirectories(folderPath);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return;
+        }
 
         Deque<State> states = new ArrayDeque<>(3200000);
-        List<String> scrambles = new ArrayList<>(3200000);
-
         State solved = State.getSolvedState();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(txt))){
@@ -277,21 +284,20 @@ public class State {
 
         System.out.println("All states");
 
-        int cont = 1;
-        while (!states.isEmpty()) {
-            scrambles.add(solution.findScramble(solved, states.poll()).toString());
-            System.err.println(cont++);
-        }
-
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(txtOut)) ) {
-            for (String line : scrambles) {
-                writer.write(line);
-                writer.newLine();
+        int count = 0;
+        try (DataOutputStream output = new DataOutputStream(
+                new BufferedOutputStream(new FileOutputStream(file)))) {
+            for (State state : states){
+                output.writeLong(StateRank.getBitState(state).getId());
+                if (++count % 1000 == 0)
+                    System.out.println(count);
             }
         }
-        catch (Exception e){
-            e.printStackTrace();
+
+        catch (IOException ex){
+            ex.printStackTrace();
         }
+
+
     }
 }

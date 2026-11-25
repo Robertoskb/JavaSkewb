@@ -14,6 +14,8 @@ public class CaseCard extends VBox {
 
     @FXML
     private Label caseNameLabel;
+    @FXML
+    private Label caseId;
 
     @FXML
     private StackPane skewbContainer;
@@ -36,6 +38,10 @@ public class CaseCard extends VBox {
         if (caseNameLabel != null) {
             caseNameLabel.setText(name);
         }
+    }
+
+    public void setCaseId(int id){
+        caseId.setText("#" + id);
     }
 
     public void setSkewbComponent(Node skewbNode) {

@@ -70,7 +70,13 @@ public class BFSSkewb {
         return BFS(7, state, new FLMoves());
     }
 
+    public static HashMap<State, Scramble> getAllScrambles(){
+        State state = State.getSolvedState();
+
+        return BFS(11, state, new WCAMoves());
+    }
+
     public static void main(String[] args) {
-        getFLScrambles();
+        getFFScrambles();
     }
 }

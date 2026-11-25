@@ -30,3 +30,127 @@
     -fx-background-color: #27272a;
     -fx-text-fill: #ffffff;
 }
+
+.id-page {
+    -fx-background-color: #121214;
+}
+
+.id-header {
+    -fx-background-color: #18181b;
+    -fx-border-color: #27272a;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 15 24 15 24;
+}
+
+.id-title {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.id-subtitle {
+    -fx-text-fill: #a1a1aa;
+    -fx-font-size: 13px;
+}
+
+.id-back-button {
+    -fx-background-color: transparent;
+    -fx-border-color: #3f3f46;
+    -fx-border-radius: 7;
+    -fx-background-radius: 7;
+    -fx-text-fill: #d4d4d8;
+    -fx-cursor: hand;
+    -fx-padding: 8 16 8 16;
+}
+
+.id-back-button:hover {
+    -fx-background-color: #27272a;
+    -fx-text-fill: #ffffff;
+}
+
+.id-card {
+    -fx-background-color: #18181b;
+    -fx-background-radius: 12;
+    -fx-border-color: #27272a;
+    -fx-border-radius: 12;
+    -fx-padding: 28;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 12, 0, 0, 4);
+}
+
+.id-card-title {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.id-card-description {
+    -fx-text-fill: #a1a1aa;
+    -fx-font-size: 13px;
+}
+
+.id-input {
+    -fx-background-color: #27272a;
+    -fx-background-radius: 7;
+    -fx-border-color: #3f3f46;
+    -fx-border-radius: 7;
+    -fx-text-fill: #ffffff;
+    -fx-prompt-text-fill: #71717a;
+    -fx-padding: 10 12 10 12;
+}
+
+.id-action-button {
+    -fx-background-color: #3b82f6;
+    -fx-background-radius: 7;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-padding: 10 16 10 16;
+}
+
+.id-action-button:hover {
+    -fx-background-color: #2563eb;
+}
+
+.id-random-button {
+    -fx-background-color: transparent;
+    -fx-border-color: #3f3f46;
+    -fx-border-radius: 7;
+    -fx-background-radius: 7;
+    -fx-text-fill: #d4d4d8;
+    -fx-cursor: hand;
+    -fx-padding: 10 16 10 16;
+}
+
+.id-random-button:hover {
+    -fx-background-color: #27272a;
+    -fx-text-fill: #ffffff;
+}
+
+.id-status {
+    -fx-font-size: 12px;
+}
+
+.id-status-info {
+    -fx-text-fill: #a1a1aa;
+}
+
+.id-status-valid {
+    -fx-text-fill: #4ade80;
+}
+
+.id-status-invalid {
+    -fx-text-fill: #f87171;
+}
+
+.id-preview {
+    -fx-background-color: #18181b;
+    -fx-background-radius: 12;
+    -fx-border-color: #27272a;
+    -fx-border-radius: 12;
+    -fx-padding: 16;
+}
+
+.id-preview-placeholder {
+    -fx-text-fill: #71717a;
+    -fx-font-size: 14px;
+}

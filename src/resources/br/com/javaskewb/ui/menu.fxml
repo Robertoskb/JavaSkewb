@@ -20,6 +20,7 @@
                     <children>
                         <Button fx:id="btnLearn" maxWidth="Infinity" onAction="#toCases" styleClass="menu-button, primary-button" text="Aprender" />
                         <Button fx:id="btnTimer" maxWidth="Infinity" onAction="#toTimer" styleClass="menu-button, primary-button" text="Praticar" />
+                        <Button fx:id="btnId" maxWidth="Infinity" onAction="#toId" styleClass="menu-button, primary-button" text="Consultar ID" />
                         <Button fx:id="btnAbout" maxWidth="Infinity" onAction="#toAbout" styleClass="menu-button, secondary-button" text="Sobre" />
                     </children>
                 </VBox>

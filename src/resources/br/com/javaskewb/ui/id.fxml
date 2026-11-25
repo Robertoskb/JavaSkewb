@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="720.0" prefWidth="1080.0" styleClass="id-page" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.javaskewb.Controller.IdController">
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="18.0" styleClass="id-header" BorderPane.alignment="CENTER">
+            <children>
+                <Button mnemonicParsing="false" onAction="#toMenu" styleClass="id-back-button" text="Voltar" />
+                <VBox spacing="3.0">
+                    <children>
+                        <Label styleClass="id-title" text="Estado por ID" />
+                        <Label styleClass="id-subtitle" text="Consulte um caso válido e visualize o Skewb correspondente." />
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </top>
+    <center>
+        <HBox alignment="CENTER" spacing="36.0" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="35.0" left="45.0" right="45.0" top="35.0" />
+            </padding>
+            <children>
+                <VBox maxWidth="360.0" prefWidth="360.0" spacing="20.0" styleClass="id-card">
+                    <children>
+                        <Label styleClass="id-card-title" text="Consultar um ID" />
+                        <Label maxWidth="320.0" styleClass="id-card-description" text="Digite um ID ou selecione um estado aleatório do arquivo de IDs válidos." wrapText="true" />
+                        <HBox spacing="10.0">
+                            <children>
+                                <TextField fx:id="txtId" onAction="#generateFromInput" promptText="ID do caso" styleClass="id-input" HBox.hgrow="ALWAYS" />
+                                <Button fx:id="btnGenerate" mnemonicParsing="false" onAction="#generateFromInput" styleClass="id-action-button" text="Gerar" />
+                            </children>
+                        </HBox>
+                        <Button fx:id="btnRandom" maxWidth="Infinity" mnemonicParsing="false" onAction="#generateRandomId" styleClass="id-random-button" text="Gerar ID aleatório" />
+                        <Label fx:id="lblStatus" maxWidth="320.0" styleClass="id-status, id-status-info" text="Carregando IDs válidos..." wrapText="true" />
+                  <Label fx:id="lblScramble" layoutX="39.0" layoutY="268.0" maxWidth="320.0" styleClass="id-status, id-status-info" wrapText="true" />
+                    </children>
+                </VBox>
+                <StackPane fx:id="skewbContainer" minHeight="390.0" minWidth="520.0" prefHeight="440.0" prefWidth="560.0" styleClass="id-preview">
+                    <children>
+                        <Label styleClass="id-preview-placeholder" text="Informe um ID válido para visualizar o Skewb." />
+                    </children>
+                </StackPane>
+            </children>
+        </HBox>
+    </center>
+</BorderPane>
