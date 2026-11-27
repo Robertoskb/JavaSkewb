@@ -3,6 +3,7 @@ package br.com.javaskewb.Controller;
 import br.com.javaskewb.Controller.Components.CaseCard;
 import br.com.javaskewb.Controller.Components.CaseInfo;
 import br.com.javaskewb.Controller.Components.SkewbBase;
+import br.com.javaskewb.Controller.utils.CaseSort;
 import br.com.javaskewb.Controller.utils.Pagination;
 import br.com.javaskewb.DataManager.Manager.Manager;
 import br.com.javaskewb.core.utils.BitState;
@@ -30,6 +31,7 @@ import javafx.stage.FileChooser;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.IntStream;
 
 public class CasesController {
@@ -65,6 +67,12 @@ public class CasesController {
 
     @FXML
     private Label casesName;
+
+    @FXML
+    private Button btnSortByCase;
+
+    @FXML
+    private Button btnSortByState;
 
     private int currentPage = 1;
 
@@ -121,6 +129,26 @@ public class CasesController {
         });
 
         methodsContainer.getChildren().add(button);
+
+    }
+
+    @FXML
+    private void sortByCase() {
+        sortCases(Case::getId);
+    }
+
+    @FXML
+    private void sortByState() {
+        sortCases(c -> StateRank.getBitState(c.getCaseSkewb().getState()).getId());
+    }
+
+    private void sortCases(Function<Case, Number> sortFunction) {
+        CaseSort.heapSort((List<Case>) currentCases.getCases(), sortFunction);
+        try {
+            updateCases(currentCases);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void updateMethod(Cases<?> method) throws IOException {
@@ -338,4 +366,3 @@ public class CasesController {
     }
 
 }
-
